@@ -15,5 +15,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "Online Store"
 include(":app")
-include(":features:registration")
+include(":domain")
 include(":core")
+include(":data")
+include(":features")
+include(":features:registration")

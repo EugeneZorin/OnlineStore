@@ -1,4 +1,4 @@
 package com.example.core
 
-class Core {
+class MyClass {
 }

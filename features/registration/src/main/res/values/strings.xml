@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">registration</string>
+    <string name="termsAgreement">Нажимая кнопку “Войти”, Вы принимаете <u> условия программы лояльности</u> </string>
+    <string name="signIn">Войти</string>
+</resources>

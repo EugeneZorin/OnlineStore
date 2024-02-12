@@ -2,4 +2,8 @@
     <string name="app_name">registration</string>
     <string name="termsAgreement">Нажимая кнопку “Войти”, Вы принимаете <u> условия программы лояльности</u> </string>
     <string name="signIn">Войти</string>
+    <string name="NameEditText">Имя</string>
+    <string name="FirstName">Фамилия</string>
+    <string name="PhoneNumber">Номер телефона</string>
+    <string name="entry">Вход</string>
 </resources>

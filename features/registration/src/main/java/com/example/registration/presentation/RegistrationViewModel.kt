@@ -1,4 +1,9 @@
 package com.example.registration.presentation
 
-class RegistrationViewModel {
+import androidx.lifecycle.ViewModel
+
+class RegistrationViewModel: ViewModel() {
+
+
+
 }

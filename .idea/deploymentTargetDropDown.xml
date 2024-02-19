@@ -2,10 +2,19 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="ExampleInstrumentedTest">
+        <State />
+      </entry>
       <entry key="app">
         <State />
       </entry>
       <entry key="features.registration">
+        <State />
+      </entry>
+      <entry key="testValidationName_ExceptionThrown_ReturnsFalse()">
+        <State />
+      </entry>
+      <entry key="testValidationName_ValidInput_ReturnsTrue()">
         <State />
       </entry>
     </value>

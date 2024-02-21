@@ -1,7 +1,7 @@
 package com.example.registration.repository.saving
 
-import com.example.registration.usecase.SavingData
+import com.example.registration.entities.SavingDataEntity
 
 interface DataSavingContract {
-    suspend fun validationName(data: SavingData): Boolean
+    suspend fun savingAllData(data: SavingDataEntity): Boolean
 }

@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 
 }
 
@@ -39,8 +41,13 @@ android {
 dependencies {
 
 
+    implementation(project(":domain:registration"))
 
+    // Hilt
+    implementation(libs.hilt)
+    kapt (libs.hilt.compiler)
 
+    // Core libs
     implementation(libs.androidx.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)

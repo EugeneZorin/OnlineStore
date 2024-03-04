@@ -8,14 +8,27 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.example.registration.R
 import com.example.registration.databinding.ActivityRegistrationFragmentBinding
+import com.example.registration.repository.saving.DataSavingContract
+import com.example.registration.repository.validation.DataValidationContract
+import com.example.registration.repository.validation.NumberPhoneValidationContract
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+
+@AndroidEntryPoint
 class RegistrationFragment : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegistrationFragmentBinding
 
+    @Inject lateinit var numberPhoneValidationContract: NumberPhoneValidationContract
+    @Inject lateinit var dataSavingContract: DataSavingContract
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityRegistrationFragmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -35,7 +48,9 @@ class RegistrationFragment : AppCompatActivity() {
     }
 
     private fun setupCancelButtons() {
-        binding.EditName.addTextChangedListener { toggleCancelButton(binding.cancelNameEntry, it) }
+        binding.EditName.addTextChangedListener {
+            toggleCancelButton(binding.cancelNameEntry, it)
+        }
         binding.EditFirstName.addTextChangedListener { toggleCancelButton(binding.cancelFirstNameEntry, it) }
         binding.EditPhoneNumber.addTextChangedListener { toggleCancelButton(binding.cancelPhoneNumberEntry, it) }
 
@@ -46,6 +61,10 @@ class RegistrationFragment : AppCompatActivity() {
 
     private fun toggleCancelButton(button: View, text: CharSequence?) {
         button.alpha = if (text.isNullOrEmpty()) 0.0f else 1.0f
+        CoroutineScope(Dispatchers.IO).launch {
+            numberPhoneValidationContract.validationNumberPhone(button.toString())
+        }
+
     }
 
     private val phoneNumberWatcher = object : TextWatcher {

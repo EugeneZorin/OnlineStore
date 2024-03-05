@@ -1,7 +1,8 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id ("kotlin-kapt")
+    kotlin("kapt")
     id("com.google.dagger.hilt.android")
 }
 
@@ -11,11 +12,8 @@ android {
 
 
     defaultConfig {
-        applicationId = "com.example.registration"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -49,10 +47,9 @@ dependencies {
 
     implementation(project(":domain:registration"))
 
-    // Hilt
-    implementation(libs.hilt)
-    kapt (libs.hilt.compiler)
 
+    implementation("com.google.dagger:hilt-android:2.47")
+    kapt("com.google.dagger:hilt-android-compiler:2.47")
 
     implementation(libs.activity)
     implementation(libs.fragment)

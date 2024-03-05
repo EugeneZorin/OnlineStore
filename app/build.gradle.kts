@@ -1,9 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    id ("kotlin-kapt")
+    kotlin("kapt")
     id("com.google.dagger.hilt.android")
-
 }
 
 android {
@@ -36,18 +36,19 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
 
+    implementation(project(":features:registration"))
 
-    implementation(project(":domain:registration"))
 
-    // Hilt
-    implementation(libs.hilt)
-    kapt (libs.hilt.compiler)
+    implementation("com.google.dagger:hilt-android:2.47")
+    kapt("com.google.dagger:hilt-android-compiler:2.47")
 
-    // Core libs
     implementation(libs.androidx.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)

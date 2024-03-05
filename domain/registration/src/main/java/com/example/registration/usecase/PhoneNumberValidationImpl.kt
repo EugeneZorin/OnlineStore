@@ -1,11 +1,11 @@
 package com.example.registration.usecase
 
 import com.example.registration.repository.saving.DataSavingRepository
-import com.example.registration.repository.validation.NumberPhoneValidationContract
+import com.example.registration.repository.validation.NumberPhoneValidation
 
-class PhoneNumberValidation(
+class PhoneNumberValidationImpl(
     private val dataSavingRepository: DataSavingRepository
-): NumberPhoneValidationContract {
+): NumberPhoneValidation {
     override suspend fun validationNumberPhone(numberPhone: String): Boolean {
         return try {
             true

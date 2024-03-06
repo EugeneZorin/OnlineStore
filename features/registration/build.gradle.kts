@@ -2,7 +2,6 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id ("kotlin-kapt")
-    kotlin("kapt")
     id("com.google.dagger.hilt.android")
 }
 
@@ -47,7 +46,7 @@ dependencies {
 
     implementation(project(":domain:registration"))
 
-
+    implementation("androidx.hilt:hilt-navigation-fragment:1.2.0")
     implementation("com.google.dagger:hilt-android:2.47")
     kapt("com.google.dagger:hilt-android-compiler:2.47")
 

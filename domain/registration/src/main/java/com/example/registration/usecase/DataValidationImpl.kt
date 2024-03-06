@@ -2,8 +2,7 @@ package com.example.registration.usecase
 
 import com.example.registration.repository.validation.DataValidation
 
-class DataValidationImpl:
-    DataValidation {
+class DataValidationImpl: DataValidation {
 
     private var regex = '\u0400'..'\u04FF'
 

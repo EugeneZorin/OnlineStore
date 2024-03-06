@@ -1,7 +1,6 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
 }
 
 android {
@@ -25,23 +24,23 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
 
 
 dependencies {
+    
+    implementation(project(":domain:registration"))
 
-    implementation(project(":app"))
-
-    implementation(libs.room)
+    /*implementation(libs.room)
     annotationProcessor(libs.room.compiler)
-    ksp(libs.room.compiler)
+    ksp(libs.room.compiler)*/
 
     implementation(libs.androidx.ktx)
     implementation(libs.appcompat)

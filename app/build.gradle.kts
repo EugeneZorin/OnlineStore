@@ -44,7 +44,8 @@ android {
 dependencies {
 
     implementation(project(":features:registration"))
-
+    implementation(project(":domain:registration"))
+    implementation(project(":data"))
 
     implementation("com.google.dagger:hilt-android:2.47")
     kapt("com.google.dagger:hilt-android-compiler:2.47")

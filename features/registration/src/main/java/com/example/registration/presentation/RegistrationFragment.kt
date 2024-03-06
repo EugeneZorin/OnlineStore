@@ -8,14 +8,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.example.registration.R
 import com.example.registration.databinding.ActivityRegistrationFragmentBinding
-import com.example.registration.repository.validation.DataValidation
+
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class RegistrationFragment : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegistrationFragmentBinding
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

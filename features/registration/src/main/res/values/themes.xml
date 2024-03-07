@@ -6,4 +6,5 @@
     </style>
 
     <style name="Theme.OnlineStore" parent="Base.Theme.OnlineStore" />
+
 </resources>

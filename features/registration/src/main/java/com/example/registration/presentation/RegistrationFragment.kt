@@ -1,8 +1,15 @@
 package com.example.registration.presentation
 
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
 import android.text.TextWatcher
+import android.text.style.UnderlineSpan
 import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
@@ -18,7 +25,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class RegistrationFragment : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegistrationFragmentBinding
-
     private val registrationViewModel: RegistrationViewModel by viewModels()
 
 
@@ -42,10 +48,17 @@ class RegistrationFragment : AppCompatActivity() {
         }
     }
 
+
     private fun setupCancelButtons() {
         binding.EditName.addTextChangedListener {
             toggleCancelButton(binding.cancelNameEntry, it)
-            registrationViewModel.nameValidation(it.toString())
+            if (registrationViewModel.nameValidation(it.toString()).isNotEmpty()){
+                binding.EditName.setTextColor(Color.RED)
+                binding.EditName.text.setSpan(UnderlineSpan(), 0, it!!.length, 0)
+            } else {
+                binding.EditName.setTextColor(Color.BLACK)
+
+            }
         }
         binding.EditFirstName.addTextChangedListener {
             toggleCancelButton(

@@ -6,19 +6,25 @@ class DataValidationImpl: DataValidation {
 
     private var regex = '\u0400'..'\u04FF'
 
-    override fun validationName(name: String): List<Boolean> {
+    override fun validationName(name: String): MutableList<Char> {
         return try {
-            val result = mutableListOf<Boolean>()
+            val result = mutableListOf<Char>()
             for (char in name) {
-                val isCyrillic = char in regex
-                result.add(isCyrillic)
+                when (char in regex){
+                    false -> result.add(char)
+                    else -> {}
+                }
             }
             return result
+
         } catch (e : Exception){
             println("Error in DataValidation (validationName): ${e.message}")
-            listOf(false)
+            mutableListOf()
         }
     }
+
+
+
 
     override fun validationFirstName(firstName: String): List<Boolean> {
         return try {
@@ -33,6 +39,8 @@ class DataValidationImpl: DataValidation {
             listOf(false)
         }
     }
+
+
 
 
 }

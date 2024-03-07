@@ -16,8 +16,8 @@ class RegistrationViewModel @Inject constructor(
     private val dataSaving: DataSaving
 ): ViewModel() {
 
-    fun nameValidation(name: String){
-        dataValidation.validationName(name)
+    fun nameValidation(name: String): MutableList<Char>{
+        return dataValidation.validationName(name)
     }
     fun firstNameValidation(firstName: String){
         dataValidation.validationFirstName(firstName)
@@ -26,6 +26,7 @@ class RegistrationViewModel @Inject constructor(
     suspend fun numberPhoneValidation(number: String){
         numberPhoneValidation.validationNumberPhone(number)
     }
+
 
 
 

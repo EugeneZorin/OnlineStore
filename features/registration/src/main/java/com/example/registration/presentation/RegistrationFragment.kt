@@ -3,14 +3,15 @@ package com.example.registration.presentation
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.example.registration.R
 import com.example.registration.databinding.ActivityRegistrationFragmentBinding
 
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -18,11 +19,12 @@ class RegistrationFragment : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegistrationFragmentBinding
 
-
+    private val registrationViewModel: RegistrationViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         binding = ActivityRegistrationFragmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -43,7 +45,7 @@ class RegistrationFragment : AppCompatActivity() {
     private fun setupCancelButtons() {
         binding.EditName.addTextChangedListener {
             toggleCancelButton(binding.cancelNameEntry, it)
-
+            registrationViewModel.nameValidation(it.toString())
         }
         binding.EditFirstName.addTextChangedListener {
             toggleCancelButton(
@@ -66,6 +68,7 @@ class RegistrationFragment : AppCompatActivity() {
 
     private fun toggleCancelButton(button: View, text: CharSequence?) {
         button.alpha = if (text.isNullOrEmpty()) 0.0f else 1.0f
+
     }
 
     private val phoneNumberWatcher = object : TextWatcher {

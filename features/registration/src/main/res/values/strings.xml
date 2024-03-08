@@ -6,6 +6,5 @@
     <string name="FirstName">Surname</string>
     <string name="PhoneNumber">Phone number</string>
     <string name="entry">Entry</string>
-    <string name="errorMessageName" translatable="false">The @ symbol cannot be used</string>
-    <string name="errorMessageSurname" translatable="false">The @ symbol cannot be used</string>
+    <string name="error_invalid_char" translatable="false">The %s symbol cannot be used</string>
 </resources>

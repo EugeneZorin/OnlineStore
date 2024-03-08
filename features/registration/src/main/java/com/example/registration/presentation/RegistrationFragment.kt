@@ -1,11 +1,13 @@
 package com.example.registration.presentation
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.style.UnderlineSpan
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -43,34 +45,40 @@ class RegistrationFragment : AppCompatActivity() {
         }
     }
 
+    fun EditText.addTextChangedListenerWithValidation(
+        validator: (String) -> List<Char>,
+        onError: (List<Char>, Editable) -> Unit
+    ) {
+        this.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val editable = this@addTextChangedListenerWithValidation.text ?: return
+                val charArray = validator(s.toString())
+                onError(charArray, editable)
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
+
 
     private fun setupCancelButtons() {
-        binding.EditName.addTextChangedListener {
-            toggleCancelButton(binding.cancelNameEntry, it)
-            val chatNameArray = registrationViewModel.nameValidation(it.toString())
-            if (chatNameArray.isNotEmpty()){
-                binding.EditName.setTextColor(Color.RED)
-                binding.EditName.text.setSpan(UnderlineSpan(), 0, it!!.length, 0)
-                binding.errorMessageName.text = "The ${chatNameArray[0]} symbol cannot be used"
-                binding.errorMessageName.visibility = View.VISIBLE
-            } else {
-                binding.errorMessageName.visibility = View.INVISIBLE
-                binding.EditName.setTextColor(Color.BLACK)
+
+        binding.EditName.addTextChangedListenerWithValidation(
+            validator = { registrationViewModel.nameValidation(it) },
+            onError = { chars, editable ->
+                updateErrorUI(binding.EditName, binding.errorMessageName, chars, editable)
             }
-        }
-        binding.EditFirstName.addTextChangedListener {
-            toggleCancelButton(binding.cancelFirstNameEntry, it)
-            val charFirstNameArray = registrationViewModel.firstNameValidation(it.toString())
-            if (charFirstNameArray.isNotEmpty()){
-                binding.EditFirstName.setTextColor(Color.RED)
-                binding.EditFirstName.text.setSpan(UnderlineSpan(), 0, it!!.length, 0)
-                binding.errorMessageSurname.text = "The ${charFirstNameArray[0]} symbol cannot be used"
-                binding.errorMessageSurname.visibility = View.VISIBLE
-            } else {
-                binding.EditName.setTextColor(Color.BLACK)
-                binding.errorMessageSurname.visibility = View.INVISIBLE
+        )
+
+        binding.EditFirstName.addTextChangedListenerWithValidation(
+            validator = {registrationViewModel.firstNameValidation(it)},
+            onError = { chars, editable ->
+                updateErrorUI(binding.EditFirstName, binding.errorMessageSurname, chars, editable)
             }
-        }
+        )
+
 
         binding.EditPhoneNumber.addTextChangedListener {
             toggleCancelButton(
@@ -84,6 +92,25 @@ class RegistrationFragment : AppCompatActivity() {
         binding.cancelPhoneNumberEntry.setOnClickListener { binding.EditPhoneNumber.text.clear() }
     }
 
+
+
+    @SuppressLint("StringFormatInvalid")
+    private fun updateErrorUI(
+        editText: EditText,
+        errorTextView: TextView,
+        charArray: List<Char>,
+        editable: Editable
+    ) {
+        if (charArray.isNotEmpty()) {
+            editText.setTextColor(Color.RED)
+            editText.text.setSpan(UnderlineSpan(), 0, editable.length, 0)
+            errorTextView.text = getString(R.string.error_invalid_char, charArray[0])
+            errorTextView.visibility = View.VISIBLE
+        } else {
+            editText.setTextColor(Color.BLACK)
+            errorTextView.visibility = View.INVISIBLE
+        }
+    }
 
 
     private fun toggleCancelButton(button: View, text: CharSequence?) {

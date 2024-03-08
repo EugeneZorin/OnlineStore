@@ -26,17 +26,20 @@ class DataValidationImpl: DataValidation {
 
 
 
-    override fun validationFirstName(firstName: String): List<Boolean> {
+    override fun validationFirstName(firstName: String): MutableList<Char> {
         return try {
-            val result = mutableListOf<Boolean>()
+            val result = mutableListOf<Char>()
             for (char in firstName) {
-                val isCyrillic = char in regex
-                result.add(isCyrillic)
+                when (char in regex){
+                    false -> result.add(char)
+                    else -> {}
+                }
             }
             return result
-        } catch (e : Exception) {
-            println("Error in DataValidation (validationFirstName): ${e.message}")
-            listOf(false)
+
+        } catch (e : Exception){
+            println("Error in DataValidation (validationFirsName): ${e.message}")
+            mutableListOf()
         }
     }
 

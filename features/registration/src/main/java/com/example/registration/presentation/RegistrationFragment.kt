@@ -1,17 +1,12 @@
 package com.example.registration.presentation
 
 import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.SpannableStringBuilder
 import android.text.TextWatcher
 import android.text.style.UnderlineSpan
-import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
@@ -52,21 +47,31 @@ class RegistrationFragment : AppCompatActivity() {
     private fun setupCancelButtons() {
         binding.EditName.addTextChangedListener {
             toggleCancelButton(binding.cancelNameEntry, it)
-            if (registrationViewModel.nameValidation(it.toString()).isNotEmpty()){
+            val chatNameArray = registrationViewModel.nameValidation(it.toString())
+            if (chatNameArray.isNotEmpty()){
                 binding.EditName.setTextColor(Color.RED)
                 binding.EditName.text.setSpan(UnderlineSpan(), 0, it!!.length, 0)
+                binding.errorMessageName.text = "The ${chatNameArray[0]} symbol cannot be used"
+                binding.errorMessageName.visibility = View.VISIBLE
             } else {
+                binding.errorMessageName.visibility = View.INVISIBLE
                 binding.EditName.setTextColor(Color.BLACK)
-
             }
         }
         binding.EditFirstName.addTextChangedListener {
-            toggleCancelButton(
-                binding.cancelFirstNameEntry,
-                it
-            )
-
+            toggleCancelButton(binding.cancelFirstNameEntry, it)
+            val charFirstNameArray = registrationViewModel.firstNameValidation(it.toString())
+            if (charFirstNameArray.isNotEmpty()){
+                binding.EditFirstName.setTextColor(Color.RED)
+                binding.EditFirstName.text.setSpan(UnderlineSpan(), 0, it!!.length, 0)
+                binding.errorMessageSurname.text = "The ${charFirstNameArray[0]} symbol cannot be used"
+                binding.errorMessageSurname.visibility = View.VISIBLE
+            } else {
+                binding.EditName.setTextColor(Color.BLACK)
+                binding.errorMessageSurname.visibility = View.INVISIBLE
+            }
         }
+
         binding.EditPhoneNumber.addTextChangedListener {
             toggleCancelButton(
                 binding.cancelPhoneNumberEntry,
@@ -79,10 +84,15 @@ class RegistrationFragment : AppCompatActivity() {
         binding.cancelPhoneNumberEntry.setOnClickListener { binding.EditPhoneNumber.text.clear() }
     }
 
+
+
     private fun toggleCancelButton(button: View, text: CharSequence?) {
         button.alpha = if (text.isNullOrEmpty()) 0.0f else 1.0f
 
     }
+
+
+
 
     private val phoneNumberWatcher = object : TextWatcher {
 

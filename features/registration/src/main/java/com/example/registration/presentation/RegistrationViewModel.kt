@@ -19,8 +19,8 @@ class RegistrationViewModel @Inject constructor(
     fun nameValidation(name: String): MutableList<Char>{
         return dataValidation.validationName(name)
     }
-    fun firstNameValidation(firstName: String){
-        dataValidation.validationFirstName(firstName)
+    fun firstNameValidation(firstName: String): MutableList<Char>{
+        return dataValidation.validationFirstName(firstName)
     }
 
     suspend fun numberPhoneValidation(number: String){

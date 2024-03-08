@@ -8,8 +8,7 @@ class PhoneNumberValidationImpl(
 ): NumberPhoneValidation {
     override suspend fun validationNumberPhone(numberPhone: String): Boolean {
         return try {
-            true
-            /*dataSavingRepository.searchNumber(numberPhone = numberPhone)*/
+            dataSavingRepository.searchNumber(numberPhone = numberPhone)
         }catch (e: Exception){
             println("Error in PhoneNumberValidation (validationNumberPhone): ${e.message}")
             false

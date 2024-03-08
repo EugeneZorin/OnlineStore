@@ -23,8 +23,8 @@ class RegistrationViewModel @Inject constructor(
         return dataValidation.validationFirstName(firstName)
     }
 
-    suspend fun numberPhoneValidation(number: String){
-        numberPhoneValidation.validationNumberPhone(number)
+    suspend fun numberPhoneValidation(number: String): Boolean{
+        return numberPhoneValidation.validationNumberPhone(number)
     }
 
 

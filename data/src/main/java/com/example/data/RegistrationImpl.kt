@@ -9,7 +9,7 @@ class RegistrationImpl: DataSavingRepository {
     }
 
     override suspend fun searchNumber(numberPhone: String): Boolean {
-        TODO("Not yet implemented")
+        return true
     }
 
     override suspend fun update(savingDataEntity: SavingDataEntity) {

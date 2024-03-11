@@ -1,4 +1,4 @@
-package com.example.data
+package com.example.data.room
 
 import com.example.registration.entities.SavingDataEntity
 import com.example.registration.repository.saving.DataSavingRepository

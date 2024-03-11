@@ -26,10 +26,10 @@ class DataValidationImpl: DataValidation {
 
 
 
-    override fun validationFirstName(firstName: String): MutableList<Char> {
+    override fun validationSurname(surname: String): MutableList<Char> {
         return try {
             val result = mutableListOf<Char>()
-            for (char in firstName) {
+            for (char in surname) {
                 when (char in regex){
                     false -> result.add(char)
                     else -> {}
@@ -38,7 +38,7 @@ class DataValidationImpl: DataValidation {
             return result
 
         } catch (e : Exception){
-            println("Error in DataValidation (validationFirsName): ${e.message}")
+            println("Error in DataValidation (validationSurname): ${e.message}")
             mutableListOf()
         }
     }

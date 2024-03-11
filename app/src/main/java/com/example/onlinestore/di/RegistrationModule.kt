@@ -1,6 +1,6 @@
 package com.example.onlinestore.di
 
-import com.example.data.RegistrationImpl
+import com.example.data.room.RegistrationImpl
 import com.example.registration.repository.saving.DataSaving
 import com.example.registration.repository.saving.DataSavingRepository
 import com.example.registration.repository.validation.DataValidation

@@ -33,18 +33,17 @@
         android:maxLength="20"
         android:paddingStart="16dp"
         android:paddingTop="12dp"
+
+
         android:paddingEnd="16dp"
-
-
         android:paddingBottom="12dp"
         app:cornerRadius="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/EditFirstName"
+        app:layout_constraintBottom_toTopOf="@+id/EditSurname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-
     <EditText
-        android:id="@+id/EditFirstName"
+        android:id="@+id/EditSurname"
         android:layout_width="385dp"
         android:layout_height="56dp"
         android:layout_marginBottom="24dp"
@@ -130,18 +129,19 @@
 
 
     <ImageButton
-        android:id="@+id/cancelFirstNameEntry"
+        android:id="@+id/cancelSurnameEntry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:alpha="0"
         android:background="@drawable/rounded_edittext_bg"
         android:contentDescription="@drawable/baseline_clear_24"
         android:textAlignment="center"
-        android:alpha="0"
-        app:layout_constraintBottom_toBottomOf="@+id/EditFirstName"
-        app:layout_constraintEnd_toEndOf="@+id/EditFirstName"
+
+        app:layout_constraintBottom_toBottomOf="@+id/EditSurname"
+        app:layout_constraintEnd_toEndOf="@+id/EditSurname"
         app:layout_constraintHorizontal_bias="0.96"
-        app:layout_constraintStart_toStartOf="@+id/EditFirstName"
-        app:layout_constraintTop_toTopOf="@+id/EditFirstName"
+        app:layout_constraintStart_toStartOf="@+id/EditSurname"
+        app:layout_constraintTop_toTopOf="@+id/EditSurname"
         app:srcCompat="@drawable/baseline_clear_24" />
 
     <ImageButton

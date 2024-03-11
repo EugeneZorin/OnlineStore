@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.style.UnderlineSpan
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import com.example.registration.R
 import com.example.registration.databinding.ActivityRegistrationFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,11 +52,11 @@ class RegistrationFragment : AppCompatActivity() {
                 }
             )
 
-            EditFirstName.addTextChangedListenerWithValidation(
+            EditSurname.addTextChangedListenerWithValidation(
                 validator = { registrationViewModel.firstNameValidation(it) },
                 onError = { chars, editable ->
                     updateErrorUI(
-                        binding.EditFirstName,
+                        binding.EditSurname,
                         binding.errorMessageSurname,
                         chars,
                         editable
@@ -67,7 +65,7 @@ class RegistrationFragment : AppCompatActivity() {
             )
 
             cancelNameEntry.setOnClickListener { binding.EditName.text.clear() }
-            cancelFirstNameEntry.setOnClickListener { binding.EditFirstName.text.clear() }
+            cancelSurnameEntry.setOnClickListener { binding.EditSurname.text.clear() }
             cancelPhoneNumberEntry.setOnClickListener { binding.EditPhoneNumber.text.clear() }
 
         }
@@ -123,9 +121,9 @@ class RegistrationFragment : AppCompatActivity() {
 
         with(binding){
             val sizeName = EditName.text.isNotEmpty()
-            val sizeFirsName = EditFirstName.text.isNotEmpty()
+            val sizeSurname = EditSurname.text.isNotEmpty()
 
-            if (phoneNumberLength == 17 && sizeNameArray.isEmpty() && sizeFirsNameArray.isEmpty() && sizeName && sizeFirsName) {
+            if (phoneNumberLength == 17 && sizeNameArray.isEmpty() && sizeFirsNameArray.isEmpty() && sizeName && sizeSurname) {
                 button.setBackgroundColor(ContextCompat.getColor(this@RegistrationFragment, R.color.pink))
                 button.setOnClickListener {
                     CoroutineScope(Dispatchers.IO).launch {

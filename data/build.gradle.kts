@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -38,9 +39,10 @@ dependencies {
     
     implementation(project(":domain:registration"))
 
-    /*implementation(libs.room)
+    ksp(libs.room.compiler)
+    implementation(libs.room)
     annotationProcessor(libs.room.compiler)
-    ksp(libs.room.compiler)*/
+
 
     implementation(libs.androidx.ktx)
     implementation(libs.appcompat)

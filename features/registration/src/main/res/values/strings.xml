@@ -7,4 +7,5 @@
     <string name="PhoneNumber">Phone number</string>
     <string name="entry">Entry</string>
     <string name="error_invalid_char" translatable="false">The %s symbol cannot be used</string>
+    <string name="error_number_phone" translatable="false">A user with the same name already exists</string>
 </resources>

@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.example.registration.R
 import com.example.registration.databinding.ActivityRegistrationFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +30,7 @@ class RegistrationFragment : AppCompatActivity() {
     private var phoneNumberLength: Int = 0
     private val sizeNameArray: MutableList<Char> = mutableListOf()
     private val sizeFirsNameArray: MutableList<Char> = mutableListOf()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,6 +102,7 @@ class RegistrationFragment : AppCompatActivity() {
         })
     }
 
+
     private fun counterArray(charArray: List<Char>, editText: EditText) {
         when (editText.id) {
             R.id.EditName -> {
@@ -126,15 +129,26 @@ class RegistrationFragment : AppCompatActivity() {
                 button.setBackgroundColor(ContextCompat.getColor(this@RegistrationFragment, R.color.pink))
                 button.setOnClickListener {
                     CoroutineScope(Dispatchers.IO).launch {
-                        registrationViewModel.numberPhoneValidation(EditPhoneNumber.text.toString())
+                        messageErrorPhoneNumber(registrationViewModel.numberPhoneValidation(EditPhoneNumber.text))
                     }
                 }
             } else {
                 button.setBackgroundColor(ContextCompat.getColor(this@RegistrationFragment, R.color.pale_pink))
             }
         }
+    }
 
-
+    private fun messageErrorPhoneNumber(result: Boolean){
+        CoroutineScope(Dispatchers.Main).launch {
+            with (binding){
+                errorMessageNumberPhone.visibility = if (result) View.VISIBLE else View.INVISIBLE
+                EditPhoneNumber.setTextColor(if (result) Color.RED else Color.BLACK)
+                if (result) {
+                    EditPhoneNumber.text.setSpan(UnderlineSpan(), 0, EditPhoneNumber.text.length, 0)
+                    errorMessageNumberPhone.text = getString(R.string.error_number_phone)
+                }
+            }
+        }
     }
 
 
@@ -193,6 +207,8 @@ class RegistrationFragment : AppCompatActivity() {
             binding.EditPhoneNumber.setText(formattedPhone.toString())
             binding.EditPhoneNumber.setSelection(formattedPhone.length)
             phoneNumberLength = binding.EditPhoneNumber.text.length
+
+            if (phoneNumberLength < 17) { messageErrorPhoneNumber(false) }
 
         }
 

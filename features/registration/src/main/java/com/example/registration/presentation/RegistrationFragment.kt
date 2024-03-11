@@ -11,9 +11,13 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.registration.R
 import com.example.registration.databinding.ActivityRegistrationFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -22,7 +26,7 @@ class RegistrationFragment : AppCompatActivity() {
     private lateinit var binding: ActivityRegistrationFragmentBinding
     private val registrationViewModel: RegistrationViewModel by viewModels()
 
-    private var setNumber: Int = 0
+    private var phoneNumberLength: Int = 0
     private val sizeNameArray: MutableList<Char> = mutableListOf()
     private val sizeFirsNameArray: MutableList<Char> = mutableListOf()
 
@@ -30,15 +34,43 @@ class RegistrationFragment : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-
         binding = ActivityRegistrationFragmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupPhoneNumberEditText()
-        inputFields()
-        setupCancelButtons()
 
+        setupPhoneNumberEditText()
+        setupView()
     }
+
+
+    private fun setupView() {
+        with(binding) {
+
+            EditName.addTextChangedListenerWithValidation(
+                validator = { registrationViewModel.nameValidation(it) },
+                onError = { chars, editable ->
+                    updateErrorUI(binding.EditName, binding.errorMessageName, chars, editable)
+                }
+            )
+
+            EditFirstName.addTextChangedListenerWithValidation(
+                validator = { registrationViewModel.firstNameValidation(it) },
+                onError = { chars, editable ->
+                    updateErrorUI(
+                        binding.EditFirstName,
+                        binding.errorMessageSurname,
+                        chars,
+                        editable
+                    )
+                }
+            )
+
+            cancelNameEntry.setOnClickListener { binding.EditName.text.clear() }
+            cancelFirstNameEntry.setOnClickListener { binding.EditFirstName.text.clear() }
+            cancelPhoneNumberEntry.setOnClickListener { binding.EditPhoneNumber.text.clear() }
+
+        }
+    }
+
 
     private fun setupPhoneNumberEditText() {
         binding.EditPhoneNumber.addTextChangedListener(phoneNumberWatcher)
@@ -61,7 +93,7 @@ class RegistrationFragment : AppCompatActivity() {
                 val charArray = validator(s.toString())
                 onError(charArray, editable)
                 counterArray(charArray, this@addTextChangedListenerWithValidation)
-
+                loginButton()
             }
 
             override fun afterTextChanged(s: Editable?) {}
@@ -74,58 +106,34 @@ class RegistrationFragment : AppCompatActivity() {
                 sizeNameArray.clear()
                 sizeNameArray.addAll(charArray)
             }
+
             R.id.EditFirstName -> {
                 sizeFirsNameArray.clear()
                 sizeFirsNameArray.addAll(charArray)
             }
         }
 
-        loginButton()
     }
 
 
-    private fun loginButton(){
+    private fun loginButton() {
 
-        val validationNumber = setNumber == 17
-        val validationName = sizeNameArray.isEmpty()
-        val validationFirstName = sizeFirsNameArray.isEmpty()
-        val sizeName = binding.EditName.text.isNotEmpty()
-        val sizeFirsName = binding.EditFirstName.text.isNotEmpty()
+        with(binding){
+            val sizeName = EditName.text.isNotEmpty()
+            val sizeFirsName = EditFirstName.text.isNotEmpty()
 
-        if (validationNumber && validationName && validationFirstName && sizeName && sizeFirsName){
-            binding.button.setBackgroundColor(Color.RED)
-        } else {
-            binding.button.setBackgroundColor(Color.BLACK)
+            if (phoneNumberLength == 17 && sizeNameArray.isEmpty() && sizeFirsNameArray.isEmpty() && sizeName && sizeFirsName) {
+                button.setBackgroundColor(ContextCompat.getColor(this@RegistrationFragment, R.color.pink))
+                button.setOnClickListener {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        registrationViewModel.numberPhoneValidation(EditPhoneNumber.text.toString())
+                    }
+                }
+            } else {
+                button.setBackgroundColor(ContextCompat.getColor(this@RegistrationFragment, R.color.pale_pink))
+            }
         }
 
-        binding.button.setOnClickListener {
-
-        }
-    }
-
-
-    private fun inputFields() {
-        binding.EditName.addTextChangedListenerWithValidation(
-            validator = { registrationViewModel.nameValidation(it) },
-            onError = { chars, editable ->
-                updateErrorUI(binding.EditName, binding.errorMessageName, chars, editable)
-            }
-        )
-
-        binding.EditFirstName.addTextChangedListenerWithValidation(
-            validator = { registrationViewModel.firstNameValidation(it) },
-            onError = { chars, editable ->
-                updateErrorUI(binding.EditFirstName, binding.errorMessageSurname, chars, editable)
-            }
-        )
-
-    }
-
-    private fun setupCancelButtons() {
-
-        binding.cancelNameEntry.setOnClickListener { binding.EditName.text.clear() }
-        binding.cancelFirstNameEntry.setOnClickListener { binding.EditFirstName.text.clear() }
-        binding.cancelPhoneNumberEntry.setOnClickListener { binding.EditPhoneNumber.text.clear() }
 
     }
 
@@ -146,8 +154,6 @@ class RegistrationFragment : AppCompatActivity() {
             errorTextView.visibility = View.INVISIBLE
         }
     }
-
-
 
 
     private val phoneNumberWatcher = object : TextWatcher {
@@ -186,10 +192,12 @@ class RegistrationFragment : AppCompatActivity() {
             isFormatting = true
             binding.EditPhoneNumber.setText(formattedPhone.toString())
             binding.EditPhoneNumber.setSelection(formattedPhone.length)
-            setNumber = binding.EditPhoneNumber.text.length
+            phoneNumberLength = binding.EditPhoneNumber.text.length
 
         }
 
-        override fun afterTextChanged(s: Editable?) {}
+        override fun afterTextChanged(s: Editable?) {
+            loginButton()
+        }
     }
 }

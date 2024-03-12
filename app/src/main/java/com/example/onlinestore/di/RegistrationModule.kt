@@ -1,6 +1,9 @@
 package com.example.onlinestore.di
 
-import com.example.data.room.RegistrationImpl
+import android.app.Application
+import androidx.room.Room
+import com.example.data.room.UserDatabase
+import com.example.data.usecase.RegistrationImpl
 import com.example.registration.repository.saving.DataSaving
 import com.example.registration.repository.saving.DataSavingRepository
 import com.example.registration.repository.validation.DataValidation
@@ -38,8 +41,17 @@ object RegistrationModule{
     }
 
     @Provides
-    fun provideDataSavingRepository(): DataSavingRepository{
-        return RegistrationImpl()
+    fun provideDataSavingRepository(userDatabase: UserDatabase): DataSavingRepository{
+        return RegistrationImpl(userDatabase)
+    }
+
+    @Provides
+    fun provideUserDatabase(application: Application): UserDatabase {
+        return Room.databaseBuilder(
+            application,
+            UserDatabase::class.java,
+            "user_database"
+        ).build()
     }
 
 }

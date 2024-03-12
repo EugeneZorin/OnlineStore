@@ -48,6 +48,7 @@ dependencies {
     implementation(project(":data"))
 
     implementation("com.google.dagger:hilt-android:2.47")
+    implementation(libs.room.ktx)
     kapt("com.google.dagger:hilt-android-compiler:2.47")
 
     implementation(libs.androidx.ktx)

@@ -1,4 +1,5 @@
 [versions]
+kotlinx-coroutines-android = "1.7.1"
 ktx = "1.12.0"
 fragment-version = "1.6.2"
 activity-version = "1.8.2"
@@ -18,6 +19,7 @@ androidx-ktx = {group = "androidx.core", name = "core-ktx", version.ref = "ktx"}
 fragment = {group = "androidx.fragment", name = "fragment", version.ref = "fragment-version"}
 activity = {group = "androidx.activity", name = "activity", version.ref = "activity-version"}
 appcompat = {group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat-version"}
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines-android" }
 material = {group = "com.google.android.material", name = "material", version.ref = "material-version"}
 constraintlayout = {group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout-version"}
 junit = {group = "junit", name = "junit", version.ref = "junit-version"}
@@ -26,6 +28,7 @@ espresso-core = {group = "androidx.test.espresso", name = "espresso-core", versi
 androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junit-ktx" }
 room = { group = "androidx.room", name = "room-runtime", version.ref = "room_version" }
 room_compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room_version" }
+room_ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room_version" }
 hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt_version" }
 hilt_compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt_version" }
 

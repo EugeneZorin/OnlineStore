@@ -41,9 +41,10 @@ dependencies {
 
     ksp(libs.room.compiler)
     implementation(libs.room)
+    implementation(libs.room.ktx)
     annotationProcessor(libs.room.compiler)
 
-
+    implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)

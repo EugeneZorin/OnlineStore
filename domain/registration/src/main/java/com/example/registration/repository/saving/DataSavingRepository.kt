@@ -6,8 +6,9 @@ import com.example.registration.entities.SavingDataEntity
 interface DataSavingRepository {
 
     suspend fun insert(savingDataEntity: SavingDataEntity)
+    suspend fun delete(id: String)
     suspend fun searchNumber(numberPhone: String): Boolean
-    suspend fun update(savingDataEntity: SavingDataEntity)
-    suspend fun delete(savingDataEntity: SavingDataEntity)
+
+
 
 }

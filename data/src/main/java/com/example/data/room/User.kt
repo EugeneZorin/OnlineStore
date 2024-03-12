@@ -2,12 +2,18 @@ package com.example.data.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity
-data class User (
-    @PrimaryKey val id: Long,
-    @ColumnInfo(name = "name" ) val name: String,
-    @ColumnInfo(name = "surname" ) val surname: String,
-    @ColumnInfo(name = "number_phone" ) val numberPhone: String
+@Entity(
+    tableName = "user_accounts",
+    indices = [
+        Index(value = ["number_phone"], unique = true)
+    ]
+)
+data class User(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val name: String,
+    val surname: String,
+    @ColumnInfo(name = "number_phone") val numberPhone: String
 )

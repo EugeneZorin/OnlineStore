@@ -144,6 +144,12 @@ class RegistrationFragment : AppCompatActivity() {
                 if (result) {
                     EditPhoneNumber.text.setSpan(UnderlineSpan(), 0, EditPhoneNumber.text.length, 0)
                     errorMessageNumberPhone.text = getString(R.string.error_number_phone)
+                } else {
+                    registrationViewModel.savingData(
+                        EditName.text.toString(),
+                        EditSurname.text.toString(),
+                        EditPhoneNumber.text.toString()
+                    )
                 }
             }
         }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.style.UnderlineSpan
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -93,6 +94,7 @@ class RegistrationFragment : AppCompatActivity() {
                 val charArray = validator(s.toString())
                 onError(charArray, editable)
                 counterArray(charArray, this@addTextChangedListenerWithValidation)
+
                 loginButton()
             }
 
@@ -127,7 +129,9 @@ class RegistrationFragment : AppCompatActivity() {
                 button.setBackgroundColor(ContextCompat.getColor(this@RegistrationFragment, R.color.pink))
                 button.setOnClickListener {
                     CoroutineScope(Dispatchers.IO).launch {
-                        messageErrorPhoneNumber(registrationViewModel.numberPhoneValidation(EditPhoneNumber.text))
+                        val result = registrationViewModel.numberPhoneValidation(EditPhoneNumber.text)
+                        createAccount(result)
+                        messageErrorPhoneNumber(result)
                     }
                 }
             } else {
@@ -138,13 +142,21 @@ class RegistrationFragment : AppCompatActivity() {
 
     private fun messageErrorPhoneNumber(result: Boolean){
         CoroutineScope(Dispatchers.Main).launch {
-            with (binding){
+            with(binding){
                 errorMessageNumberPhone.visibility = if (result) View.VISIBLE else View.INVISIBLE
                 EditPhoneNumber.setTextColor(if (result) Color.RED else Color.BLACK)
                 if (result) {
                     EditPhoneNumber.text.setSpan(UnderlineSpan(), 0, EditPhoneNumber.text.length, 0)
                     errorMessageNumberPhone.text = getString(R.string.error_number_phone)
-                } else {
+                }
+            }
+        }
+    }
+
+    private fun createAccount(result: Boolean){
+        if (!result) {
+            CoroutineScope(Dispatchers.Main).launch {
+                with(binding) {
                     registrationViewModel.savingData(
                         EditName.text.toString(),
                         EditSurname.text.toString(),
@@ -154,7 +166,6 @@ class RegistrationFragment : AppCompatActivity() {
             }
         }
     }
-
 
     private fun updateErrorUI(
         editText: EditText,

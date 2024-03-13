@@ -110,7 +110,7 @@ class RegistrationFragment : AppCompatActivity() {
                 sizeNameArray.addAll(charArray)
             }
 
-            R.id.EditFirstName -> {
+            R.id.EditSurname -> {
                 sizeFirsNameArray.clear()
                 sizeFirsNameArray.addAll(charArray)
             }

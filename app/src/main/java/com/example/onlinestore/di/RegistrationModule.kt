@@ -2,6 +2,7 @@ package com.example.onlinestore.di
 
 import android.app.Application
 import androidx.room.Room
+import com.example.data.room.UserDao
 import com.example.data.room.UserDatabase
 import com.example.data.usecase.RegistrationImpl
 import com.example.registration.repository.saving.DataSaving
@@ -41,17 +42,29 @@ object RegistrationModule{
     }
 
     @Provides
-    fun provideDataSavingRepository(userDatabase: UserDatabase): DataSavingRepository{
-        return RegistrationImpl(userDatabase)
+    fun provideRegistration(
+        userDao: UserDao
+    ): DataSavingRepository {
+        return RegistrationImpl(userDao)
     }
+
+
+    @Provides
+    fun provideUserDao(userDatabase: UserDatabase): UserDao {
+        return userDatabase.userDao()
+    }
+
 
     @Provides
     fun provideUserDatabase(application: Application): UserDatabase {
-        return Room.databaseBuilder(
-            application,
-            UserDatabase::class.java,
-            "user_database"
-        ).build()
+        return UserDatabase.database(application)
     }
+
+
+
+
+
+
+
 
 }

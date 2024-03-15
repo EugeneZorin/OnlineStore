@@ -1,6 +1,8 @@
 package com.example.data.room
 
+import android.content.Context
 import androidx.room.Database
+import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
@@ -12,4 +14,14 @@ import androidx.room.RoomDatabase
 )
 abstract class UserDatabase: RoomDatabase() {
     abstract fun userDao(): UserDao
+
+    companion object {
+        fun database(application: Context): UserDatabase{
+            return Room.databaseBuilder(
+                application,
+                UserDatabase::class.java,
+                "user_database"
+            ).build()
+        }
+    }
 }

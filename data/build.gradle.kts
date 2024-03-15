@@ -39,16 +39,22 @@ dependencies {
     
     implementation(project(":domain:registration"))
 
+    implementation(libs.hilt)
+    ksp(libs.hilt.compiler)
+
     ksp(libs.room.compiler)
     implementation(libs.room)
     implementation(libs.room.ktx)
     annotationProcessor(libs.room.compiler)
 
     implementation(libs.kotlinx.coroutines.android)
+
     implementation(libs.androidx.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.junit.ktx)
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1-Beta")
+    testImplementation("io.mockk:mockk:1.13.10")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.espresso.core)

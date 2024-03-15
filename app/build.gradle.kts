@@ -1,8 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id ("kotlin-kapt")
-    kotlin("kapt")
+    id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
 }
 
@@ -47,10 +46,10 @@ dependencies {
     implementation(project(":domain:registration"))
     implementation(project(":data"))
 
-    implementation("com.google.dagger:hilt-android:2.47")
-    implementation(libs.room.ktx)
-    kapt("com.google.dagger:hilt-android-compiler:2.47")
+    implementation(libs.hilt)
+    ksp(libs.hilt.compiler)
 
+    implementation(libs.room.ktx)
     implementation(libs.androidx.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)

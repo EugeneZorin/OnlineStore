@@ -7,10 +7,10 @@ import com.example.registration.entities.SavingDataEntity
 import com.example.registration.repository.saving.DataSavingRepository
 
 class RegistrationImpl(
-    private val userDatabase: UserDatabase
+    private val userDao: UserDao
 ): DataSavingRepository {
     override suspend fun insert(savingDataEntity: SavingDataEntity) {
-        userDatabase.userDao().insert(
+        userDao.insert(
             User(
                 name = savingDataEntity.name,
                 surname = savingDataEntity.surname,
@@ -20,12 +20,12 @@ class RegistrationImpl(
     }
 
     override suspend fun searchNumber(numberPhone: String): Boolean {
-        return userDatabase.userDao().getNumber(numberPhone)
+        return userDao.getNumber(numberPhone)
     }
 
 
     override suspend fun delete(id: String) {
-        userDatabase.userDao().delete(id)
+        userDao.delete(id)
     }
 
 

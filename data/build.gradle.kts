@@ -15,6 +15,7 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -32,7 +33,6 @@ android {
         jvmTarget = "17"
     }
 }
-
 
 
 dependencies {
@@ -53,9 +53,9 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.junit.ktx)
-    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.1-Beta")
-    testImplementation("io.mockk:mockk:1.13.10")
+
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.espresso.core)
 }
+

@@ -5,16 +5,22 @@
       <entry key="ExampleInstrumentedTest">
         <State />
       </entry>
+      <entry key="ExampleInstrumentedTest (1)">
+        <State />
+      </entry>
+      <entry key="UserTest">
+        <State />
+      </entry>
       <entry key="app">
         <State />
       </entry>
       <entry key="features.registration">
         <State />
       </entry>
-      <entry key="testValidationName_ExceptionThrown_ReturnsFalse()">
+      <entry key="sdfasdf()">
         <State />
       </entry>
-      <entry key="testValidationName_ValidInput_ReturnsTrue()">
+      <entry key="useAppContext()">
         <State />
       </entry>
     </value>

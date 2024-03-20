@@ -18,7 +18,6 @@ class RegistrationViewModel @Inject constructor(
     private val dataSaving: DataSaving
 ): ViewModel() {
 
-
     suspend fun savingData(
         name: String,
         surname: String,

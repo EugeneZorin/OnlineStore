@@ -32,15 +32,44 @@ class UserTest {
             UserDatabase::class.java
         ).build()
         userDao = userDatabase.userDao()
+
     }
 
     @Test
     @Throws(Exception::class)
-    fun sdfasdf() = runBlocking {
-        val user = User(name = "User", surname = "Surname", numberPhone = "1111111111")
+    fun checkingPhoneNumberDatabase() = runBlocking {
+
+        val user = User(name = "User", surname = "Surname", numberPhone = "0000000000")
         userDatabase.userDao().insert(user)
-        val result = userDatabase.userDao().getNumber("1111311111")
+
+        val result = userDatabase.userDao().getNumber("0000000000")
+
+        assertEquals(true, result)
+    }
+
+    @Test
+    fun databaseDeletionTest() = runBlocking {
+        val user = User(name = "User", surname = "Surname", numberPhone = "0000000000")
+        userDatabase.userDao().insert(user)
+
+        userDatabase.userDao().delete("0000000000")
+        val result = userDatabase.userDao().getNumber("0000000000")
+
         assertEquals(false, result)
+    }
+
+    @Test
+    fun databaseInsert() = runBlocking {
+        val user = User(name = "User", surname = "Surname", numberPhone = "0000000000")
+        userDatabase.userDao().insert(user)
+
+        val name = userDatabase.userDao().getUser("0000000000").name
+        val surname = userDatabase.userDao().getUser("0000000000").surname
+        val number = userDatabase.userDao().getUser("0000000000").numberPhone
+
+        assertEquals("User", name)
+        assertEquals("Surname", surname)
+        assertEquals("0000000000", number)
     }
 
 

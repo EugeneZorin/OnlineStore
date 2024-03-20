@@ -13,6 +13,9 @@ interface UserDao {
     @Insert
     suspend fun insert(data: User)
 
-    @Query("DELETE FROM user_accounts WHERE id = :user")
-    suspend fun delete(user: String)
+    @Query("DELETE FROM user_accounts WHERE number_phone = :number")
+    suspend fun delete(number: String)
+
+    @Query("SELECT * FROM user_accounts WHERE number_phone= :number")
+    suspend fun getUser(number: String): User
 }

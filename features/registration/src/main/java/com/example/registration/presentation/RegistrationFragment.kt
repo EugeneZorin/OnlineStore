@@ -30,8 +30,6 @@ class RegistrationFragment : AppCompatActivity() {
     private val sizeNameArray: MutableList<Char> = mutableListOf()
     private val sizeFirsNameArray: MutableList<Char> = mutableListOf()
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -184,51 +182,33 @@ class RegistrationFragment : AppCompatActivity() {
         }
     }
 
-
-    private val phoneNumberWatcher = object : TextWatcher {
+    private val phoneNumberWatcher = object: TextWatcher {
 
         private var isFormatting: Boolean = false
 
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
             if (isFormatting) {
                 isFormatting = false
                 return
             }
 
-            val phone = s.toString()
-            val formattedPhone = StringBuilder()
-
-            val digitsOnly = phone.replace("\\D".toRegex(), "")
-
-            for (i in digitsOnly.indices) {
-                when (i) {
-                    0 -> {
-                        if (digitsOnly[i] != '7') {
-                            formattedPhone.append("+ 7 ")
-                        } else {
-                            formattedPhone.append("+ ")
-                        }
-                    }
-
-                    1, 4, 7, 9, 12 -> formattedPhone.append(" ")
-                }
-                formattedPhone.append(digitsOnly[i])
-            }
+            val formattedPhone = registrationViewModel.formatPhoneNumber(s)
 
             isFormatting = true
+
             binding.EditPhoneNumber.setText(formattedPhone.toString())
             binding.EditPhoneNumber.setSelection(formattedPhone.length)
             phoneNumberLength = binding.EditPhoneNumber.text.length
 
             if (phoneNumberLength < 17) { messageErrorPhoneNumber(false) }
-
         }
 
         override fun afterTextChanged(s: Editable?) {
             loginButton()
         }
+
     }
+
 }

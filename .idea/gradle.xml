@@ -13,9 +13,18 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/domain/catalog" />
+            <option value="$PROJECT_DIR$/domain/product" />
+            <option value="$PROJECT_DIR$/domain/profile" />
             <option value="$PROJECT_DIR$/domain/registration" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/basket" />
+            <option value="$PROJECT_DIR$/features/catalog" />
+            <option value="$PROJECT_DIR$/features/home" />
+            <option value="$PROJECT_DIR$/features/product" />
+            <option value="$PROJECT_DIR$/features/profile" />
             <option value="$PROJECT_DIR$/features/registration" />
+            <option value="$PROJECT_DIR$/features/stock" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

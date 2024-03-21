@@ -60,11 +60,4 @@ object RegistrationModule{
         return UserDatabase.database(application)
     }
 
-
-
-
-
-
-
-
 }

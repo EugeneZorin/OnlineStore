@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.style.UnderlineSpan
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -13,7 +12,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.registration.R
-import com.example.registration.databinding.ActivityRegistrationFragmentBinding
+import com.example.registration.databinding.ActivityRegistrationBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,9 +20,9 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class RegistrationFragment : AppCompatActivity() {
+class RegistrationActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityRegistrationFragmentBinding
+    private lateinit var binding: ActivityRegistrationBinding
     private val registrationViewModel: RegistrationViewModel by viewModels()
 
     private var phoneNumberLength: Int = 0
@@ -33,7 +32,7 @@ class RegistrationFragment : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityRegistrationFragmentBinding.inflate(layoutInflater)
+        binding = ActivityRegistrationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupPhoneNumberEditText()
@@ -124,7 +123,7 @@ class RegistrationFragment : AppCompatActivity() {
             val sizeSurname = EditSurname.text.isNotEmpty()
 
             if (phoneNumberLength == 17 && sizeNameArray.isEmpty() && sizeFirsNameArray.isEmpty() && sizeName && sizeSurname) {
-                button.setBackgroundColor(ContextCompat.getColor(this@RegistrationFragment, R.color.pink))
+                button.setBackgroundColor(ContextCompat.getColor(this@RegistrationActivity, R.color.pink))
                 button.setOnClickListener {
                     CoroutineScope(Dispatchers.IO).launch {
                         val result = registrationViewModel.numberPhoneValidation(EditPhoneNumber.text)
@@ -133,7 +132,7 @@ class RegistrationFragment : AppCompatActivity() {
                     }
                 }
             } else {
-                button.setBackgroundColor(ContextCompat.getColor(this@RegistrationFragment, R.color.pale_pink))
+                button.setBackgroundColor(ContextCompat.getColor(this@RegistrationActivity, R.color.pale_pink))
             }
         }
     }

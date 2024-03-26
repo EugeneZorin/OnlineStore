@@ -45,4 +45,5 @@ ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit"
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrains-kotlin-jvm" }
+androidApplication = { id = "com.android.application", version.ref = "agp" }
 

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="ExampleInstrumentedTest">
+      <entry key="CatalogActivity">
         <State />
       </entry>
       <entry key="UserTest">
@@ -15,6 +15,9 @@
         <State />
       </entry>
       <entry key="databaseInsert()">
+        <State />
+      </entry>
+      <entry key="features.catalog">
         <State />
       </entry>
       <entry key="features.registration">

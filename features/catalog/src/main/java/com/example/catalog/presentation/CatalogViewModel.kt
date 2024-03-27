@@ -1,4 +1,7 @@
 package com.example.catalog.presentation
 
-class CatalogViewModel {
+import androidx.lifecycle.ViewModel
+
+class CatalogViewModel: ViewModel() {
+
 }

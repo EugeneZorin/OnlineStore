@@ -1,4 +1,6 @@
 package com.example.catalog.presentation
 
-class CatalogActivity {
+import androidx.appcompat.app.AppCompatActivity
+
+class CatalogActivity: AppCompatActivity() {
 }

@@ -60,7 +60,7 @@ dependencies {
     testImplementation("io.mockk:mockk:1.13.10")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1")
     testImplementation("androidx.arch.core:core-testing:2.2.0")
-    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation(libs.espresso.core)
 
 }

@@ -12,7 +12,7 @@ class CatalogAdapter: RecyclerView.Adapter<CatalogAdapter.ItemHolder>() {
     class ItemHolder(item: View): RecyclerView.ViewHolder(item) {
         private val binding = CatalogItemBinding.bind(item)
         fun bind() = with(binding){
-            testThree
+            productItem
         }
     }
 

@@ -6,12 +6,131 @@
     android:layout_height="match_parent"
     tools:context=".presentation.CatalogActivity">
 
+
+    <Button
+        android:id="@+id/sortButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@android:color/transparent"
+        android:drawableLeft="@drawable/baseline_align_horizontal_left_24"
+        android:gravity="start"
+        android:text="@string/by_popularity"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idCatalog"
+        app:layout_constraintVertical_bias="0.076" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/catalogItem"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+    <TextView
+        android:id="@+id/idCatalog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:text="@string/catalog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="0dp"
+        android:scrollbars="none"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="8dp"
+        android:addStatesFromChildren="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idCatalog">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/seeAllButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:layout_weight="1"
+                android:backgroundTint="@color/light_grey"
+                android:text="@string/see_all"
+                android:textColor="@color/grey"/>
+
+            <Button
+                android:id="@+id/faceButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/light_grey"
+                android:text="@string/face"
+                android:textColor="@color/grey" />
+
+            <Button
+                android:id="@+id/bodyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/light_grey"
+                android:text="@string/body"
+                android:textColor="@color/grey" />
+
+            <Button
+                android:id="@+id/tanButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/light_grey"
+                android:text="@string/suntan"
+                android:textColor="@color/grey" />
+
+            <Button
+                android:id="@+id/Masks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/light_grey"
+                android:text="@string/mask"
+                android:textColor="@color/grey" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/button23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        android:drawableLeft="@drawable/baseline_add_road_24"
+        android:gravity="start"
+        android:text="@string/filters"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.914"
+        app:layout_constraintStart_toEndOf="@+id/sortButton"
+        app:layout_constraintTop_toBottomOf="@+id/idCatalog"
+        app:layout_constraintVertical_bias="1.0" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

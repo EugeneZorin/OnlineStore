@@ -126,7 +126,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@android:drawable/ic_dialog_alert" />
+                app:srcCompat="@android:drawable/ic_dialog_alert"
+                android:contentDescription="TODO" />
 
             <TextView
                 android:id="@+id/discount"
@@ -136,7 +137,6 @@
                 android:background="@color/pink"
                 android:gravity="center"
                 android:padding="3dp"
-
                 android:text="-35%"
                 android:textColor="@color/white"
                 android:textSize="11sp"

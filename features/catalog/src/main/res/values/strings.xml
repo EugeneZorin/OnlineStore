@@ -2,4 +2,12 @@
     <string name="app_name">My Application</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="face">Face</string>
+    <string name="body">Body</string>
+    <string name="suntan">Suntan</string>
+    <string name="mask">Mask</string>
+    <string name="catalog">Catalog</string>
+    <string name="see_all">See all</string>
+    <string name="filters">Filters</string>
+    <string name="by_popularity">By popularity</string>
 </resources>

@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.catalog.R
 import com.example.catalog.databinding.CatalogItemBinding
-import com.example.catalog.databinding.FragmentItemBinding
 
 class CatalogAdapter: RecyclerView.Adapter<CatalogAdapter.ItemHolder>() {
     class ItemHolder(item: View): RecyclerView.ViewHolder(item) {

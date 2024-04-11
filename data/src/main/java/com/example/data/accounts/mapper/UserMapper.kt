@@ -1,6 +1,6 @@
-package com.example.data.mapper
+package com.example.data.accounts.mapper
 
-import com.example.data.room.User
+import com.example.data.accounts.room.User
 import com.example.registration.entities.SavingDataEntity
 
 object UserMapper {

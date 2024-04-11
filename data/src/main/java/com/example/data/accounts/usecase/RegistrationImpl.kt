@@ -1,7 +1,7 @@
-package com.example.data.usecase
+package com.example.data.accounts.usecase
 
-import com.example.data.mapper.UserMapper
-import com.example.data.room.UserDao
+import com.example.data.accounts.mapper.UserMapper
+import com.example.data.accounts.room.UserDao
 import com.example.registration.entities.SavingDataEntity
 import com.example.registration.repository.saving.DataSavingRepository
 

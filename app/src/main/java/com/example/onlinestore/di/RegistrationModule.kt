@@ -2,9 +2,9 @@ package com.example.onlinestore.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.data.room.UserDao
-import com.example.data.room.UserDatabase
-import com.example.data.usecase.RegistrationImpl
+import com.example.data.accounts.room.UserDao
+import com.example.data.accounts.room.UserDatabase
+import com.example.data.accounts.usecase.RegistrationImpl
 import com.example.registration.repository.saving.DataSaving
 import com.example.registration.repository.saving.DataSavingRepository
 import com.example.registration.repository.validation.DataValidation

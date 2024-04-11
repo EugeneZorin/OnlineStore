@@ -5,9 +5,9 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.data.room.User
-import com.example.data.room.UserDao
-import com.example.data.room.UserDatabase
+import com.example.data.accounts.room.User
+import com.example.data.accounts.room.UserDao
+import com.example.data.accounts.room.UserDatabase
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.runBlocking
 import org.junit.After

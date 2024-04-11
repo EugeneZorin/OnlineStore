@@ -40,7 +40,10 @@ dependencies {
     implementation(project(":domain:registration"))
 
     implementation(libs.hilt)
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    testImplementation("org.mockito:mockito-core:2.25.0")
     ksp(libs.hilt.compiler)
+    implementation ("com.google.code.gson:gson:2.10.1")
 
     ksp(libs.room.compiler)
     implementation(libs.room)

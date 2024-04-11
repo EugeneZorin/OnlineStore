@@ -38,6 +38,7 @@ android {
 dependencies {
     
     implementation(project(":domain:registration"))
+    implementation(project(":domain:catalog"))
 
     implementation(libs.hilt)
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")

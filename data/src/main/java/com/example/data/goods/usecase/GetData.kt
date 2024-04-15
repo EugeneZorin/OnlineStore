@@ -12,7 +12,6 @@ class GetData(): GetDataRepository {
 
         val jsonFilePath = "src/main/resources/data.json"
         val jsonString = File(jsonFilePath).readText()
-
         return Gson().fromJson(jsonString, ItemsResponse::class.java)
     }
 }

@@ -42,9 +42,13 @@ android {
 dependencies {
 
 
+
     implementation("androidx.fragment:fragment-ktx:1.6.2")
+    implementation(project(":domain:catalog"))
 
 
+    implementation(libs.hilt)
+    kapt(libs.hilt.compiler)
     implementation(libs.activity)
     implementation(libs.fragment)
     implementation(libs.androidx.ktx)

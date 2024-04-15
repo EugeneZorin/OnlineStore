@@ -2,6 +2,7 @@ package com.example.catalog.presentation
 
 import android.os.Bundle
 import android.widget.PopupMenu
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.catalog.R
@@ -11,7 +12,8 @@ import com.example.catalog.databinding.ActivityCatalogBinding
 class CatalogActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityCatalogBinding
-    private val adapter = CatalogAdapter()
+    private val catalogViewModel:CatalogViewModel by viewModels()
+    private val adapter = CatalogAdapter(catalogViewModel)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCatalogBinding.inflate(layoutInflater)

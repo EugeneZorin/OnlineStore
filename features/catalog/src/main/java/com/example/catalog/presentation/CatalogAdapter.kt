@@ -6,8 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.catalog.R
 import com.example.catalog.databinding.CatalogItemBinding
+import androidx.activity.viewModels
+import javax.inject.Inject
 
-class CatalogAdapter: RecyclerView.Adapter<CatalogAdapter.ItemHolder>() {
+class CatalogAdapter @Inject constructor(
+    private val viewModel: CatalogViewModel
+): RecyclerView.Adapter<CatalogAdapter.ItemHolder>() {
+
+
     class ItemHolder(item: View): RecyclerView.ViewHolder(item) {
         private val binding = CatalogItemBinding.bind(item)
         fun bind() = with(binding){
@@ -17,6 +23,7 @@ class CatalogAdapter: RecyclerView.Adapter<CatalogAdapter.ItemHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.catalog_item, parent, false)
+
         return ItemHolder(view)
     }
 

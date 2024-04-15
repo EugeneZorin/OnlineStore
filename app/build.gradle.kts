@@ -47,6 +47,7 @@ dependencies {
     implementation(project(":data"))
 
     implementation(libs.hilt)
+    implementation(project(":domain:catalog"))
     ksp(libs.hilt.compiler)
 
     implementation(libs.room.ktx)

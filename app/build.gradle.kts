@@ -43,11 +43,13 @@ android {
 dependencies {
 
     implementation(project(":features:registration"))
+    implementation(project(":features:catalog"))
     implementation(project(":domain:registration"))
+    implementation(project(":domain:catalog"))
     implementation(project(":data"))
 
     implementation(libs.hilt)
-    implementation(project(":domain:catalog"))
+
     ksp(libs.hilt.compiler)
 
     implementation(libs.room.ktx)

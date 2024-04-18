@@ -7,13 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.catalog.R
 import com.example.catalog.databinding.ActivityCatalogBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class CatalogActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityCatalogBinding
     private val catalogViewModel:CatalogViewModel by viewModels()
-    private val adapter = CatalogAdapter(catalogViewModel)
+    private val adapter = CatalogAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCatalogBinding.inflate(layoutInflater)
@@ -26,7 +27,7 @@ class CatalogActivity: AppCompatActivity() {
     private fun init(){
         binding.catalogItem.layoutManager =  GridLayoutManager(this, 2)
         binding.catalogItem.adapter = adapter
-
+        catalogViewModel
         binding.sortButton.setOnClickListener {
             showSortMenu()
         }

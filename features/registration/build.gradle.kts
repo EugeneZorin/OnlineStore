@@ -47,8 +47,8 @@ dependencies {
     implementation(project(":domain:registration"))
 
     implementation("androidx.hilt:hilt-navigation-fragment:1.2.0")
-    implementation("com.google.dagger:hilt-android:2.49")
-    kapt("com.google.dagger:hilt-android-compiler:2.49")
+    implementation("com.google.dagger:hilt-android:2.47")
+    kapt("com.google.dagger:hilt-android-compiler:2.47")
 
     implementation(libs.activity)
     implementation(libs.fragment)

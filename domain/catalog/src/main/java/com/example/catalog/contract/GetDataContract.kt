@@ -1,7 +1,7 @@
 package com.example.catalog.contract
 
-import com.example.catalog.entity.ItemsResponse
+import com.example.catalog.entity.ItemsDomain
 
 interface GetDataContract {
-    suspend fun getDataUseCase(): ItemsResponse
+    suspend fun getDataUseCase(): ItemsDomain
 }

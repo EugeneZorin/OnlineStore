@@ -9,9 +9,7 @@ import com.example.catalog.databinding.CatalogItemBinding
 import androidx.activity.viewModels
 import javax.inject.Inject
 
-class CatalogAdapter @Inject constructor(
-    private val viewModel: CatalogViewModel
-): RecyclerView.Adapter<CatalogAdapter.ItemHolder>() {
+class CatalogAdapter: RecyclerView.Adapter<CatalogAdapter.ItemHolder>() {
 
 
     class ItemHolder(item: View): RecyclerView.ViewHolder(item) {

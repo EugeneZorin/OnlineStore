@@ -14,7 +14,7 @@
         android:theme="@style/Theme.OnlineStore"
         tools:targetApi="31">
         <activity
-            android:name="com.example.registration.presentation.RegistrationActivity"
+            android:name="com.example.catalog.presentation.CatalogActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -28,6 +28,6 @@ data class Item(
     val ingredients: String
 )
 
-data class ItemsResponse(
+data class ItemsCore(
     val items: List<Item>
 )

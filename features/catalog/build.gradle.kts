@@ -1,7 +1,8 @@
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
     id ("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -9,11 +10,8 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.catalog"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -49,6 +47,7 @@ dependencies {
 
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
+    implementation("androidx.hilt:hilt-navigation-fragment:1.2.0")
     implementation(libs.activity)
     implementation(libs.fragment)
     implementation(libs.androidx.ktx)

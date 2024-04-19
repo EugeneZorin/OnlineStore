@@ -1,9 +1,6 @@
 package com.example.registration.presentation
 
 import android.text.Editable
-import android.text.TextWatcher
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.registration.entities.SavingDataEntity
 import com.example.registration.repository.saving.DataSaving

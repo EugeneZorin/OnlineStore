@@ -1,16 +1,28 @@
 package com.example.data.goods.usecase
 
-import com.example.catalog.entity.ItemsDomain
+import android.content.Context
+import com.example.catalog.entity.Items
 import com.example.catalog.repository.GetDataRepository
 import com.google.gson.Gson
-import java.io.File
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.io.IOException
 
-class GetData(): GetDataRepository {
+class GetData(private val context: Context): GetDataRepository {
 
-    override suspend fun getData(): ItemsDomain {
+    override suspend fun getData(): Items {
+        return withContext(Dispatchers.IO) {
+            try {
 
-        val jsonFilePath = "src/main/resources/data.json"
-        val jsonString = File(jsonFilePath).readText()
-        return Gson().fromJson(jsonString, ItemsDomain::class.java)
+                val inputStream = context.assets.open("data.json")
+
+                val jsonString = inputStream.bufferedReader().use { it.readText() }
+
+                Gson().fromJson(jsonString, Items::class.java)
+            } catch (ex: IOException) {
+
+                throw ex
+            }
+        }
     }
 }

@@ -30,6 +30,6 @@ data class Item(
     val ingredients: String
 )
 
-data class ItemsDomain(
+data class Items(
     val items: List<Item>
 )

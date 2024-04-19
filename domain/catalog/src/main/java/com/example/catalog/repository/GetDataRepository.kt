@@ -1,8 +1,9 @@
 package com.example.catalog.repository
 
-import com.example.catalog.entity.ItemsDomain
+import com.example.catalog.entity.Items
+
 
 
 interface GetDataRepository {
-    suspend fun getData(): ItemsDomain
+    suspend fun getData(): Items
 }

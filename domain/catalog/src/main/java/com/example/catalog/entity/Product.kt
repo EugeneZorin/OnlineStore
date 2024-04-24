@@ -2,14 +2,14 @@ package com.example.catalog.entity
 
 data class Price(
     val price: String,
-    val discount: Int,
+    val discount: String,
     val priceWithDiscount: String,
     val unit: String
 )
 
 data class Feedback(
-    val count: Int,
-    val rating: Double
+    val count: String,
+    val rating: String
 )
 
 data class Info(

@@ -30,7 +30,6 @@
                 android:layout_height="31dp"
                 android:layout_gravity="end"
                 android:layout_marginTop="4dp"
-                android:contentDescription="TODO"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.967"
                 app:layout_constraintStart_toStartOf="parent"
@@ -49,12 +48,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/oldPrice"
+                android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="14dp"
                 android:gravity="start"
                 android:text="749 ₽"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.08"
@@ -63,22 +62,34 @@
                 app:layout_constraintVertical_bias="0.517" />
 
             <TextView
-                android:id="@+id/newPrice"
-                android:layout_width="51dp"
+                android:id="@+id/priceWithDiscount"
+                android:layout_width="32dp"
                 android:layout_height="21dp"
                 android:gravity="start"
-                android:text="489 ₽"
+                android:text="489"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.094"
+                app:layout_constraintHorizontal_bias="0.083"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.569" />
 
             <TextView
-                android:id="@+id/productNames"
+                android:id="@+id/unit"
+                android:layout_width="17dp"
+                android:layout_height="21dp"
+                android:gravity="start"
+                android:text=" ₽"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/priceWithDiscount"
+                app:layout_constraintStart_toEndOf="@+id/priceWithDiscount"
+                app:layout_constraintTop_toTopOf="@+id/priceWithDiscount" />
+
+            <TextView
+                android:id="@+id/title"
                 android:layout_width="79dp"
                 android:layout_height="23dp"
                 android:gravity="start"
@@ -106,44 +117,69 @@
                 app:layout_constraintVertical_bias="0.747" />
 
             <TextView
+                android:id="@+id/count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="(20)"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/rating"
+                app:layout_constraintStart_toEndOf="@+id/rating"
+                app:layout_constraintTop_toTopOf="@+id/rating"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/star"
+                android:textColor="@color/orange"
+                app:layout_constraintBottom_toBottomOf="@+id/rating"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/rating"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
                 android:id="@+id/rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="★ 4.5 (51)"
-                android:textColor="@color/black"
+                android:layout_marginTop="12dp"
+                android:text="4.5"
+                android:textColor="@color/orange"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.105"
+                app:layout_constraintHorizontal_bias="0.172"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.861" />
+                app:layout_constraintTop_toBottomOf="@+id/descriptions"
+                app:layout_constraintVertical_bias="0.04" />
 
             <ImageButton
                 android:id="@+id/imageButton2"
                 android:layout_width="49dp"
                 android:layout_height="47dp"
+                android:contentDescription="TODO"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@android:drawable/ic_dialog_alert"
-                android:contentDescription="TODO" />
+                app:srcCompat="@android:drawable/ic_dialog_alert" />
 
             <TextView
                 android:id="@+id/discount"
                 android:layout_width="33dp"
                 android:layout_height="21dp"
-                android:layout_marginStart="4dp"
-                android:background="@color/pink"
+                android:layout_marginStart="24dp"
+                android:background="@drawable/rounded_corner_background"
                 android:gravity="center"
                 android:padding="3dp"
-                android:text="-35%"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="@+id/newPrice"
-                app:layout_constraintStart_toEndOf="@+id/newPrice"
-                app:layout_constraintTop_toTopOf="@+id/newPrice"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintBottom_toBottomOf="@+id/unit"
+                app:layout_constraintStart_toEndOf="@+id/priceWithDiscount"
+                app:layout_constraintTop_toTopOf="@+id/unit" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

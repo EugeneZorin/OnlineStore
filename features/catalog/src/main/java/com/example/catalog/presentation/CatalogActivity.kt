@@ -10,7 +10,6 @@ import com.example.catalog.databinding.ActivityCatalogBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -32,7 +31,7 @@ class CatalogActivity: AppCompatActivity() {
     private fun init(){
         binding.catalogItem.layoutManager =  GridLayoutManager(this, 2)
         CoroutineScope(Dispatchers.Main).launch {
-            binding.catalogItem.adapter =  CatalogAdapter(viewModel.test())
+            binding.catalogItem.adapter =  CatalogAdapter(viewModel.getData())
         }
         binding.sortButton.setOnClickListener {
             showSortMenu()
@@ -56,18 +55,15 @@ class CatalogActivity: AppCompatActivity() {
     }
 
     private fun sortByPopularity() {
-        // Осуществить сортировку товаров по популярности (по рейтингу)
-        // от большего значения к меньшему
+
     }
 
     private fun sortByPriceLowToHigh() {
-        // Осуществить сортировку товаров по увеличению цены
-        // от меньшего значения к большему
+
     }
 
     private fun sortByPriceHighToLow() {
-        // Осуществить сортировку товаров по уменьшению цены
-        // от большего значения к меньшему
+
     }
 
 }

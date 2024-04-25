@@ -14,11 +14,7 @@ class CatalogAdapter(
     private val info: Items
 ): RecyclerView.Adapter<CatalogAdapter.ItemHolder>() {
 
-
-
-
     class ItemHolder(private val binding: CatalogItemBinding): RecyclerView.ViewHolder(binding.root) {
-
         @SuppressLint("SetTextI18n")
         fun bind(item: Item) {
             with(binding) {

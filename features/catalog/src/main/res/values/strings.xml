@@ -12,4 +12,5 @@
     <string name="by_popularity">By popularity</string>
     <string name="star">★</string>
     <string name="discount_placeholder">-%1$s%%</string>
+    <string name="plus">+</string>
 </resources>

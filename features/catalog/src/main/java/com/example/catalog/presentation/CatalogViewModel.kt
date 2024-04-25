@@ -1,11 +1,9 @@
 package com.example.catalog.presentation
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.catalog.contract.GetDataContract
 import com.example.catalog.entity.Items
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -15,7 +13,7 @@ class CatalogViewModel @Inject constructor(
 ): ViewModel() {
 
 
-    suspend fun test(): Items {
+    suspend fun getData(): Items {
         return getDataContract.getDataUseCase()
     }
 

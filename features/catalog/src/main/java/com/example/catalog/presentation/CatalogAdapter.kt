@@ -1,20 +1,20 @@
 package com.example.catalog.presentation
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.catalog.R
 import com.example.catalog.databinding.CatalogItemBinding
 import com.example.catalog.entity.Item
 import com.example.catalog.entity.Items
 
 class CatalogAdapter(
     private val info: Items
-): RecyclerView.Adapter<CatalogAdapter.ItemHolder>() {
+) : RecyclerView.Adapter<CatalogAdapter.ItemHolder>() {
 
-    class ItemHolder(private val binding: CatalogItemBinding): RecyclerView.ViewHolder(binding.root) {
+    class ItemHolder(private val binding: CatalogItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(item: Item) {
             with(binding) {
@@ -38,11 +38,28 @@ class CatalogAdapter(
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         val item = info.items[position]
-        holder.bind(item)
+        if (item.tags.contains("body")) {
+            holder.bind(item)
+        }
+
+    }
+
+    private fun filtersTags(tag: String): Int {
+        var element = 0
+        if (tag == "") {
+            return info.items.size
+        }
+
+        for (list in info.items) {
+            if (list.tags.contains(tag)) {
+                element++
+            }
+        }
+        return element
     }
 
     override fun getItemCount(): Int {
-        return info.items.size
+        return 10
     }
 
 }

@@ -68,7 +68,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/seeAllButton"
+                android:id="@+id/allButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
@@ -105,7 +105,7 @@
                 android:textColor="@color/grey" />
 
             <Button
-                android:id="@+id/Masks"
+                android:id="@+id/masksButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -116,7 +116,7 @@
     </HorizontalScrollView>
 
     <Button
-        android:id="@+id/button23"
+        android:id="@+id/maketButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/transparent"

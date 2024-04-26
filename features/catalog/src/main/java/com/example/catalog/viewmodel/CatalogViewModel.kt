@@ -1,4 +1,4 @@
-package com.example.catalog.presentation
+package com.example.catalog.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.catalog.contract.GetDataContract

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.catalog.R
 import com.example.catalog.databinding.ActivityCatalogBinding
+import com.example.catalog.viewmodel.CatalogViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +25,6 @@ class CatalogActivity: AppCompatActivity() {
         binding = ActivityCatalogBinding.inflate(layoutInflater)
         setContentView(binding.root)
         init()
-
     }
 
 
@@ -33,13 +33,9 @@ class CatalogActivity: AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             binding.catalogItem.adapter =  CatalogAdapter(viewModel.getData())
         }
-        binding.sortButton.setOnClickListener {
-            showSortMenu()
-            viewModel
-        }
     }
 
-    private fun showSortMenu() {
+   /* private fun showSortMenu() {
 
         val popupMenu = PopupMenu(this, binding.sortButton)
         popupMenu.menuInflater.inflate(R.menu.sort_menu, popupMenu.menu)
@@ -64,6 +60,6 @@ class CatalogActivity: AppCompatActivity() {
 
     private fun sortByPriceHighToLow() {
 
-    }
+    }*/
 
 }

@@ -33,6 +33,7 @@ class CatalogActivity: AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             binding.catalogItem.adapter =  CatalogAdapter(viewModel.getData())
         }
+        binding.allButton.isClickable
     }
 
    /* private fun showSortMenu() {

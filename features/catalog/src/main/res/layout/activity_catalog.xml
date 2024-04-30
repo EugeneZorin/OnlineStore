@@ -97,7 +97,7 @@
                 android:textColor="@color/grey" />
 
             <Button
-                android:id="@+id/tanButton"
+                android:id="@+id/suntanButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -106,7 +106,7 @@
                 android:textColor="@color/grey" />
 
             <Button
-                android:id="@+id/masksButton"
+                android:id="@+id/maskButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

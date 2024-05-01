@@ -25,32 +25,98 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class CatalogActivity: AppCompatActivity() {
 
-
     private lateinit var binding: ActivityCatalogBinding
     private val viewModel: CatalogViewModel by viewModels()
 
+    private lateinit var adapter: CatalogAdapter
+
+    private val tagData = TagData()
+    private var choseTag: String = tagData.tagSeeAll
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityCatalogBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.allButton.isSelected = true
+
         init()
     }
 
 
-
     private fun init(){
+
+        val colorButtonAct = ContextCompat.getColor(this, R.color.dark_grey)
+        val colorTextAct = ContextCompat.getColor(this, R.color.white)
+
+        val colorButtonNorm = ContextCompat.getColor(this, R.color.light_grey)
+        val colorTextNorm = ContextCompat.getColor(this, R.color.grey)
+
         binding.catalogItem.layoutManager =  GridLayoutManager(this, 2)
+
         CoroutineScope(Dispatchers.Main).launch {
-            binding.catalogItem.adapter =  CatalogAdapter(viewModel.getData())
+            adapter = CatalogAdapter(viewModel.getData())
+            binding.catalogItem.adapter = adapter
         }
 
+        firstTag(colorButtonAct, colorTextAct)
 
+        binding.allButton.setOnClickListener {
+            if (tagData.tagSeeAll != choseTag) {
+                adapter.updateChosenTag(tagData.tagSeeAll)
+                buttons(choseTag, colorButtonNorm, colorTextNorm)
+                choseTag = tagData.tagSeeAll
+                buttons(choseTag, colorButtonAct, colorTextAct)
+            }
+        }
 
+        binding.faceButton.setOnClickListener {
+            if (tagData.tagFace != choseTag){
+                adapter.updateChosenTag(tagData.tagFace)
+                buttons(choseTag, colorButtonNorm, colorTextNorm)
+                choseTag = tagData.tagFace
+                buttons(choseTag, colorButtonAct, colorTextAct)
+            }
+        }
 
     }
 
+    private fun firstTag(colorButton: Int, colorText: Int){
+        buttons(choseTag, colorButton, colorText)
+    }
 
+
+    private fun buttons(choseTag: String, colorButton: Int, colorText: Int) {
+
+        when (choseTag) {
+
+            tagData.tagSeeAll -> {
+                binding.allButton.setTextColor(colorText)
+                binding.allButton.setBackgroundColor(colorButton)
+            }
+
+            tagData.tagFace -> {
+                binding.faceButton.setTextColor(colorText)
+                binding.faceButton.setBackgroundColor(colorButton)
+            }
+
+            tagData.tagBody -> {
+                binding.bodyButton.setTextColor(colorText)
+                binding.bodyButton.setBackgroundColor(colorButton)
+            }
+
+            tagData.tagSuntan -> {
+                binding.suntanButton.setTextColor(colorText)
+                binding.suntanButton.setBackgroundColor(colorButton)
+            }
+
+            tagData.tagMask -> {
+                binding.maskButton.setTextColor(colorText)
+                binding.maskButton.setBackgroundColor(colorButton)
+            }
+        }
+
+
+    }
 
 
 

@@ -23,7 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class CatalogActivity: AppCompatActivity() {
+class CatalogActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCatalogBinding
     private val viewModel: CatalogViewModel by viewModels()
@@ -39,53 +39,105 @@ class CatalogActivity: AppCompatActivity() {
         binding = ActivityCatalogBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         init()
+
     }
 
+    private fun init() {
 
-    private fun init(){
-
+        // Color for tag buttons
         val colorButtonAct = ContextCompat.getColor(this, R.color.dark_grey)
         val colorTextAct = ContextCompat.getColor(this, R.color.white)
 
         val colorButtonNorm = ContextCompat.getColor(this, R.color.light_grey)
         val colorTextNorm = ContextCompat.getColor(this, R.color.grey)
 
-        binding.catalogItem.layoutManager =  GridLayoutManager(this, 2)
 
+        binding.catalogItem.layoutManager = GridLayoutManager(this, 2)
+
+        // CatalogAdapter startup
         CoroutineScope(Dispatchers.Main).launch {
             adapter = CatalogAdapter(viewModel.getData())
+            adapter.updateChosenTag(tagData.tagSeeAll)
             binding.catalogItem.adapter = adapter
         }
 
-        firstTag(colorButtonAct, colorTextAct)
+        // Setting the first main tag (see all)
+        firstTag(
+            colorButton = colorButtonAct,
+            colorText = colorTextAct
+        )
 
+        // Initializing tag selection buttons
+        settingButtons(
+            colorButtonNorm = colorButtonNorm,
+            colorTextNorm = colorTextNorm,
+            colorButtonAct = colorButtonAct,
+            colorTextAct = colorTextAct
+        )
+    }
+
+    private fun firstTag(colorButton: Int, colorText: Int) {
+        buttonsFlags(choseTag, colorButton, colorText)
+    }
+
+    private fun settingButtons(
+        colorButtonNorm: Int,
+        colorTextNorm: Int,
+        colorButtonAct: Int,
+        colorTextAct: Int
+    ) {
         binding.allButton.setOnClickListener {
             if (tagData.tagSeeAll != choseTag) {
                 adapter.updateChosenTag(tagData.tagSeeAll)
-                buttons(choseTag, colorButtonNorm, colorTextNorm)
+                buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
                 choseTag = tagData.tagSeeAll
-                buttons(choseTag, colorButtonAct, colorTextAct)
+                buttonsFlags(choseTag, colorButtonAct, colorTextAct)
             }
         }
 
         binding.faceButton.setOnClickListener {
-            if (tagData.tagFace != choseTag){
+            if (tagData.tagFace != choseTag) {
                 adapter.updateChosenTag(tagData.tagFace)
-                buttons(choseTag, colorButtonNorm, colorTextNorm)
+                buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
                 choseTag = tagData.tagFace
-                buttons(choseTag, colorButtonAct, colorTextAct)
+                buttonsFlags(choseTag, colorButtonAct, colorTextAct)
+            }
+        }
+
+        binding.bodyButton.setOnClickListener {
+            if (tagData.tagBody != choseTag) {
+                adapter.updateChosenTag(tagData.tagBody)
+                buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
+                choseTag = tagData.tagBody
+                buttonsFlags(choseTag, colorButtonAct, colorTextAct)
+            }
+        }
+
+        binding.suntanButton.setOnClickListener {
+            if (tagData.tagSuntan != choseTag) {
+                adapter.updateChosenTag(tagData.tagSuntan)
+                buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
+                choseTag = tagData.tagSuntan
+                buttonsFlags(choseTag, colorButtonAct, colorTextAct)
+            }
+        }
+
+        binding.maskButton.setOnClickListener {
+            if (tagData.tagMask != choseTag) {
+                adapter.updateChosenTag(tagData.tagMask)
+                buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
+                choseTag = tagData.tagMask
+                buttonsFlags(choseTag, colorButtonAct, colorTextAct)
             }
         }
 
     }
 
-    private fun firstTag(colorButton: Int, colorText: Int){
-        buttons(choseTag, colorButton, colorText)
-    }
 
-
-    private fun buttons(choseTag: String, colorButton: Int, colorText: Int) {
+    // Button color switching
+    private fun buttonsFlags(choseTag: String, colorButton: Int, colorText: Int) {
 
         when (choseTag) {
 
@@ -117,7 +169,6 @@ class CatalogActivity: AppCompatActivity() {
 
 
     }
-
 
 
     /* private fun showSortMenu() {

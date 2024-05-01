@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.catalog.databinding.CatalogItemBinding
 import com.example.catalog.entity.Item
 import com.example.catalog.entity.Items
+import com.example.catalog.entity.TagData
 
 class CatalogAdapter(
     private val info: Items,
 ) : RecyclerView.Adapter<CatalogAdapter.ItemHolder>() {
 
     private var chosenTag: String = ""
-
-
+    private val seeAll = TagData().tagSeeAll
     @SuppressLint("NotifyDataSetChanged")
     fun updateChosenTag(tag: String) {
         chosenTag = tag
@@ -47,11 +47,19 @@ class CatalogAdapter(
     }
 
     override fun getItemCount(): Int {
-        return info.items.count { it.tags.contains(chosenTag) }
+        return if (chosenTag == seeAll) {
+            info.items.size
+        } else {
+            info.items.count { it.tags.contains(chosenTag) }
+        }
     }
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        val tagItems = info.items.filter { it.tags.contains(chosenTag) }
+        val tagItems = if (chosenTag == seeAll) {
+            info.items
+        } else {
+            info.items.filter { it.tags.contains(chosenTag) }
+        }
         holder.bind(tagItems[position])
     }
 }

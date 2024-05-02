@@ -13,4 +13,6 @@
     <string name="star">★</string>
     <string name="discount_placeholder">-%1$s%%</string>
     <string name="plus">+</string>
+    <string name="by_price_reduction">By price reduction</string>
+    <string name="on_price_increases">On price increases</string>
 </resources>

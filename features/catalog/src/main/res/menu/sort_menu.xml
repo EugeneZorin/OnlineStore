@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/sortByPopularity"
-        android:title="По популярности" />
+        android:title="@string/by_popularity" />
     <item
         android:id="@+id/sortByPriceLowToHigh"
-        android:title="По увеличению цены" />
+        android:title="@string/on_price_increases" />
     <item
         android:id="@+id/sortByPriceHighToLow"
-        android:title="По уменьшению цены" />
+        android:title="@string/by_price_reduction" />
 </menu>

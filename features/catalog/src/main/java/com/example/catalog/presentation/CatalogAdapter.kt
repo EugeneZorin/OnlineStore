@@ -1,24 +1,31 @@
 package com.example.catalog.presentation
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.catalog.databinding.CatalogItemBinding
 import com.example.catalog.entity.Item
 import com.example.catalog.entity.Items
-import com.example.catalog.entity.TagData
+import com.example.catalog.entity.EntityData
 
 class CatalogAdapter(
     private val info: Items,
 ) : RecyclerView.Adapter<CatalogAdapter.ItemHolder>() {
 
-    private var chosenTag: String = ""
-    private val seeAll = TagData().tagSeeAll
+    private val entityData = EntityData()
+    private var chosenTag: String = entityData.empty
+    private var chosenFilter: String = entityData.empty
+    private val seeAll = EntityData().tagSeeAll
     @SuppressLint("NotifyDataSetChanged")
     fun updateChosenTag(tag: String) {
         chosenTag = tag
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateChosenFilter(filter: String) {
+        chosenFilter = filter
         notifyDataSetChanged()
     }
 

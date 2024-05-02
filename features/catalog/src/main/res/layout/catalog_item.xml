@@ -29,24 +29,14 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="end"
-                android:layout_marginTop="4dp"
                 android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.967"
+                app:layout_constraintHorizontal_bias="0.986"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.012"
                 app:srcCompat="@drawable/heart_24" />
-
-            <View
-                android:id="@+id/view3"
-                android:layout_width="103dp"
-                android:layout_height="174dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.506"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/price"
@@ -171,7 +161,7 @@
                 app:layout_constraintTop_toTopOf="@+id/unit" />
 
             <ImageButton
-                android:id="@+id/buy_button"
+                android:id="@+id/buyButton"
                 android:layout_width="37dp"
                 android:layout_height="37dp"
                 android:background="@drawable/buy_button"
@@ -182,6 +172,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/plus_24" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewProduct"
+                android:layout_width="103dp"
+                android:layout_height="175dp"
+                app:layout_constraintBottom_toTopOf="@+id/price"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.505"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

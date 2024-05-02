@@ -69,5 +69,6 @@ class CatalogAdapter(
         }
         holder.bind(tagItems[position])
     }
+
 }
 

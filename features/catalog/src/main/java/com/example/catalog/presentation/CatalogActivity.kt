@@ -23,11 +23,12 @@ class CatalogActivity : AppCompatActivity() {
 
     private lateinit var adapter: CatalogAdapter
 
-    private val emptyData = EntityData()
-    private var choseTag: String = emptyData.tagSeeAll
+    private val entityData = EntityData()
+    private var choseTag: String = entityData.tagSeeAll
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         binding = ActivityCatalogBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -55,7 +56,7 @@ class CatalogActivity : AppCompatActivity() {
         // CatalogAdapter startup
         CoroutineScope(Dispatchers.Main).launch {
             adapter = CatalogAdapter(viewModel.getData())
-            adapter.updateChosenTag(emptyData.tagSeeAll)
+            adapter.updateChosenTag(entityData.tagSeeAll)
             binding.catalogItem.adapter = adapter
         }
 
@@ -87,46 +88,46 @@ class CatalogActivity : AppCompatActivity() {
         colorTextAct: Int
     ) {
         binding.allButton.setOnClickListener {
-            if (emptyData.tagSeeAll != choseTag) {
-                adapter.updateChosenTag(emptyData.tagSeeAll)
+            if (entityData.tagSeeAll != choseTag) {
+                adapter.updateChosenTag(entityData.tagSeeAll)
                 buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
-                choseTag = emptyData.tagSeeAll
+                choseTag = entityData.tagSeeAll
                 buttonsFlags(choseTag, colorButtonAct, colorTextAct)
             }
         }
 
         binding.faceButton.setOnClickListener {
-            if (emptyData.tagFace != choseTag) {
-                adapter.updateChosenTag(emptyData.tagFace)
+            if (entityData.tagFace != choseTag) {
+                adapter.updateChosenTag(entityData.tagFace)
                 buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
-                choseTag = emptyData.tagFace
+                choseTag = entityData.tagFace
                 buttonsFlags(choseTag, colorButtonAct, colorTextAct)
             }
         }
 
         binding.bodyButton.setOnClickListener {
-            if (emptyData.tagBody != choseTag) {
-                adapter.updateChosenTag(emptyData.tagBody)
+            if (entityData.tagBody != choseTag) {
+                adapter.updateChosenTag(entityData.tagBody)
                 buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
-                choseTag = emptyData.tagBody
+                choseTag = entityData.tagBody
                 buttonsFlags(choseTag, colorButtonAct, colorTextAct)
             }
         }
 
         binding.suntanButton.setOnClickListener {
-            if (emptyData.tagSuntan != choseTag) {
-                adapter.updateChosenTag(emptyData.tagSuntan)
+            if (entityData.tagSuntan != choseTag) {
+                adapter.updateChosenTag(entityData.tagSuntan)
                 buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
-                choseTag = emptyData.tagSuntan
+                choseTag = entityData.tagSuntan
                 buttonsFlags(choseTag, colorButtonAct, colorTextAct)
             }
         }
 
         binding.maskButton.setOnClickListener {
-            if (emptyData.tagMask != choseTag) {
-                adapter.updateChosenTag(emptyData.tagMask)
+            if (entityData.tagMask != choseTag) {
+                adapter.updateChosenTag(entityData.tagMask)
                 buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
-                choseTag = emptyData.tagMask
+                choseTag = entityData.tagMask
                 buttonsFlags(choseTag, colorButtonAct, colorTextAct)
             }
         }
@@ -139,27 +140,27 @@ class CatalogActivity : AppCompatActivity() {
 
         when (choseTag) {
 
-            emptyData.tagSeeAll -> {
+            entityData.tagSeeAll -> {
                 binding.allButton.setTextColor(colorText)
                 binding.allButton.setBackgroundColor(colorButton)
             }
 
-            emptyData.tagFace -> {
+            entityData.tagFace -> {
                 binding.faceButton.setTextColor(colorText)
                 binding.faceButton.setBackgroundColor(colorButton)
             }
 
-            emptyData.tagBody -> {
+            entityData.tagBody -> {
                 binding.bodyButton.setTextColor(colorText)
                 binding.bodyButton.setBackgroundColor(colorButton)
             }
 
-            emptyData.tagSuntan -> {
+            entityData.tagSuntan -> {
                 binding.suntanButton.setTextColor(colorText)
                 binding.suntanButton.setBackgroundColor(colorButton)
             }
 
-            emptyData.tagMask -> {
+            entityData.tagMask -> {
                 binding.maskButton.setTextColor(colorText)
                 binding.maskButton.setBackgroundColor(colorButton)
             }
@@ -186,17 +187,17 @@ class CatalogActivity : AppCompatActivity() {
 
      private fun sortByPopularity() {
          binding.sortButton.setText(R.string.by_popularity)
-         adapter.updateChosenFilter(emptyData.byPopularity)
+         adapter.updateChosenFilter(entityData.byPopularity)
      }
 
      private fun sortByPriceLowToHigh() {
          binding.sortButton.setText(R.string.by_price_reduction)
-         adapter.updateChosenFilter(emptyData.byPrice)
+         adapter.updateChosenFilter(entityData.byPrice)
      }
 
      private fun sortByPriceHighToLow() {
          binding.sortButton.setText(R.string.on_price_increases)
-         adapter.updateChosenFilter(emptyData.onPrice)
+         adapter.updateChosenFilter(entityData.onPrice)
      }
 
 }

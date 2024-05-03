@@ -11,12 +11,15 @@ import com.example.catalog.entity.EntityData
 
 class CatalogAdapter(
     private val info: Items,
+    private val image: Map<String, Int>,
 ) : RecyclerView.Adapter<CatalogAdapter.ItemHolder>() {
 
     private val entityData = EntityData()
     private var chosenTag: String = entityData.empty
     private var chosenFilter: String = entityData.empty
     private val seeAll = EntityData().tagSeeAll
+
+
     @SuppressLint("NotifyDataSetChanged")
     fun updateChosenTag(tag: String) {
         chosenTag = tag
@@ -33,7 +36,7 @@ class CatalogAdapter(
     class ItemHolder(private val binding: CatalogItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: Item) {
+        fun bind(item: Item, image: Map<String, Int>) {
             with(binding) {
                 price.text = item.price.price
                 priceWithDiscount.text = item.price.priceWithDiscount
@@ -67,7 +70,7 @@ class CatalogAdapter(
         } else {
             info.items.filter { it.tags.contains(chosenTag) }
         }
-        holder.bind(tagItems[position])
+        holder.bind(tagItems[position], image)
     }
 
 }

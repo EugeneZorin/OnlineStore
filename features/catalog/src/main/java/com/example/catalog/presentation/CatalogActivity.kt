@@ -21,7 +21,8 @@ class CatalogActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCatalogBinding
     private val viewModel: CatalogViewModel by viewModels()
 
-    private lateinit var adapter: CatalogAdapter
+    private lateinit var adapterCatalog: CatalogAdapter
+    private lateinit var adapterImage: ImageAdapter
 
     private val entityData = EntityData()
     private var choseTag: String = entityData.tagSeeAll
@@ -33,8 +34,18 @@ class CatalogActivity : AppCompatActivity() {
         binding = ActivityCatalogBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
+
         init()
 
+    }
+
+    private fun imageManager(){
+       /* CoroutineScope(Dispatchers.Main).launch {
+            adapterImage = ImageAdapter(this, viewModel.getImage())
+        }
+*/
     }
 
     private fun init() {
@@ -55,9 +66,9 @@ class CatalogActivity : AppCompatActivity() {
 
         // CatalogAdapter startup
         CoroutineScope(Dispatchers.Main).launch {
-            adapter = CatalogAdapter(viewModel.getData())
-            adapter.updateChosenTag(entityData.tagSeeAll)
-            binding.catalogItem.adapter = adapter
+            adapterCatalog = CatalogAdapter(viewModel.getData(), viewModel.getImage())
+            adapterCatalog.updateChosenTag(entityData.tagSeeAll)
+            binding.catalogItem.adapter = adapterCatalog
         }
 
         // Setting the first main tag (see all)
@@ -89,7 +100,7 @@ class CatalogActivity : AppCompatActivity() {
     ) {
         binding.allButton.setOnClickListener {
             if (entityData.tagSeeAll != choseTag) {
-                adapter.updateChosenTag(entityData.tagSeeAll)
+                adapterCatalog.updateChosenTag(entityData.tagSeeAll)
                 buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
                 choseTag = entityData.tagSeeAll
                 buttonsFlags(choseTag, colorButtonAct, colorTextAct)
@@ -98,7 +109,7 @@ class CatalogActivity : AppCompatActivity() {
 
         binding.faceButton.setOnClickListener {
             if (entityData.tagFace != choseTag) {
-                adapter.updateChosenTag(entityData.tagFace)
+                adapterCatalog.updateChosenTag(entityData.tagFace)
                 buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
                 choseTag = entityData.tagFace
                 buttonsFlags(choseTag, colorButtonAct, colorTextAct)
@@ -107,7 +118,7 @@ class CatalogActivity : AppCompatActivity() {
 
         binding.bodyButton.setOnClickListener {
             if (entityData.tagBody != choseTag) {
-                adapter.updateChosenTag(entityData.tagBody)
+                adapterCatalog.updateChosenTag(entityData.tagBody)
                 buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
                 choseTag = entityData.tagBody
                 buttonsFlags(choseTag, colorButtonAct, colorTextAct)
@@ -116,7 +127,7 @@ class CatalogActivity : AppCompatActivity() {
 
         binding.suntanButton.setOnClickListener {
             if (entityData.tagSuntan != choseTag) {
-                adapter.updateChosenTag(entityData.tagSuntan)
+                adapterCatalog.updateChosenTag(entityData.tagSuntan)
                 buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
                 choseTag = entityData.tagSuntan
                 buttonsFlags(choseTag, colorButtonAct, colorTextAct)
@@ -125,7 +136,7 @@ class CatalogActivity : AppCompatActivity() {
 
         binding.maskButton.setOnClickListener {
             if (entityData.tagMask != choseTag) {
-                adapter.updateChosenTag(entityData.tagMask)
+                adapterCatalog.updateChosenTag(entityData.tagMask)
                 buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
                 choseTag = entityData.tagMask
                 buttonsFlags(choseTag, colorButtonAct, colorTextAct)
@@ -187,17 +198,17 @@ class CatalogActivity : AppCompatActivity() {
 
      private fun sortByPopularity() {
          binding.sortButton.setText(R.string.by_popularity)
-         adapter.updateChosenFilter(entityData.byPopularity)
+         adapterCatalog.updateChosenFilter(entityData.byPopularity)
      }
 
      private fun sortByPriceLowToHigh() {
          binding.sortButton.setText(R.string.by_price_reduction)
-         adapter.updateChosenFilter(entityData.byPrice)
+         adapterCatalog.updateChosenFilter(entityData.byPrice)
      }
 
      private fun sortByPriceHighToLow() {
          binding.sortButton.setText(R.string.on_price_increases)
-         adapter.updateChosenFilter(entityData.onPrice)
+         adapterCatalog.updateChosenFilter(entityData.onPrice)
      }
 
 }

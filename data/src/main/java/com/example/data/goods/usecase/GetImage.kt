@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
 
+/*
 class GetImage(): GetImageRepository {
     override suspend fun getImage(): MutableMap<String, Int> {
         return withContext(Dispatchers.IO) {
@@ -28,4 +29,4 @@ class GetImage(): GetImageRepository {
         }
 
     }
-}
+}*/

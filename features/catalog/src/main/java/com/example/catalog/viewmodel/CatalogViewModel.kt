@@ -11,16 +11,15 @@ import javax.inject.Inject
 @HiltViewModel
 class CatalogViewModel @Inject constructor(
     private val getDataContract: GetDataContract,
-    private val getImageContract: GetImageContract
 ) : ViewModel() {
 
     suspend fun getData(): Items {
         return getDataContract.getDataUseCase()
     }
 
-    suspend fun getImage(): Map<String, Int> {
+   /* suspend fun getImage(): Map<String, Int> {
         return getImageContract.getImage()
-    }
+    }*/
 
 
 

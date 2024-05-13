@@ -8,7 +8,6 @@ import com.example.catalog.repository.GetImageRepository
 import com.example.catalog.usecase.ImageUseCase
 import com.example.catalog.usecase.ItemUseCase
 import com.example.data.goods.usecase.GetData
-import com.example.data.goods.usecase.GetImage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,10 +34,10 @@ object CatalogModule {
         return ItemUseCase(getDataRepository)
     }
 
-    @Provides
+   /* @Provides
     fun provideGetImage(): GetImageRepository {
         return GetImage()
-    }
+    }*/
 
     @Provides
     fun provideImageUseCase(

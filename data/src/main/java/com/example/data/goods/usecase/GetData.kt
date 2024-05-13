@@ -12,11 +12,12 @@ class GetData(
     private val context: Context
 ): GetDataRepository {
 
+
+
     override suspend fun getData(): Items {
         return withContext(Dispatchers.IO) {
             try {
                 val inputStream = context.assets.open("data.json")
-
                 val jsonString = inputStream.bufferedReader().use { it.readText() }
 
                 Gson().fromJson(jsonString, Items::class.java)

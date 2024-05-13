@@ -66,7 +66,7 @@ class CatalogActivity : AppCompatActivity() {
 
         // CatalogAdapter startup
         CoroutineScope(Dispatchers.Main).launch {
-            adapterCatalog = CatalogAdapter(viewModel.getData(), viewModel.getImage())
+            adapterCatalog = CatalogAdapter(viewModel.getData())
             adapterCatalog.updateChosenTag(entityData.tagSeeAll)
             binding.catalogItem.adapter = adapterCatalog
         }

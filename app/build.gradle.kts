@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    alias(libs.plugins.googleGmsGoogleServices)
 }
 
 android {
@@ -50,9 +51,11 @@ dependencies {
 
     implementation(libs.hilt)
     implementation(project(":domain:catalog"))
-
     ksp(libs.hilt.compiler)
 
+    implementation(libs.firebase.storage)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.firestore)
     implementation(libs.room.ktx)
     implementation(libs.androidx.ktx)
     implementation(libs.appcompat)

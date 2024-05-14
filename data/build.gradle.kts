@@ -45,6 +45,9 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("io.coil-kt:coil:1.4.0")
 
+    implementation ("com.google.firebase:firebase-storage:21.0.0")
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+
     implementation(libs.hilt)
     implementation(libs.firebase.database)
     implementation(libs.firebase.storage)

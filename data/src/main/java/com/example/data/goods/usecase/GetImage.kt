@@ -1,13 +1,5 @@
 package com.example.data.goods.usecase
 
-import android.content.Context
-import android.media.Image
-import com.example.catalog.repository.GetImageRepository
-import com.example.data.R
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import java.io.IOException
-
 /*
 class GetImage(): GetImageRepository {
     override suspend fun getImage(): MutableMap<String, Int> {

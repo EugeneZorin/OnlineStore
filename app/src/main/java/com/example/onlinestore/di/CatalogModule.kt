@@ -4,10 +4,13 @@ import android.content.Context
 import com.example.catalog.contract.GetDataContract
 import com.example.catalog.contract.GetImageContract
 import com.example.catalog.repository.GetDataRepository
-import com.example.catalog.repository.GetImageRepository
+import com.example.catalog.repository.GetDataTransformerRepository
 import com.example.catalog.usecase.ImageUseCase
 import com.example.catalog.usecase.ItemUseCase
 import com.example.data.goods.usecase.GetData
+import com.example.data.image.contract.RequestContract
+import com.example.data.image.usecase.DataTransformer
+import com.example.data.image.usecase.RequestDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,16 +37,24 @@ object CatalogModule {
         return ItemUseCase(getDataRepository)
     }
 
-   /* @Provides
-    fun provideGetImage(): GetImageRepository {
-        return GetImage()
-    }*/
+    @Provides
+    fun provideRequestDatabase(): RequestContract {
+        return RequestDatabase()
+    }
+
+    @Provides
+    fun provideGetImage(
+        requestContract: RequestContract,
+        @ApplicationContext context: Context
+    ): GetDataTransformerRepository {
+        return DataTransformer(requestContract, context)
+    }
 
     @Provides
     fun provideImageUseCase(
-        getImageRepository: GetImageRepository
+        getDataTransformerRepository: GetDataTransformerRepository
     ): GetImageContract {
-        return ImageUseCase(getImageRepository)
+        return ImageUseCase(getDataTransformerRepository)
     }
 
 }

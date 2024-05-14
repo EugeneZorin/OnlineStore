@@ -1,5 +1,5 @@
 package com.example.catalog.repository
 
 interface GetDataTransformerRepository {
-    suspend fun dataTransformer(): ByteArray
+    suspend fun dataTransformer(): MutableList<ByteArray>
 }

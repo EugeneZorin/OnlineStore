@@ -22,20 +22,15 @@ class CatalogViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _bitmap = MutableLiveData<Bitmap?>()
-    val bitmap: LiveData<Bitmap?> get() = _bitmap
+    private val bitmap: LiveData<Bitmap?> get() = _bitmap
     suspend fun getData(): Items {
         return getDataContract.getDataUseCase()
     }
 
-    private suspend fun loadImage() {
+    private fun loadImage() {
         viewModelScope.launch {
             val byteArray = getImageContract.getImage()
-            byteArray.let {
-                val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
-                _bitmap.postValue(bitmap)
-            } ?: run {
-                _bitmap.postValue(null)
-            }
+            Log.e("123","${getImageContract.getImage()}")
         }
     }
 

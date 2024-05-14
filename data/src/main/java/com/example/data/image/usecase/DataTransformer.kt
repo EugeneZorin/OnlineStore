@@ -3,6 +3,7 @@ package com.example.data.image.usecase
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.util.Log
 import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
@@ -16,9 +17,27 @@ class DataTransformer(
     private val requestContract: RequestContract,
     private val context: Context
 ) : GetDataTransformerRepository {
-    override suspend fun dataTransformer(): ByteArray {
+
+
+    override suspend fun dataTransformer(): MutableList<ByteArray> {
 
         return withContext(Dispatchers.IO) {
+            val result = mutableListOf<ByteArray>()
+
+            ByteArrayOutputStream().use { stream ->
+                requestContract.requestDatabase().forEach {
+                    it.compress(Bitmap.CompressFormat.PNG, 100, stream)
+                    result.add(stream.toByteArray())
+                }
+                result
+            }
+        }
+
+
+
+
+
+       /* return withContext(Dispatchers.IO) {
             val data = requestContract.requestDatabase()
             val loader = ImageLoader(context)
             val request =
@@ -27,16 +46,14 @@ class DataTransformer(
                     .build()
             val result = loader.execute(request)
 
-            (if (result is SuccessResult) {
+            if (result is SuccessResult) {
                 val bitmap = (result.drawable as? BitmapDrawable)?.bitmap
-                bitmap?.let {
-                    val stream = ByteArrayOutputStream()
-                    it.compress(Bitmap.CompressFormat.PNG, 100, stream)
-                    stream.toByteArray()
-                }
+                val stream = ByteArrayOutputStream()
+                bitmap?.compress(Bitmap.CompressFormat.PNG, 100, stream)
+                stream.toByteArray()
             } else {
                 null
-            })!!
-        }
+            }
+        }*/
     }
 }

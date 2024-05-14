@@ -3,5 +3,5 @@ package com.example.catalog.contract
 import com.example.catalog.entity.Items
 
 interface GetImageContract {
-    suspend fun getImage(): ByteArray
+    suspend fun getImage(): MutableList<ByteArray>
 }

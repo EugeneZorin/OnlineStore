@@ -17,13 +17,13 @@ class DataTransformer(
     private val requestContract: RequestContract,
 ) : GetDataTransformerRepository {
 
-    override suspend fun dataTransformer(): MutableList<ByteArray> {
+    override suspend fun dataTransformer(): MutableMap<String, ByteArray> {
         return withContext(Dispatchers.IO) {
-            val result = mutableListOf<ByteArray>()
+            val result = mutableMapOf<String, ByteArray>()
             ByteArrayOutputStream().use { stream ->
                 requestContract.requestDatabase().forEach {
-                    it.compress(Bitmap.CompressFormat.PNG, 100, stream)
-                    result.add(stream.toByteArray())
+                    it.value.compress(Bitmap.CompressFormat.PNG, 100, stream)
+                    result[it.key] = stream.toByteArray()
                 }
                 result
             }

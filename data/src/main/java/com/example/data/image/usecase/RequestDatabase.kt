@@ -4,24 +4,27 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
 import com.example.data.image.contract.RequestContract
+import com.example.data.image.entity.DatabaseEntity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 import java.io.IOException
 import java.net.URL
 
-class RequestDatabase: RequestContract {
-    override suspend fun requestDatabase(): MutableList<Bitmap> {
+class RequestDatabase : RequestContract {
+    override suspend fun requestDatabase(): MutableMap<String, Bitmap> {
         val database = Firebase.firestore
-        val imageList = mutableListOf<Bitmap>()
+        val imageMap = mutableMapOf<String, Bitmap>()
         try {
-            val images = database.collection("imageDatabase").get().await()
+            val images = database.collection(DatabaseEntity().databaseName).get().await()
             images.forEach { document ->
                 document.data.forEach { data ->
                     try {
                         val url = URL(data.value.toString())
-                        val image = BitmapFactory.decodeStream(url.openConnection().getInputStream())
-                        imageList.add(image)
+                        val id = data.key
+                        val image =
+                            BitmapFactory.decodeStream(url.openConnection().getInputStream())
+                        imageMap[id] = image
                     } catch (e: IOException) {
                         println(e)
                     }
@@ -30,6 +33,6 @@ class RequestDatabase: RequestContract {
         } catch (e: Exception) {
             println("Error fetching data: ${e.message}")
         }
-        return imageList
+        return imageMap
     }
 }

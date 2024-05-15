@@ -1,6 +1,8 @@
 package com.example.catalog.presentation
 
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.widget.PopupMenu
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -34,6 +36,12 @@ class CatalogActivity : AppCompatActivity() {
         binding = ActivityCatalogBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        viewModel.bitmap.observe(this) {
+            it.forEach { (t, u) ->
+                Log.e("KEY", t)
+                Log.e("VALUE", "$u")
+            }
+        }
 
         init()
 
@@ -55,13 +63,6 @@ class CatalogActivity : AppCompatActivity() {
         binding.sortButton.setOnClickListener {
             showSortMenu()
         }
-
-        viewModel.bitmap.observe(this) { bitmaps ->
-            bitmaps.forEach {
-                adapterImage = ImageAdapter(this, it)
-            }
-        }
-
 
 
         // CatalogAdapter startup

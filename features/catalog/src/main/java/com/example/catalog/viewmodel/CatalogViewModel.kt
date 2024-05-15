@@ -24,8 +24,13 @@ class CatalogViewModel @Inject constructor(
 
     private var _bitmap = MutableLiveData<MutableMap<String, Bitmap?>>(mutableMapOf())
     val bitmap: LiveData<MutableMap<String, Bitmap?>> get() = _bitmap
-    suspend fun getData(): Items {
-        return getDataContract.getDataUseCase()
+
+    private var _catalogItem = MutableLiveData<Items>()
+    val catalogItem: MutableLiveData<Items> = _catalogItem
+    fun getData() {
+        viewModelScope.launch {
+            _catalogItem.value = getDataContract.getDataUseCase()
+        }
     }
 
     private fun loadImage(){
@@ -45,10 +50,13 @@ class CatalogViewModel @Inject constructor(
     }
 
     init {
+        getData()
         viewModelScope.launch {
             loadImage()
         }
     }
+
+
 
 
 

@@ -32,6 +32,10 @@ class ImageAdapter(
         return doubleArray.size
     }
 
+    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+        container.removeView(`object` as View)
+    }
+
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
         return view == `object`
     }

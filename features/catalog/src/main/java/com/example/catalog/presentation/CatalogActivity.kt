@@ -1,8 +1,6 @@
 package com.example.catalog.presentation
 
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
 import android.widget.PopupMenu
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -32,65 +30,47 @@ class CatalogActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         binding = ActivityCatalogBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.bitmap.observe(this) {
-            it.forEach { (t, u) ->
-                Log.e("KEY", t)
-                Log.e("VALUE", "$u")
-            }
-        }
-
         init()
-
     }
 
 
     private fun init() {
 
-        // Color for tag buttons
-        val colorButtonAct = ContextCompat.getColor(this, R.color.dark_grey)
-        val colorTextAct = ContextCompat.getColor(this, R.color.white)
-
-        val colorButtonNorm = ContextCompat.getColor(this, R.color.light_grey)
-        val colorTextNorm = ContextCompat.getColor(this, R.color.grey)
-        
         binding.catalogItem.layoutManager = GridLayoutManager(this, 2)
-
 
         binding.sortButton.setOnClickListener {
             showSortMenu()
         }
 
-
         // CatalogAdapter startup
-        CoroutineScope(Dispatchers.Main).launch {
-            adapterCatalog = CatalogAdapter(viewModel.getData())
+        viewModel.catalogItem.observe(this) { data ->
+            adapterCatalog = CatalogAdapter(data)
             adapterCatalog.updateChosenTag(entityData.tagSeeAll)
             binding.catalogItem.adapter = adapterCatalog
         }
 
-        // Setting the first main tag (see all)
-        firstTag(
-            colorButton = colorButtonAct,
-            colorText = colorTextAct
-        )
-
         // Initializing tag selection buttons
         settingButtons(
-            colorButtonNorm = colorButtonNorm,
-            colorTextNorm = colorTextNorm,
-            colorButtonAct = colorButtonAct,
-            colorTextAct = colorTextAct
+            colorButtonNorm = ContextCompat.getColor(this, R.color.light_grey),
+            colorTextNorm = ContextCompat.getColor(this, R.color.grey),
+            colorButtonAct = ContextCompat.getColor(this, R.color.dark_grey),
+            colorTextAct = ContextCompat.getColor(this, R.color.white)
+        )
+
+
+        // Setting the first main tag (see all)
+        firstTag(
+            colorButton = ContextCompat.getColor(this, R.color.dark_grey),
+            colorText = ContextCompat.getColor(this, R.color.white)
         )
 
     }
 
-
     private fun firstTag(colorButton: Int, colorText: Int) {
-        buttonsFlags(choseTag, colorButton, colorText)
+        setupButtonColors(choseTag, colorButton, colorText)
     }
 
     private fun settingButtons(
@@ -99,119 +79,61 @@ class CatalogActivity : AppCompatActivity() {
         colorButtonAct: Int,
         colorTextAct: Int
     ) {
-        binding.allButton.setOnClickListener {
-            if (entityData.tagSeeAll != choseTag) {
-                adapterCatalog.updateChosenTag(entityData.tagSeeAll)
-                buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
-                choseTag = entityData.tagSeeAll
-                buttonsFlags(choseTag, colorButtonAct, colorTextAct)
+
+        val buttonTagMap = mapOf(
+            binding.allButton to entityData.tagSeeAll,
+            binding.faceButton to entityData.tagFace,
+            binding.bodyButton to entityData.tagBody,
+            binding.suntanButton to entityData.tagSuntan,
+            binding.maskButton to entityData.tagMask
+        )
+
+        buttonTagMap.forEach { (button, tag) ->
+            button.setOnClickListener {
+                if (tag != choseTag) {
+                    adapterCatalog.updateChosenTag(tag)
+                    setupButtonColors(choseTag, colorButtonNorm, colorTextNorm)
+                    choseTag = tag
+                    setupButtonColors(choseTag, colorButtonAct, colorTextAct)
+                }
             }
         }
-
-        binding.faceButton.setOnClickListener {
-            if (entityData.tagFace != choseTag) {
-                adapterCatalog.updateChosenTag(entityData.tagFace)
-                buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
-                choseTag = entityData.tagFace
-                buttonsFlags(choseTag, colorButtonAct, colorTextAct)
-            }
-        }
-
-        binding.bodyButton.setOnClickListener {
-            if (entityData.tagBody != choseTag) {
-                adapterCatalog.updateChosenTag(entityData.tagBody)
-                buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
-                choseTag = entityData.tagBody
-                buttonsFlags(choseTag, colorButtonAct, colorTextAct)
-            }
-        }
-
-        binding.suntanButton.setOnClickListener {
-            if (entityData.tagSuntan != choseTag) {
-                adapterCatalog.updateChosenTag(entityData.tagSuntan)
-                buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
-                choseTag = entityData.tagSuntan
-                buttonsFlags(choseTag, colorButtonAct, colorTextAct)
-            }
-        }
-
-        binding.maskButton.setOnClickListener {
-            if (entityData.tagMask != choseTag) {
-                adapterCatalog.updateChosenTag(entityData.tagMask)
-                buttonsFlags(choseTag, colorButtonNorm, colorTextNorm)
-                choseTag = entityData.tagMask
-                buttonsFlags(choseTag, colorButtonAct, colorTextAct)
-            }
-        }
-
     }
-
 
     // Button color switching
-    private fun buttonsFlags(choseTag: String, colorButton: Int, colorText: Int) {
+    private fun setupButtonColors(chosenTag: String, colorButton: Int, colorText: Int) {
+        val buttonMap = mapOf(
+            entityData.tagSeeAll to binding.allButton,
+            entityData.tagFace to binding.faceButton,
+            entityData.tagBody to binding.bodyButton,
+            entityData.tagSuntan to binding.suntanButton,
+            entityData.tagMask to binding.maskButton
+        )
 
-        when (choseTag) {
-
-            entityData.tagSeeAll -> {
-                binding.allButton.setTextColor(colorText)
-                binding.allButton.setBackgroundColor(colorButton)
-            }
-
-            entityData.tagFace -> {
-                binding.faceButton.setTextColor(colorText)
-                binding.faceButton.setBackgroundColor(colorButton)
-            }
-
-            entityData.tagBody -> {
-                binding.bodyButton.setTextColor(colorText)
-                binding.bodyButton.setBackgroundColor(colorButton)
-            }
-
-            entityData.tagSuntan -> {
-                binding.suntanButton.setTextColor(colorText)
-                binding.suntanButton.setBackgroundColor(colorButton)
-            }
-
-            entityData.tagMask -> {
-                binding.maskButton.setTextColor(colorText)
-                binding.maskButton.setBackgroundColor(colorButton)
+        buttonMap.forEach { (tag, button) ->
+            if (tag == chosenTag) {
+                button.setTextColor(colorText)
+                button.setBackgroundColor(colorButton)
             }
         }
-
-
     }
 
-
-     private fun showSortMenu() {
-
-         val popupMenu = PopupMenu(this, binding.sortButton)
-         popupMenu.menuInflater.inflate(R.menu.sort_menu, popupMenu.menu)
-         popupMenu.setOnMenuItemClickListener { menuItem ->
-             when (menuItem.itemId) {
-                 R.id.sortByPopularity -> sortByPopularity()
-                 R.id.sortByPriceLowToHigh -> sortByPriceLowToHigh()
-                 R.id.sortByPriceHighToLow -> sortByPriceHighToLow()
-             }
-             true
-         }
-         popupMenu.show()
-     }
-
-     private fun sortByPopularity() {
-         binding.sortButton.setText(R.string.by_popularity)
-         adapterCatalog.updateChosenFilter(entityData.byPopularity)
-     }
-
-     private fun sortByPriceLowToHigh() {
-         binding.sortButton.setText(R.string.by_price_reduction)
-         adapterCatalog.updateChosenFilter(entityData.byPrice)
-     }
-
-     private fun sortByPriceHighToLow() {
-         binding.sortButton.setText(R.string.on_price_increases)
-         adapterCatalog.updateChosenFilter(entityData.onPrice)
-     }
-
+    private fun showSortMenu() {
+        PopupMenu(this, binding.sortButton).apply {
+            menuInflater.inflate(R.menu.sort_menu, menu)
+            setOnMenuItemClickListener { menuItem ->
+                val chosenFilter = when (menuItem.itemId) {
+                    R.id.sortByPopularity -> entityData.byPopularity
+                    R.id.sortByPriceLowToHigh -> entityData.byPrice
+                    R.id.sortByPriceHighToLow -> entityData.onPrice
+                    else -> return@setOnMenuItemClickListener false
+                }
+                adapterCatalog.updateChosenFilter(chosenFilter)
+                binding.sortButton.text = menuItem.title
+                true
+            }
+        }.show()
+    }
 }
 
 

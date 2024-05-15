@@ -1,9 +1,12 @@
 package com.example.catalog.presentation
 
 import android.annotation.SuppressLint
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.PagerAdapter
 import com.example.catalog.databinding.CatalogItemBinding
 import com.example.catalog.entity.Item
 import com.example.catalog.entity.Items
@@ -35,7 +38,9 @@ class CatalogAdapter(
     class ItemHolder(private val binding: CatalogItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: Item) {
+        fun bind(
+            item: Item
+        ) {
             with(binding) {
                 price.text = item.price.price
                 priceWithDiscount.text = item.price.priceWithDiscount
@@ -71,6 +76,7 @@ class CatalogAdapter(
         }
         holder.bind(tagItems[position])
     }
+
 
 }
 

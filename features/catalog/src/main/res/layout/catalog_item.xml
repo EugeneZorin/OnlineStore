@@ -173,7 +173,7 @@
                 app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/plus_24" />
 
-            <androidx.viewpager2.widget.ViewPager2
+            <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewProduct"
                 android:layout_width="103dp"
                 android:layout_height="175dp"

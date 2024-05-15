@@ -45,9 +45,8 @@ object CatalogModule {
     @Provides
     fun provideGetImage(
         requestContract: RequestContract,
-        @ApplicationContext context: Context
     ): GetDataTransformerRepository {
-        return DataTransformer(requestContract, context)
+        return DataTransformer(requestContract)
     }
 
     @Provides

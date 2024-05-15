@@ -35,18 +35,10 @@ class CatalogActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
-
         init()
 
     }
 
-    private fun imageManager(){
-       /* CoroutineScope(Dispatchers.Main).launch {
-            adapterImage = ImageAdapter(this, viewModel.getImage())
-        }
-*/
-    }
 
     private fun init() {
 
@@ -63,6 +55,14 @@ class CatalogActivity : AppCompatActivity() {
         binding.sortButton.setOnClickListener {
             showSortMenu()
         }
+
+        viewModel.bitmap.observe(this) { bitmaps ->
+            bitmaps.forEach {
+                adapterImage = ImageAdapter(this, it)
+            }
+        }
+
+
 
         // CatalogAdapter startup
         CoroutineScope(Dispatchers.Main).launch {

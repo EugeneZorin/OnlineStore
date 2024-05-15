@@ -10,7 +10,7 @@ import com.example.catalog.entity.Items
 import com.example.catalog.entity.EntityData
 
 class CatalogAdapter(
-    private val info: Items
+    private val info: Items,
 ) : RecyclerView.Adapter<CatalogAdapter.ItemHolder>() {
 
     private val entityData = EntityData()

@@ -12,6 +12,7 @@ import com.example.catalog.contract.GetImageContract
 import com.example.catalog.entity.Items
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -21,23 +22,31 @@ class CatalogViewModel @Inject constructor(
     private val getImageContract: GetImageContract
 ) : ViewModel() {
 
-    private val _bitmap = MutableLiveData<Bitmap?>()
-    private val bitmap: LiveData<Bitmap?> get() = _bitmap
+    private var _bitmap = MutableLiveData<MutableList<Bitmap?>>(mutableListOf())
+    val bitmap: LiveData<MutableList<Bitmap?>> get() = _bitmap
     suspend fun getData(): Items {
         return getDataContract.getDataUseCase()
     }
 
-    private fun loadImage() {
+    private fun loadImage(){
         viewModelScope.launch {
-            val byteArray = getImageContract.getImage()
-            Log.e("123","${getImageContract.getImage()}")
+            val newBitmaps = mutableListOf<Bitmap?>()
+            getImageContract.getImage().let { byteArray ->
+                byteArray.forEach { byteElement ->
+                    newBitmaps.add(byteArrayToBitmap(byteElement))
+                }
+            }
+            _bitmap.postValue(newBitmaps)
         }
+    }
+
+    private fun byteArrayToBitmap(byteArray: ByteArray): Bitmap? {
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
     }
 
     init {
         viewModelScope.launch {
             loadImage()
-            Log.d("asdfasf","${bitmap.value}")
         }
     }
 

@@ -2,11 +2,10 @@ package com.example.catalog.presentation
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.PagerAdapter
 import com.example.catalog.databinding.CatalogItemBinding
 import com.example.catalog.entity.Item
 import com.example.catalog.entity.Items
@@ -14,13 +13,13 @@ import com.example.catalog.entity.EntityData
 
 class CatalogAdapter(
     private val info: Items,
+    private val bitmapMap: Map<String, Bitmap?>
 ) : RecyclerView.Adapter<CatalogAdapter.ItemHolder>() {
 
     private val entityData = EntityData()
     private var chosenTag: String = entityData.empty
     private var chosenFilter: String = entityData.empty
     private val seeAll = EntityData().tagSeeAll
-
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateChosenTag(tag: String) {
@@ -34,12 +33,12 @@ class CatalogAdapter(
         notifyDataSetChanged()
     }
 
-
     class ItemHolder(private val binding: CatalogItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(
-            item: Item
+            item: Item,
+            bitmap: Bitmap?
         ) {
             with(binding) {
                 price.text = item.price.price
@@ -50,6 +49,10 @@ class CatalogAdapter(
                 descriptions.text = item.description
                 rating.text = item.feedback.rating
                 count.text = "(${item.feedback.count})"
+
+
+                viewProduct.adapter = ImageAdapter(itemView.context, bitmap)
+                viewProduct.adapter?.notifyDataSetChanged()  // Принудительное обновление
             }
         }
     }
@@ -74,9 +77,12 @@ class CatalogAdapter(
         } else {
             info.items.filter { it.tags.contains(chosenTag) }
         }
-        holder.bind(tagItems[position])
+        val item = tagItems[position]
+        val itemBitmap = bitmapMap[item.id]
+
+
+
+        holder.bind(item, itemBitmap)
     }
-
-
 }
 

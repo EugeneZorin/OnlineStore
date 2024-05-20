@@ -11,9 +11,6 @@ import com.example.catalog.databinding.ActivityCatalogBinding
 import com.example.catalog.entity.EntityData
 import com.example.catalog.viewmodel.CatalogViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CatalogActivity : AppCompatActivity() {
@@ -22,7 +19,6 @@ class CatalogActivity : AppCompatActivity() {
     private val viewModel: CatalogViewModel by viewModels()
 
     private lateinit var adapterCatalog: CatalogAdapter
-    private lateinit var adapterImage: ImageAdapter
 
     private val entityData = EntityData()
     private var choseTag: String = entityData.tagSeeAll
@@ -36,7 +32,6 @@ class CatalogActivity : AppCompatActivity() {
         init()
     }
 
-
     private fun init() {
 
         binding.catalogItem.layoutManager = GridLayoutManager(this, 2)
@@ -46,8 +41,8 @@ class CatalogActivity : AppCompatActivity() {
         }
 
         // CatalogAdapter startup
-        viewModel.catalogItem.observe(this) { data ->
-            adapterCatalog = CatalogAdapter(data)
+        viewModel.bitmapAndCatalogItem.observe(this) { (data, map) ->
+            adapterCatalog = CatalogAdapter(data, map)
             adapterCatalog.updateChosenTag(entityData.tagSeeAll)
             binding.catalogItem.adapter = adapterCatalog
         }

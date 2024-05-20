@@ -2,8 +2,7 @@ package com.example.catalog.viewmodel
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.util.Log
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,7 +11,6 @@ import com.example.catalog.contract.GetImageContract
 import com.example.catalog.entity.Items
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -22,26 +20,26 @@ class CatalogViewModel @Inject constructor(
     private val getImageContract: GetImageContract
 ) : ViewModel() {
 
-    private var _bitmap = MutableLiveData<MutableMap<String, Bitmap?>>(mutableMapOf())
-    val bitmap: LiveData<MutableMap<String, Bitmap?>> get() = _bitmap
+    private val _bitmap = MutableLiveData<MutableMap<String, Bitmap?>>().apply { value = mutableMapOf() }
+    private val _catalogItem = MutableLiveData<Items>()
 
-    private var _catalogItem = MutableLiveData<Items>()
-    val catalogItem: MutableLiveData<Items> = _catalogItem
-    fun getData() {
+    val bitmapAndCatalogItem = MediatorLiveData<Pair<Items, Map<String, Bitmap?>>>()
+    private fun getData() {
         viewModelScope.launch {
             _catalogItem.value = getDataContract.getDataUseCase()
         }
     }
 
-    private fun loadImage(){
+    private fun loadImage() {
         viewModelScope.launch {
             val newBitmaps = mutableMapOf<String, Bitmap?>()
-            getImageContract.getImage().let { byteArray ->
-                byteArray.forEach { byteElement ->
-                    newBitmaps[byteElement.key] = byteArrayToBitmap(byteElement.value)
+            getImageContract.getImage().let { byteArrayMap ->
+                byteArrayMap.forEach { (key, value) ->
+                    val bitmap = byteArrayToBitmap(value)
+                    newBitmaps[key] = bitmap
                 }
             }
-            _bitmap.postValue(newBitmaps)
+            _bitmap.value = newBitmaps
         }
     }
 
@@ -51,13 +49,22 @@ class CatalogViewModel @Inject constructor(
 
     init {
         getData()
-        viewModelScope.launch {
-            loadImage()
+        loadImage()
+
+
+        bitmapAndCatalogItem.addSource(_catalogItem) { catalogItem ->
+            val bitmaps = _bitmap.value ?: mutableMapOf()
+            if (catalogItem != null) {
+                bitmapAndCatalogItem.value = Pair(catalogItem, bitmaps)
+            }
         }
+
+        bitmapAndCatalogItem.addSource(_bitmap) { bitmaps ->
+            val items = _catalogItem.value
+            if (items != null) {
+                bitmapAndCatalogItem.value = Pair(items, bitmaps)
+            }
+        }
+
     }
-
-
-
-
-
 }

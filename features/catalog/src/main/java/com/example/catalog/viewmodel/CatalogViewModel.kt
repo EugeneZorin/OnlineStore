@@ -20,9 +20,8 @@ class CatalogViewModel @Inject constructor(
     private val getImageContract: GetImageContract
 ) : ViewModel() {
 
-    private val _bitmap = MutableLiveData<MutableMap<String, Bitmap?>>().apply { value = mutableMapOf() }
+    val _bitmap = MutableLiveData<MutableMap<String, Bitmap?>>()
     private val _catalogItem = MutableLiveData<Items>()
-
     val bitmapAndCatalogItem = MediatorLiveData<Pair<Items, Map<String, Bitmap?>>>()
     private fun getData() {
         viewModelScope.launch {
@@ -39,7 +38,7 @@ class CatalogViewModel @Inject constructor(
                     newBitmaps[key] = bitmap
                 }
             }
-            _bitmap.value = newBitmaps
+            _bitmap.postValue(newBitmaps)
         }
     }
 

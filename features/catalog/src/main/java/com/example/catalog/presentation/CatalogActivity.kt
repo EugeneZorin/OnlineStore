@@ -1,6 +1,7 @@
 package com.example.catalog.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.PopupMenu
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -46,6 +47,7 @@ class CatalogActivity : AppCompatActivity() {
             adapterCatalog.updateChosenTag(entityData.tagSeeAll)
             binding.catalogItem.adapter = adapterCatalog
         }
+
 
         // Initializing tag selection buttons
         settingButtons(

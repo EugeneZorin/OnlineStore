@@ -13,7 +13,7 @@ class ImageAdapter(
     private val image: Bitmap?
 ) : PagerAdapter() {
 
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+    override fun instantiateItem(container: ViewGroup, position: Int): ImageView {
         val imageView = ImageView(context).apply {
             layoutParams = ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,

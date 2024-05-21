@@ -49,10 +49,7 @@ class CatalogAdapter(
                 descriptions.text = item.description
                 rating.text = item.feedback.rating
                 count.text = "(${item.feedback.count})"
-
-
                 viewProduct.adapter = ImageAdapter(itemView.context, bitmap)
-                viewProduct.adapter?.notifyDataSetChanged()  // Принудительное обновление
             }
         }
     }
@@ -77,9 +74,9 @@ class CatalogAdapter(
         } else {
             info.items.filter { it.tags.contains(chosenTag) }
         }
+
         val item = tagItems[position]
         val itemBitmap = bitmapMap[item.id]
-
 
 
         holder.bind(item, itemBitmap)

@@ -20,13 +20,13 @@ class DataTransformer(
     override suspend fun dataTransformer(): MutableMap<String, ByteArray> {
         return withContext(Dispatchers.IO) {
             val result = mutableMapOf<String, ByteArray>()
-            ByteArrayOutputStream().use { stream ->
-                requestContract.requestDatabase().forEach {
-                    it.value.compress(Bitmap.CompressFormat.PNG, 100, stream)
-                    result[it.key] = stream.toByteArray()
+            requestContract.requestDatabase().forEach { entry ->
+                ByteArrayOutputStream().use { bitmap ->
+                    entry.value.compress(Bitmap.CompressFormat.PNG, 100, bitmap)
+                    result[entry.key] = bitmap.toByteArray()
                 }
-                result
             }
+            result
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.catalog.entity
 
 data class EntityData(
+
     val tagSeeAll: String = "see_all",
     val tagFace: String = "face",
     val tagBody: String = "body",

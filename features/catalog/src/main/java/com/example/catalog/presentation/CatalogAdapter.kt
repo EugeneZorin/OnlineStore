@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.catalog.databinding.CatalogItemBinding
+import com.example.catalog.entity.EntityData
 import com.example.catalog.entity.Item
 import com.example.catalog.entity.Items
-import com.example.catalog.entity.EntityData
 
 class CatalogAdapter(
     private val info: Items,
@@ -18,19 +18,48 @@ class CatalogAdapter(
 
     private val entityData = EntityData()
     private var chosenTag: String = entityData.empty
-    private var chosenFilter: String = entityData.empty
-    private val seeAll = EntityData().tagSeeAll
+    private var chosenFilter: String = entityData.byPopularity
+    private val seeAll = entityData.tagSeeAll
+
+    private var filteredItems: List<Item> = info.items
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateChosenTag(tag: String) {
         chosenTag = tag
+        filterTag()
         notifyDataSetChanged()
     }
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateChosenFilter(filter: String) {
         chosenFilter = filter
+        applyFilters()
+        filterTag()
         notifyDataSetChanged()
+    }
+
+
+    private fun applyFilters() {
+        when (chosenFilter) {
+            entityData.byPopularity -> {
+                filteredItems = filteredItems.sortedByDescending { it.feedback.count.toInt() }
+            }
+            entityData.byPrice -> {
+                filteredItems = filteredItems.sortedByDescending { it.price.price.toInt() }
+            }
+            entityData.onPrice -> {
+                filteredItems = filteredItems.sortedBy { it.price.price.toInt() }
+            }
+        }
+    }
+
+
+    private fun filterTag() {
+        filteredItems = if (chosenTag == seeAll) {
+            info.items
+        } else {
+            info.items.filter { it.tags.contains(chosenTag) }
+        }
     }
 
     class ItemHolder(private val binding: CatalogItemBinding) :
@@ -60,26 +89,14 @@ class CatalogAdapter(
         return ItemHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        return if (chosenTag == seeAll) {
-            info.items.size
-        } else {
-            info.items.count { it.tags.contains(chosenTag) }
-        }
-    }
+    override fun getItemCount(): Int = filteredItems.size
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        val tagItems = if (chosenTag == seeAll) {
-            info.items
-        } else {
-            info.items.filter { it.tags.contains(chosenTag) }
-        }
-
-        val item = tagItems[position]
+        applyFilters()
+        val item = filteredItems[position]
         val itemBitmap = bitmapMap[item.id]
-
-
         holder.bind(item, itemBitmap)
     }
 }
+
 

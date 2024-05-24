@@ -20,39 +20,16 @@ class CatalogViewModel @Inject constructor(
     private val getImageContract: GetImageContract
 ) : ViewModel() {
 
-    val _bitmap = MutableLiveData<MutableMap<String, Bitmap?>>()
+    private val _bitmap = MutableLiveData<Map<String, Bitmap?>>()
     private val _catalogItem = MutableLiveData<Items>()
     val bitmapAndCatalogItem = MediatorLiveData<Pair<Items, Map<String, Bitmap?>>>()
-    private fun getData() {
-        viewModelScope.launch {
-            _catalogItem.value = getDataContract.getDataUseCase()
-        }
-    }
 
-    private fun loadImage() {
-        viewModelScope.launch {
-            val newBitmaps = mutableMapOf<String, Bitmap?>()
-            getImageContract.getImage().let { byteArrayMap ->
-                byteArrayMap.forEach { (key, value) ->
-                    val bitmap = byteArrayToBitmap(value)
-                    newBitmaps[key] = bitmap
-                }
-            }
-            _bitmap.postValue(newBitmaps)
-        }
-    }
-
-    private fun byteArrayToBitmap(byteArray: ByteArray): Bitmap? {
-        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
-    }
+    private val loadingStatus = MutableLiveData<LoadingStatus>()
+    private val errorMessage = MutableLiveData<String?>()
 
     init {
-        getData()
-        loadImage()
-
-
         bitmapAndCatalogItem.addSource(_catalogItem) { catalogItem ->
-            val bitmaps = _bitmap.value ?: mutableMapOf()
+            val bitmaps = _bitmap.value ?: emptyMap()
             if (catalogItem != null) {
                 bitmapAndCatalogItem.value = Pair(catalogItem, bitmaps)
             }
@@ -65,5 +42,43 @@ class CatalogViewModel @Inject constructor(
             }
         }
 
+        loadData()
+    }
+
+    private fun loadData() {
+        viewModelScope.launch {
+            loadingStatus.value = LoadingStatus.LOADING
+            try {
+                val catalogItem = getDataContract.getDataUseCase()
+                _catalogItem.value = catalogItem
+                loadImages()
+            } catch (e: Exception) {
+                loadingStatus.value = LoadingStatus.ERROR
+                errorMessage.value = e.message
+            }
+        }
+    }
+
+    private fun loadImages() {
+        viewModelScope.launch {
+            try {
+                val byteArrayMap = getImageContract.getImage()
+                val newBitmaps = byteArrayMap.mapValues { byteArrayToBitmap(it.value) }
+                _bitmap.postValue(newBitmaps)
+                loadingStatus.value = LoadingStatus.SUCCESS
+            } catch (e: Exception) {
+                loadingStatus.value = LoadingStatus.ERROR
+                errorMessage.value = e.message
+            }
+        }
+    }
+
+    private fun byteArrayToBitmap(byteArray: ByteArray): Bitmap? {
+        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+    }
+
+    enum class LoadingStatus {
+        LOADING, SUCCESS, ERROR
     }
 }
+

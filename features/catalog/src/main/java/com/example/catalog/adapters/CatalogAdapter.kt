@@ -24,49 +24,45 @@ class CatalogAdapter(
     @SuppressLint("NotifyDataSetChanged")
     fun updateChosenTag(tag: String) {
         chosenTag = tag
-        filterTag()
-        notifyDataSetChanged()
+        filterAndSortItems()
     }
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateChosenFilter(filter: String) {
         chosenFilter = filter
-        applyFilters()
-        filterTag()
-        notifyDataSetChanged()
+        filterAndSortItems()
     }
 
-
-    private fun applyFilters() {
-        when (chosenFilter) {
-            entityData.byPopularity -> {
-                filteredItems = filteredItems.sortedByDescending { it.feedback.count.toInt() }
-            }
-            entityData.byPrice -> {
-                filteredItems = filteredItems.sortedByDescending { it.price.price.toInt() }
-            }
-            entityData.onPrice -> {
-                filteredItems = filteredItems.sortedBy { it.price.price.toInt() }
-            }
-        }
-    }
-
-
-    private fun filterTag() {
+    @SuppressLint("NotifyDataSetChanged")
+    private fun filterAndSortItems() {
         filteredItems = if (chosenTag == seeAll) {
             info.items
         } else {
             info.items.filter { it.tags.contains(chosenTag) }
+        }
+        applyFilters()
+        notifyDataSetChanged()
+    }
+
+    private fun applyFilters() {
+        filteredItems = when (chosenFilter) {
+            entityData.byPopularity -> {
+                filteredItems.sortedByDescending { it.feedback.count.toInt() }
+            }
+            entityData.byPrice -> {
+                filteredItems.sortedByDescending { it.price.price.toInt() }
+            }
+            entityData.onPrice -> {
+                filteredItems.sortedBy { it.price.price.toInt() }
+            }
+            else -> filteredItems
         }
     }
 
     class ItemHolder(private val binding: CatalogItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(
-            item: Item,
-            bitmap: Bitmap?
-        ) {
+        fun bind(item: Item, bitmap: Bitmap?) {
             with(binding) {
                 price.text = item.price.price
                 priceWithDiscount.text = item.price.priceWithDiscount
@@ -90,11 +86,11 @@ class CatalogAdapter(
     override fun getItemCount(): Int = filteredItems.size
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        applyFilters()
         val item = filteredItems[position]
         val itemBitmap = bitmapMap[item.id]
         holder.bind(item, itemBitmap)
     }
 }
+
 
 

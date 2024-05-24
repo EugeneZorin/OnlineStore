@@ -1,8 +1,7 @@
-package com.example.catalog.presentation
+package com.example.catalog.adapters
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView

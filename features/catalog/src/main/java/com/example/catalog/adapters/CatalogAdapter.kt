@@ -1,8 +1,7 @@
-package com.example.catalog.presentation
+package com.example.catalog.adapters
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +19,6 @@ class CatalogAdapter(
     private var chosenTag: String = entityData.empty
     private var chosenFilter: String = entityData.byPopularity
     private val seeAll = entityData.tagSeeAll
-
     private var filteredItems: List<Item> = info.items
 
     @SuppressLint("NotifyDataSetChanged")

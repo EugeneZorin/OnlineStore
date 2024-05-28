@@ -12,7 +12,7 @@ class ItemUseCase(
         try {
             return getDataRepository.getData()
         } catch (e: Exception) {
-            println("error $e")
+            println("Error (ItemUseCase): $e")
         }
        return Items(
            items = listOf()

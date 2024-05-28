@@ -8,11 +8,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
 
-class GetData(
+class GetDataUseCase(
     private val context: Context
 ): GetDataRepository {
-
-
 
     override suspend fun getData(): Items {
         return withContext(Dispatchers.IO) {

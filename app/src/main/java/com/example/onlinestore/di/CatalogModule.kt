@@ -7,7 +7,7 @@ import com.example.catalog.repository.GetDataRepository
 import com.example.catalog.repository.GetDataTransformerRepository
 import com.example.catalog.usecase.ImageUseCase
 import com.example.catalog.usecase.ItemUseCase
-import com.example.data.goods.usecase.GetData
+import com.example.data.goods.usecase.GetDataUseCase
 import com.example.data.image.contract.RequestContract
 import com.example.data.image.usecase.DataTransformer
 import com.example.data.image.usecase.RequestDatabase
@@ -26,7 +26,7 @@ object CatalogModule {
 
     @Provides
     fun provideGetData(@ApplicationContext context: Context): GetDataRepository{
-        return GetData(context)
+        return GetDataUseCase(context)
     }
 
 

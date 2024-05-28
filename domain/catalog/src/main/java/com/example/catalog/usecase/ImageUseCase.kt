@@ -6,8 +6,8 @@ import com.example.catalog.repository.GetDataTransformerRepository
 class ImageUseCase(
     private val getDataTransformerRepository: GetDataTransformerRepository
 ): GetImageContract {
-    override suspend fun getImage(): MutableMap<String, ByteArray>  {
-        return getDataTransformerRepository.dataTransformer()
 
+    override suspend fun getImage(): MutableMap<String, ByteArray> {
+        return getDataTransformerRepository.dataTransformer()
     }
 }

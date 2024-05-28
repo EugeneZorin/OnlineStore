@@ -7,39 +7,37 @@
     tools:context=".MainActivity">
 
     <ScrollView
-        android:layout_width="423dp"
-        android:layout_height="953dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp">
 
-            <androidx.viewpager2.widget.ViewPager2
+            <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewPager2"
-                android:layout_width="174dp"
-                android:layout_height="277dp"
+                android:layout_width="0dp"
+                android:layout_height="385dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView8"
-                android:layout_width="405dp"
+                android:layout_width="0dp"
                 android:layout_height="52dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:text="Лосьон для тела `ESFOLIO` COENZYME Q 10 Увлажняющий 500 мл"
                 android:textSize="19sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.228"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -49,26 +47,26 @@
                 android:layout_height="21dp"
                 android:text="A'PIEU"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.028"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/viewPager2" />
 
             <TextView
                 android:id="@+id/textView9"
-                android:layout_width="305dp"
+                android:layout_width="0dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="8dp"
                 android:text="Доступно для заказа 30 штук"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.059"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
             <TextView
                 android:id="@+id/textView13"
-                android:layout_width="75dp"
+                android:layout_width="0dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="16dp"
                 android:gravity="center"
                 android:text="* * * * *"
                 android:textSize="20dp"
@@ -79,22 +77,22 @@
 
             <TextView
                 android:id="@+id/textView14"
-                android:layout_width="32dp"
+                android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:text="4.3"
                 app:layout_constraintEnd_toStartOf="@+id/textView15"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.214"
                 app:layout_constraintStart_toEndOf="@+id/textView13"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
             <TextView
                 android:id="@+id/textView15"
-                android:layout_width="75dp"
+                android:layout_width="0dp"
                 android:layout_height="20dp"
-                android:layout_marginEnd="208dp"
+                android:layout_marginEnd="200dp"
                 android:gravity="center"
                 android:text="4 отзыва"
                 app:layout_constraintBottom_toBottomOf="@+id/textView14"
@@ -152,23 +150,23 @@
 
             <Button
                 android:id="@+id/button3"
-                android:layout_width="403dp"
-                android:layout_height="54dp"
-                android:layout_marginTop="28dp"
+                android:layout_width="0dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="8dp"
                 android:text="Button"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.421"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
             <TextView
                 android:id="@+id/textView21"
-                android:layout_width="399dp"
-                android:layout_height="103dp"
+                android:layout_width="0dp"
+                android:layout_height="98dp"
                 android:layout_marginTop="12dp"
                 android:text="Пенка для лица Глубокое очищение содержит минеральную воду и соду, способствует глубокому очищению пор от различных загрязнений, контролирует работу сальных желез, сужает поры. Обладает мягким антисептическим действием, не пересушивая кожу. Минеральная вода тонизирует и смягчает кожу."
-                app:layout_constraintEnd_toEndOf="@+id/button3"
-                app:layout_constraintStart_toStartOf="@+id/button3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button3" />
 
             <TextView
@@ -198,13 +196,13 @@
 
             <TableLayout
                 android:id="@+id/tableLayout"
-                android:layout_width="402dp"
-                android:layout_height="114dp"
+                android:layout_width="0dp"
+                android:layout_height="122dp"
                 android:layout_marginTop="8dp"
                 android:stretchColumns="1"
-                app:layout_constraintEnd_toEndOf="@+id/textView24"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textView24"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView24">
 
                 <TableRow>
@@ -277,7 +275,7 @@
 
             <TextView
                 android:id="@+id/textView26"
-                android:layout_width="409dp"
+                android:layout_width="0dp"
                 android:layout_height="42dp"
                 android:layout_marginTop="8dp"
                 android:text="Water, Propylene Glycol, Dipropylene Glycol, Lauric acid, Myristic Acid, Potassium Hydroxide, Lauryl Hydroxysultaine, Potassium Cocoate, Potassium Cocoyl Glycinate, Sodium Chloride, Glycerin, Phenoxyethanol, Chlorphenesin, Fragrance, Caprylyl Glycol, Ethylhexylglycerin, Capric acid, Palmitic Acid, Disodium EDTA, Sodium Bicarbonate, Cocamidopropyl Betaine, Butylene Glycol."
@@ -300,7 +298,7 @@
 
             <Button
                 android:id="@+id/button4"
-                android:layout_width="403dp"
+                android:layout_width="0dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:text="Button"

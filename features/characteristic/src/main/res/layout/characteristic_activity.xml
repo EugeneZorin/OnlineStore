@@ -38,6 +38,7 @@
                 android:layout_marginTop="4dp"
                 android:contentDescription="Лосьон для тела ES FOLIO COENZYME Q 10 Увлажняющий 500 мл"
                 android:importantForAccessibility="yes"
+                android:textStyle="bold"
                 android:text="Лосьон для тела `ES FOLIO` COENZYME Q 10 Увлажняющий 500 мл"
                 android:textSize="19sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -51,11 +52,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginTop="12dp"
+                android:textSize="22sp"
+                android:textColor="@color/dark_grey"
                 android:text="A'PIEU"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productPicture" />
+                app:layout_constraintTop_toBottomOf="@+id/productPicture"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/availableProducts"
@@ -63,10 +67,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Доступно для заказа 30 штук"
+                android:textColor="@color/dark_grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/subheading" />
+                app:layout_constraintTop_toBottomOf="@+id/subheading"
+                tools:ignore="HardcodedText" />
 
             <RatingBar
                 android:id="@+id/rating"
@@ -86,13 +92,14 @@
                 android:id="@+id/productRating"
                 android:layout_width="35dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="14dp"
                 android:gravity="center"
                 android:text="4.3"
                 app:layout_constraintEnd_toStartOf="@+id/reviewNumber"
                 app:layout_constraintHorizontal_bias="0.4"
                 app:layout_constraintStart_toEndOf="@+id/rating"
-                app:layout_constraintTop_toBottomOf="@+id/availableProducts" />
+                app:layout_constraintTop_toBottomOf="@+id/availableProducts"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/reviewNumber"
@@ -104,19 +111,21 @@
                 app:layout_constraintBottom_toBottomOf="@+id/productRating"
                 app:layout_constraintEnd_toEndOf="@+id/availableProducts"
                 app:layout_constraintTop_toTopOf="@+id/productRating"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/newPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="14dp"
                 android:gravity="start"
-                android:text="549 ₽"
+                android:text="549₽"
                 android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productRating" />
+                app:layout_constraintTop_toBottomOf="@+id/lineOne"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/oldPrice"
@@ -124,23 +133,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:gravity="center"
-                android:text="899 ₽"
+                android:textColor="@color/dark_grey"
+                android:text="899₽"
                 app:layout_constraintBottom_toBottomOf="@+id/newPrice"
                 app:layout_constraintStart_toEndOf="@+id/newPrice"
                 app:layout_constraintTop_toTopOf="@+id/newPrice"
-                app:layout_constraintVertical_bias="0.454" />
+                app:layout_constraintVertical_bias="0.454"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/discountPercentage"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_width="49dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:background="@drawable/rounded_corner_background"
                 android:gravity="center"
                 android:text="-39%"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/oldPrice"
                 app:layout_constraintStart_toEndOf="@+id/oldPrice"
                 app:layout_constraintTop_toTopOf="@+id/oldPrice"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/description"
@@ -148,46 +162,58 @@
                 android:layout_height="29dp"
                 android:layout_marginTop="32dp"
                 android:gravity="center"
+                android:textStyle="bold"
                 android:text="Описание"
-                android:textSize="19dp"
+                android:textSize="19sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/oldPrice" />
+                app:layout_constraintTop_toBottomOf="@+id/oldPrice"
+                tools:ignore="HardcodedText" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/descriptionsLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-            tools:context=".MainActivity">
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/productDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginTop="8dp"
-                android:text="Пенка для лица Глубокое очищение содержит минеральную воду и соду, способствует глубокому очищению пор от различных загрязнений, контролирует работу сальных желез, сужает поры. Обладает мягким антисептическим действием, не пересушивая кожу. Минеральная вода тонизирует и смягчает кожу."
-                android:textSize="13sp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-                tools:ignore="MissingConstraints" />
+                tools:context=".MainActivity"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/descriptionTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:text="Пенка для лица Глубокое очищение содержит минеральную воду и соду, способствует глубокому очищению пор от различных загрязнений, контролирует работу сальных желез, сужает поры. Обладает мягким антисептическим действием, не пересушивая кожу. Минеральная вода тонизирует и смягчает кожу."
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/toggleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:textSize="18sp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="Скрыть"
+                    android:textColor="@android:color/darker_gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
+                    tools:ignore="HardcodedText" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:id="@+id/linearLayout3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/rounded_button_background"
                 android:gravity="start"
                 android:orientation="horizontal"
@@ -204,7 +230,8 @@
                     android:layout_weight="1"
                     android:text="A'PIEU"
                     android:textColor="@android:color/black"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
 
                 <ImageView
                     android:id="@+id/buttonIcon"
@@ -214,35 +241,25 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/hide"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:gravity="center"
-                android:text="Скрыть"
-                app:layout_constraintEnd_toEndOf="@+id/productDescription"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/productDescription"
-                app:layout_constraintTop_toBottomOf="@+id/productDescription" />
-
-            <TextView
                 android:id="@+id/characteristics"
                 android:layout_width="196dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="45dp"
                 android:gravity="start"
+                android:textStyle="bold"
                 android:text="Характеристики"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/hide" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+                tools:ignore="HardcodedText" />
 
             <TableLayout
                 android:id="@+id/tableLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="18dp"
                 android:stretchColumns="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -256,7 +273,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Артикул товара"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@android:color/black"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/number"
@@ -265,8 +283,14 @@
                         android:gravity="end"
                         android:padding="8dp"
                         android:text="133987"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@android:color/black"
+                        tools:ignore="HardcodedText" />
                 </TableRow>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey" />
 
                 <TableRow>
 
@@ -275,7 +299,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Область использования"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@android:color/black"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/utilization"
@@ -284,8 +309,14 @@
                         android:gravity="end"
                         android:padding="8dp"
                         android:text="Лицо"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@android:color/black"
+                        tools:ignore="HardcodedText" />
                 </TableRow>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey" />
 
                 <TableRow>
 
@@ -294,7 +325,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Страна производства"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@android:color/black"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/country"
@@ -303,8 +335,14 @@
                         android:gravity="end"
                         android:padding="8dp"
                         android:text="Республика Корея"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@android:color/black"
+                        tools:ignore="HardcodedText" />
                 </TableRow>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey" />
             </TableLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -327,12 +365,13 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
 
                 <ImageView
                     android:id="@+id/copyIcon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/baseline_content_copy"
@@ -350,7 +389,8 @@
                     android:text="Water, Propylene Glycol, Dipropylene Glycol, Lauric acid, Myristic Acid, Potassium Hydroxide, Lauryl Hydroxysultaine, Potassium Cocoyl Glycinate, Sodium Chloride, Glycerin, Phenoxyethanol, Chlorphenesin, Fragrance, Caprylyl Glycol, Ethylhexylglycerin, Capric acid, Palmitic Acid, Disodium EDTA, Sodium Bicarbonate, Cocamidopropyl Betaine, Butylene Glycol."
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+                    app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/moreTextView"
@@ -362,7 +402,8 @@
                     android:text="Подробнее"
                     android:textColor="@android:color/darker_gray"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/compositionTextView" />
+                    app:layout_constraintTop_toBottomOf="@+id/compositionTextView"
+                    tools:ignore="HardcodedText" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
@@ -388,7 +429,8 @@
                     android:paddingEnd="8dp"
                     android:text="549₽"
                     android:textColor="@android:color/white"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText,RtlSymmetry" />
 
                 <TextView
                     android:id="@+id/buttonOldPrice"
@@ -396,20 +438,35 @@
                     android:layout_height="wrap_content"
                     android:text="899₽"
                     android:textColor="#FFB6C1"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
-                    android:id="@+id/addСart"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/addCart"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
                     android:text="Добавить корзину"
                     android:textColor="@android:color/white"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />
 
 
             </LinearLayout>
+
+            <View
+                android:id="@+id/lineOne"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginStart="10dp"
+                android:background="@color/light_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/productRating"
+                tools:ignore="MissingConstraints" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

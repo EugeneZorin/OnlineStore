@@ -12,8 +12,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -21,38 +20,39 @@
             android:padding="10dp">
 
             <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewPager2"
-                android:layout_width="0dp"
-                android:layout_height="385dp"
+                android:id="@+id/productPicture"
+                android:layout_width="258dp"
+                android:layout_height="379dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/subheading"
                 android:layout_width="0dp"
                 android:layout_height="52dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="4dp"
                 android:text="Лосьон для тела `ESFOLIO` COENZYME Q 10 Увлажняющий 500 мл"
                 android:textSize="19sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.228"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/title" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/title"
                 android:layout_width="155dp"
                 android:layout_height="21dp"
+                android:layout_marginTop="12dp"
                 android:text="A'PIEU"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.028"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewPager2" />
+                app:layout_constraintTop_toBottomOf="@+id/productPicture" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/availableProducts"
                 android:layout_width="0dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="8dp"
@@ -60,48 +60,48 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.059"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                app:layout_constraintTop_toBottomOf="@+id/subheading" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/ratingScale"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="16dp"
                 android:gravity="center"
                 android:text="* * * * *"
                 android:textSize="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView14"
+                app:layout_constraintBottom_toBottomOf="@+id/productRating"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView14"
+                app:layout_constraintTop_toTopOf="@+id/productRating"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/productRating"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:text="4.3"
-                app:layout_constraintEnd_toStartOf="@+id/textView15"
+                app:layout_constraintEnd_toStartOf="@+id/reviewNumber"
                 app:layout_constraintHorizontal_bias="0.214"
-                app:layout_constraintStart_toEndOf="@+id/textView13"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                app:layout_constraintStart_toEndOf="@+id/ratingScale"
+                app:layout_constraintTop_toBottomOf="@+id/availableProducts" />
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/reviewNumber"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
-                android:layout_marginEnd="200dp"
+                android:layout_marginEnd="192dp"
                 android:gravity="center"
                 android:text="4 отзыва"
-                app:layout_constraintBottom_toBottomOf="@+id/textView14"
+                app:layout_constraintBottom_toBottomOf="@+id/productRating"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView14"
+                app:layout_constraintTop_toTopOf="@+id/productRating"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/newPrice"
                 android:layout_width="72dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="8dp"
@@ -110,33 +110,33 @@
                 android:text="549 ₽"
                 android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+                app:layout_constraintTop_toBottomOf="@+id/ratingScale" />
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/oldPrice"
                 android:layout_width="45dp"
                 android:layout_height="18dp"
                 android:layout_marginStart="12dp"
                 android:gravity="center"
                 android:text="899 ₽"
-                app:layout_constraintBottom_toBottomOf="@+id/textView16"
-                app:layout_constraintStart_toEndOf="@+id/textView16"
-                app:layout_constraintTop_toTopOf="@+id/textView16" />
+                app:layout_constraintBottom_toBottomOf="@+id/newPrice"
+                app:layout_constraintStart_toEndOf="@+id/newPrice"
+                app:layout_constraintTop_toTopOf="@+id/newPrice" />
 
             <TextView
-                android:id="@+id/textView18"
+                android:id="@+id/discountPercentage"
                 android:layout_width="38dp"
                 android:layout_height="18dp"
                 android:layout_marginStart="12dp"
                 android:gravity="center"
                 android:text="-39%"
-                app:layout_constraintBottom_toBottomOf="@+id/textView17"
-                app:layout_constraintStart_toEndOf="@+id/textView17"
-                app:layout_constraintTop_toTopOf="@+id/textView17"
+                app:layout_constraintBottom_toBottomOf="@+id/oldPrice"
+                app:layout_constraintStart_toEndOf="@+id/oldPrice"
+                app:layout_constraintTop_toTopOf="@+id/oldPrice"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/description"
                 android:layout_width="88dp"
                 android:layout_height="29dp"
                 android:layout_marginTop="32dp"
@@ -146,10 +146,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView17" />
+                app:layout_constraintTop_toBottomOf="@+id/oldPrice" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/transitionButton"
                 android:layout_width="0dp"
                 android:layout_height="58dp"
                 android:layout_marginTop="8dp"
@@ -157,32 +157,32 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.421"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView20" />
+                app:layout_constraintTop_toBottomOf="@+id/description" />
 
             <TextView
-                android:id="@+id/textView21"
+                android:id="@+id/productDescription"
                 android:layout_width="0dp"
                 android:layout_height="98dp"
                 android:layout_marginTop="12dp"
                 android:text="Пенка для лица Глубокое очищение содержит минеральную воду и соду, способствует глубокому очищению пор от различных загрязнений, контролирует работу сальных желез, сужает поры. Обладает мягким антисептическим действием, не пересушивая кожу. Минеральная вода тонизирует и смягчает кожу."
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button3" />
+                app:layout_constraintTop_toBottomOf="@+id/transitionButton" />
 
             <TextView
-                android:id="@+id/textView22"
+                android:id="@+id/hide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:text="Скрыть"
-                app:layout_constraintEnd_toEndOf="@+id/textView21"
+                app:layout_constraintEnd_toEndOf="@+id/productDescription"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textView21"
-                app:layout_constraintTop_toBottomOf="@+id/textView21" />
+                app:layout_constraintStart_toStartOf="@+id/productDescription"
+                app:layout_constraintTop_toBottomOf="@+id/productDescription" />
 
             <TextView
-                android:id="@+id/textView24"
+                android:id="@+id/characteristics"
                 android:layout_width="196dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="4dp"
@@ -192,7 +192,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView22" />
+                app:layout_constraintTop_toBottomOf="@+id/hide" />
 
             <TableLayout
                 android:id="@+id/tableLayout"
@@ -203,11 +203,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView24">
+                app:layout_constraintTop_toBottomOf="@+id/characteristics">
 
                 <TableRow>
 
                     <TextView
+                        android:id="@+id/Название характеристики"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
@@ -215,6 +216,7 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
+                        android:id="@+id/number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end"
@@ -226,6 +228,7 @@
                 <TableRow>
 
                     <TextView
+                        android:id="@+id/areaUse"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
@@ -233,6 +236,7 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
+                        android:id="@+id/utilization"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end"
@@ -244,6 +248,7 @@
                 <TableRow>
 
                     <TextView
+                        android:id="@+id/countryManufacture"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
@@ -251,6 +256,7 @@
                         android:textColor="@android:color/black" />
 
                     <TextView
+                        android:id="@+id/country"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end"
@@ -261,7 +267,7 @@
             </TableLayout>
 
             <TextView
-                android:id="@+id/textView25"
+                android:id="@+id/composition"
                 android:layout_width="87dp"
                 android:layout_height="29dp"
                 android:layout_marginTop="20dp"
@@ -274,7 +280,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
             <TextView
-                android:id="@+id/textView26"
+                android:id="@+id/compositionGoods"
                 android:layout_width="0dp"
                 android:layout_height="42dp"
                 android:layout_marginTop="8dp"
@@ -283,21 +289,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView25" />
+                app:layout_constraintTop_toBottomOf="@+id/composition" />
 
             <TextView
-                android:id="@+id/textView27"
+                android:id="@+id/more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="Подробнее"
-                app:layout_constraintEnd_toEndOf="@+id/textView26"
+                app:layout_constraintEnd_toEndOf="@+id/compositionGoods"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textView26"
-                app:layout_constraintTop_toBottomOf="@+id/textView26" />
+                app:layout_constraintStart_toStartOf="@+id/compositionGoods"
+                app:layout_constraintTop_toBottomOf="@+id/compositionGoods" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/buttonAdd"
                 android:layout_width="0dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="20dp"
@@ -306,7 +312,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+                app:layout_constraintTop_toBottomOf="@+id/more" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

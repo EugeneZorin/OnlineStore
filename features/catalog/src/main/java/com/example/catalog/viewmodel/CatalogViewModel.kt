@@ -51,7 +51,6 @@ class CatalogViewModel @Inject constructor(
             loadingStatus.value = LoadingStatus.LOADING
             try {
                 val catalogItem = getDataContract.getDataUseCase()
-                Log.d("xzfvasgasf","${catalogItem.items}")
                 _catalogItem.value = catalogItem
                 loadImages()
             } catch (e: Exception) {

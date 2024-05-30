@@ -16,9 +16,6 @@ import java.net.URL
 class RequestDatabase : RequestContract {
 
     override suspend fun requestDatabase(): MutableMap<String, Bitmap> {
-        Firebase.database.setPersistenceEnabled(true)
-        val scoresRef = Firebase.database.getReference("scores")
-        scoresRef.keepSynced(true)
         val database = Firebase.firestore
         val imageMap = mutableMapOf<String, Bitmap>()
         try {

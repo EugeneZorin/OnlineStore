@@ -34,13 +34,13 @@ class ItemUseCaseTest {
                     subtitle = "0",
                     price = Price(
                         price = "0",
-                        discount = "0",
+                        discount = 0,
                         priceWithDiscount = "0",
                         unit = "0"
                     ),
                     feedback = Feedback(
-                        count = "0",
-                        rating = "0"
+                        count = 0,
+                        rating = 0.0
                     ),
                     tags = listOf("tag1", "tag2"),
                     available = 0,

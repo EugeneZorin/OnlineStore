@@ -70,7 +70,7 @@ class CatalogAdapter(
                 discount.text = "-${item.price.discount} %"
                 title.text = item.title
                 descriptions.text = item.description
-                rating.text = item.feedback.rating
+                rating.text = item.feedback.rating.toString()
                 count.text = "(${item.feedback.count})"
                 viewProduct.adapter = ImageAdapter(itemView.context, bitmap)
             }

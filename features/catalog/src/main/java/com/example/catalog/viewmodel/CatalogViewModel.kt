@@ -2,6 +2,7 @@ package com.example.catalog.viewmodel
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -50,6 +51,7 @@ class CatalogViewModel @Inject constructor(
             loadingStatus.value = LoadingStatus.LOADING
             try {
                 val catalogItem = getDataContract.getDataUseCase()
+                Log.d("xzfvasgasf","${catalogItem.items}")
                 _catalogItem.value = catalogItem
                 loadImages()
             } catch (e: Exception) {

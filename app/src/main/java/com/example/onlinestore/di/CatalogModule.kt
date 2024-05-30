@@ -25,8 +25,8 @@ object CatalogModule {
 
 
     @Provides
-    fun provideGetData(@ApplicationContext context: Context): GetDataRepository{
-        return GetDataUseCase(context)
+    fun provideGetData(): GetDataRepository{
+        return GetDataUseCase()
     }
 
 

@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".MainActivity">
+    tools:context=".CharacteristicActivity">
 
     <ScrollView
+        android:id="@+id/mainScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,9 +39,9 @@
                 android:layout_marginTop="4dp"
                 android:contentDescription="Лосьон для тела ES FOLIO COENZYME Q 10 Увлажняющий 500 мл"
                 android:importantForAccessibility="yes"
-                android:textStyle="bold"
                 android:text="Лосьон для тела `ES FOLIO` COENZYME Q 10 Увлажняющий 500 мл"
                 android:textSize="19sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,9 +53,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginTop="12dp"
-                android:textSize="22sp"
-                android:textColor="@color/dark_grey"
                 android:text="A'PIEU"
+                android:textColor="@color/dark_grey"
+                android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -133,8 +134,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:gravity="center"
-                android:textColor="@color/dark_grey"
                 android:text="899₽"
+                android:textColor="@color/dark_grey"
                 app:layout_constraintBottom_toBottomOf="@+id/newPrice"
                 app:layout_constraintStart_toEndOf="@+id/newPrice"
                 app:layout_constraintTop_toTopOf="@+id/newPrice"
@@ -162,9 +163,9 @@
                 android:layout_height="29dp"
                 android:layout_marginTop="32dp"
                 android:gravity="center"
-                android:textStyle="bold"
                 android:text="Описание"
                 android:textSize="19sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -178,7 +179,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-                tools:context=".MainActivity"
+                tools:context=".CharacteristicActivity"
                 tools:ignore="MissingConstraints">
 
                 <TextView
@@ -198,11 +199,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
-                    android:textSize="18sp"
                     android:clickable="true"
                     android:focusable="true"
                     android:text="Скрыть"
                     android:textColor="@android:color/darker_gray"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
                     tools:ignore="HardcodedText" />
@@ -246,9 +247,9 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="45dp"
                 android:gravity="start"
-                android:textStyle="bold"
                 android:text="Характеристики"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -354,7 +355,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-                tools:context=".MainActivity">
+                tools:context=".CharacteristicActivity">
 
 
                 <TextView
@@ -459,8 +460,8 @@
                 android:id="@+id/lineOne"
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
-                android:layout_marginTop="14dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="14dp"
                 android:background="@color/light_grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"

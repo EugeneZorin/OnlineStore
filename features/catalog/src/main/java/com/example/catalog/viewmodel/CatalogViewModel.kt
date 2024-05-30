@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.catalog.contract.GetDataContract
 import com.example.catalog.contract.GetImageContract
 import com.example.catalog.entity.Items
+import com.example.characteristic.contract.PutDataCatalogContract
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CatalogViewModel @Inject constructor(
     private val getDataContract: GetDataContract,
-    private val getImageContract: GetImageContract
+    private val getImageContract: GetImageContract,
 ) : ViewModel() {
 
     private val _bitmap = MutableLiveData<Map<String, Bitmap?>>()

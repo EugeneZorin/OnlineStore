@@ -41,6 +41,8 @@ android {
 
 dependencies {
 
+    implementation(project(":domain:characteristic"))
+
     implementation(libs.androidx.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)

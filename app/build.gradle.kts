@@ -47,6 +47,7 @@ dependencies {
     implementation(project(":features:catalog"))
     implementation(project(":domain:registration"))
     implementation(project(":domain:catalog"))
+    implementation(project(":domain:characteristic"))
     implementation(project(":data"))
 
     implementation(libs.hilt)

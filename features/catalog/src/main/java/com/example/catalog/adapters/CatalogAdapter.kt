@@ -47,7 +47,7 @@ class CatalogAdapter(
     private fun applyFilters() {
         filteredItems = when (chosenFilter) {
             entityData.byPopularity -> {
-                filteredItems.sortedByDescending { it.feedback.count.toInt() }
+                filteredItems.sortedByDescending { it.feedback.count }
             }
             entityData.byPrice -> {
                 filteredItems.sortedByDescending { it.price.price.toInt() }

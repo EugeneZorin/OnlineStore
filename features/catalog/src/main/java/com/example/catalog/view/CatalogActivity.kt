@@ -2,6 +2,7 @@ package com.example.catalog.view
 
 import android.os.Bundle
 import android.widget.PopupMenu
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -61,6 +62,10 @@ class CatalogActivity : AppCompatActivity() {
         }
 
         buttonSetup.initButtons()
+
+        binding.catalogItem.setOnClickListener {
+
+        }
 
     }
 

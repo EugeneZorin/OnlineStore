@@ -15,4 +15,7 @@
     <string name="plus">+</string>
     <string name="by_price_reduction">By price reduction</string>
     <string name="on_price_increases">On price increases</string>
+    <string name="product_images">Product images</string>
+    <string name="buy_button">Buy button</string>
+    <string name="favorite_button">Favorite button</string>
 </resources>

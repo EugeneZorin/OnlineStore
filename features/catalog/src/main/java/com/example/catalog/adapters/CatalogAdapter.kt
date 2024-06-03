@@ -21,9 +21,7 @@ class CatalogAdapter(
     private val entityData = EntityData()
     private var chosenTag: String = entityData.empty
     private var chosenFilter: String = entityData.byPopularity
-    private val seeAll = entityData.tagSeeAll
     private var filteredItems: List<Item> = info.items
-
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateChosenTag(tag: String) {
@@ -39,7 +37,7 @@ class CatalogAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     private fun filterAndSortItems() {
-        filteredItems = if (chosenTag == seeAll) {
+        filteredItems = if (chosenTag == entityData.tagSeeAll) {
             info.items
         } else {
             info.items.filter { it.tags.contains(chosenTag) }
@@ -50,19 +48,12 @@ class CatalogAdapter(
 
     private fun applyFilters() {
         filteredItems = when (chosenFilter) {
-            entityData.byPopularity -> {
-                filteredItems.sortedByDescending { it.feedback.count }
-            }
-            entityData.byPrice -> {
-                filteredItems.sortedByDescending { it.price.price.toInt() }
-            }
-            entityData.onPrice -> {
-                filteredItems.sortedBy { it.price.price.toInt() }
-            }
+            entityData.byPopularity -> filteredItems.sortedByDescending { it.feedback.count }
+            entityData.byPrice -> filteredItems.sortedByDescending { it.price.price.toInt() }
+            entityData.onPrice -> filteredItems.sortedBy { it.price.price.toInt() }
             else -> filteredItems
         }
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -77,9 +68,8 @@ class CatalogAdapter(
         val itemBitmap = bitmapMap[item.id]
         holder.bind(item, itemBitmap, navigationCharacteristic)
     }
-
-
 }
+
 
 
 

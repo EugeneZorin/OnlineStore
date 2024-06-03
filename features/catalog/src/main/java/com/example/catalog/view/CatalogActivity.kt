@@ -27,17 +27,16 @@ class CatalogActivity : AppCompatActivity() {
 
     @Inject
     lateinit var navigationCharacteristic: NavigationCharacteristic
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCatalogBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         init()
     }
 
     private fun init() {
-
         binding.catalogItem.layoutManager = GridLayoutManager(this, 2)
 
         buttonSetup = ButtonSetup(this, binding) { tag ->
@@ -48,12 +47,10 @@ class CatalogActivity : AppCompatActivity() {
             adapterCatalog.updateChosenFilter(filter)
         }
 
-
         binding.sortButton.setOnClickListener {
             showSortMenu.showSortMenu()
         }
 
-        // CatalogAdapter startup
         viewModel.bitmapAndCatalogItem.observe(this) { (data, map) ->
             adapterCatalog = CatalogAdapter(data, map, navigationCharacteristic)
             adapterCatalog.updateChosenTag(entityData.tagSeeAll)
@@ -61,11 +58,7 @@ class CatalogActivity : AppCompatActivity() {
         }
 
         buttonSetup.initButtons()
-
-
-
     }
-
 }
 
 

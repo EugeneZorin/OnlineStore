@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFF</color>
+    <color name="black_cat">#FF000000</color>
+    <color name="white_cat">#FFFFFF</color>
     <color name="star_color">#F9A249</color>
-    <color name="light_grey">#D8CFCF</color>
-    <color name="grey">#D3D3D3</color>
-    <color name="pink">#D62F89</color>
-    <color name="dark_grey">#888383</color>
+    <color name="light_grey_cat">#D8CFCF</color>
+    <color name="grey_cat">#D3D3D3</color>
+    <color name="pink_cat">#D62F89</color>
+    <color name="dark_grey_cat">#888383</color>
 </resources>

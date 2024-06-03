@@ -14,8 +14,7 @@ import dagger.hilt.android.qualifiers.ActivityContext
 @InstallIn(ActivityComponent::class)
 object NavigationCharacteristicModule {
     @Provides
-    fun provideCharacteristicHandler(@ActivityContext context: Context)
-            : NavigationCharacteristic {
+    fun provideCharacteristicHandler(@ActivityContext context: Context): NavigationCharacteristic {
         return CharacteristicHandler(context)
     }
 }

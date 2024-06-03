@@ -1,6 +1,8 @@
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
+    id ("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -8,11 +10,8 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.characteristic"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -27,11 +26,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 
     buildFeatures {
@@ -41,6 +40,10 @@ android {
 
 dependencies {
 
+    implementation(project(":features:catalog"))
+
+    implementation(libs.hilt)
+    kapt(libs.hilt.compiler)
     implementation(libs.androidx.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)

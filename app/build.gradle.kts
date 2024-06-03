@@ -45,6 +45,7 @@ dependencies {
 
     implementation(project(":features:registration"))
     implementation(project(":features:catalog"))
+    implementation(project(":features:characteristic"))
     implementation(project(":domain:registration"))
     implementation(project(":domain:catalog"))
     implementation(project(":domain:characteristic"))

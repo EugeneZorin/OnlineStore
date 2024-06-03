@@ -11,5 +11,6 @@ class CharacteristicActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = CharacteristicActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
     }
 }

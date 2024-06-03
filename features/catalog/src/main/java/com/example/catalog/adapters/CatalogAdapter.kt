@@ -5,21 +5,25 @@ import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.catalog.contract.NavigationCharacteristic
 import com.example.catalog.databinding.CatalogItemBinding
 import com.example.catalog.entity.EntityData
 import com.example.catalog.entity.Item
 import com.example.catalog.entity.Items
+import com.example.catalog.holder.ItemHolder
 
 class CatalogAdapter(
     private val info: Items,
-    private val bitmapMap: Map<String, Bitmap?>
-) : RecyclerView.Adapter<CatalogAdapter.ItemHolder>() {
+    private val bitmapMap: Map<String, Bitmap?>,
+    private val navigationCharacteristic: NavigationCharacteristic
+) : RecyclerView.Adapter<ItemHolder>() {
 
     private val entityData = EntityData()
     private var chosenTag: String = entityData.empty
     private var chosenFilter: String = entityData.byPopularity
     private val seeAll = entityData.tagSeeAll
     private var filteredItems: List<Item> = info.items
+
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateChosenTag(tag: String) {
@@ -59,23 +63,6 @@ class CatalogAdapter(
         }
     }
 
-    class ItemHolder(private val binding: CatalogItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        @SuppressLint("SetTextI18n")
-        fun bind(item: Item, bitmap: Bitmap?) {
-            with(binding) {
-                price.text = item.price.price
-                priceWithDiscount.text = item.price.priceWithDiscount
-                unit.text = item.price.unit
-                discount.text = "-${item.price.discount} %"
-                title.text = item.title
-                descriptions.text = item.description
-                rating.text = item.feedback.rating.toString()
-                count.text = "(${item.feedback.count})"
-                viewProduct.adapter = ImageAdapter(itemView.context, bitmap)
-            }
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -88,8 +75,10 @@ class CatalogAdapter(
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         val item = filteredItems[position]
         val itemBitmap = bitmapMap[item.id]
-        holder.bind(item, itemBitmap)
+        holder.bind(item, itemBitmap, navigationCharacteristic)
     }
+
+
 }
 
 

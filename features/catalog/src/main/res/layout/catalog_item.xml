@@ -7,7 +7,6 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/productItem"
         android:layout_width="188dp"
         android:layout_height="358dp"
         android:layout_marginStart="10dp"
@@ -21,12 +20,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/productItem"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:focusable="true"
-            android:foreground="@drawable/button_background"
             android:clickable="true"
-            >
+            android:focusable="true"
+            android:foreground="@drawable/button_background">
 
             <ImageButton
                 android:id="@+id/favoriteButton"
@@ -136,9 +135,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:background="@android:color/transparent"
                 android:text="@string/star"
                 android:textColor="@color/orange"
-                android:background="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="@+id/rating"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/rating"
@@ -149,9 +148,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:background="@android:color/transparent"
                 android:text="4.5"
                 android:textColor="@color/orange"
-                android:background="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.172"

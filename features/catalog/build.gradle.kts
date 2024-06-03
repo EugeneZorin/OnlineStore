@@ -45,6 +45,7 @@ dependencies {
     implementation(project(":domain:catalog"))
 
 
+
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
     implementation("androidx.hilt:hilt-navigation-fragment:1.2.0")

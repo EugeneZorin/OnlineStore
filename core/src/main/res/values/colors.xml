@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black_cat">#FF000000</color>
-    <color name="white_cat">#FFFFFFFF</color>
-    <color name="pink_cat">#D62F89</color>
-    <color name="grey_cat">#A0A1A3</color>
-    <color name="light_grey_cat">#DEDEDE</color>
-    <color name="orange_cat">#F9A249</color>
-    <color name="dark_grey_cat">#52606D</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="pink">#D62F89</color>
+    <color name="grey">#A0A1A3</color>
+    <color name="light_grey">#DEDEDE</color>
+    <color name="orange">#F9A249</color>
+    <color name="dark_grey">#52606D</color>
     <color name="star_color">#F9A249</color>
+    <color name="pale_pink">#D697CA</color>
+    <color name="red">#951212</color>
 
 </resources>

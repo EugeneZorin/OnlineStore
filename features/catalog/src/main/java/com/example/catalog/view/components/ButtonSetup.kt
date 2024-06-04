@@ -2,7 +2,6 @@ package com.example.catalog.view.components
 
 import android.content.Context
 import androidx.core.content.ContextCompat
-import com.example.catalog.R
 import com.example.catalog.databinding.ActivityCatalogBinding
 import com.example.catalog.entity.EntityData
 
@@ -18,14 +17,14 @@ class ButtonSetup(
 
     fun initButtons() {
         settingButtons(
-            colorButtonNorm = ContextCompat.getColor(context, com.example.core.R.color.light_grey_cat),
-            colorTextNorm = ContextCompat.getColor(context, com.example.core.R.color.grey_cat),
-            colorButtonAct = ContextCompat.getColor(context, com.example.core.R.color.dark_grey_cat),
-            colorTextAct = ContextCompat.getColor(context, com.example.core.R.color.white_cat)
+            colorButtonNorm = ContextCompat.getColor(context, com.example.core.R.color.light_grey),
+            colorTextNorm = ContextCompat.getColor(context, com.example.core.R.color.grey),
+            colorButtonAct = ContextCompat.getColor(context, com.example.core.R.color.dark_grey),
+            colorTextAct = ContextCompat.getColor(context, com.example.core.R.color.white)
         )
         firstTag(
-            colorButton = ContextCompat.getColor(context, com.example.core.R.color.dark_grey_cat),
-            colorText = ContextCompat.getColor(context, com.example.core.R.color.white_cat)
+            colorButton = ContextCompat.getColor(context, com.example.core.R.color.dark_grey),
+            colorText = ContextCompat.getColor(context, com.example.core.R.color.white)
         )
     }
 

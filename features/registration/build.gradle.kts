@@ -45,6 +45,7 @@ android {
 dependencies {
 
     implementation(project(":domain:registration"))
+    implementation(project(":core"))
 
     implementation("androidx.hilt:hilt-navigation-fragment:1.2.0")
     implementation("com.google.dagger:hilt-android:2.47")

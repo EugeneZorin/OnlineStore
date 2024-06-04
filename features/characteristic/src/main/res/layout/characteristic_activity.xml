@@ -54,7 +54,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="12dp"
                 android:text="A'PIEU"
-                android:textColor="@color/dark_grey_cat"
+                android:textColor="@color/dark_grey"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Доступно для заказа 30 штук"
-                android:textColor="@color/dark_grey_cat"
+                android:textColor="@color/dark_grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +135,7 @@
                 android:layout_marginStart="8dp"
                 android:gravity="center"
                 android:text="899₽"
-                android:textColor="@color/dark_grey_cat"
+                android:textColor="@color/dark_grey"
                 app:layout_constraintBottom_toBottomOf="@+id/newPrice"
                 app:layout_constraintStart_toEndOf="@+id/newPrice"
                 app:layout_constraintTop_toTopOf="@+id/newPrice"
@@ -150,7 +150,7 @@
                 android:background="@drawable/rounded_corner_background"
                 android:gravity="center"
                 android:text="-39%"
-                android:textColor="@color/white_cat"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/oldPrice"
                 app:layout_constraintStart_toEndOf="@+id/oldPrice"
                 app:layout_constraintTop_toTopOf="@+id/oldPrice"
@@ -291,7 +291,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/grey_cat" />
+                    android:background="@color/grey" />
 
                 <TableRow>
 
@@ -317,7 +317,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/grey_cat" />
+                    android:background="@color/grey" />
 
                 <TableRow>
 
@@ -343,7 +343,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/grey_cat" />
+                    android:background="@color/grey" />
             </TableLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -462,7 +462,7 @@
                 android:layout_height="1dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="14dp"
-                android:background="@color/light_grey_cat"
+                android:background="@color/light_grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"

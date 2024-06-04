@@ -41,6 +41,7 @@ android {
 dependencies {
 
     implementation(project(":features:catalog"))
+    implementation(project(":core"))
 
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)

@@ -7,4 +7,6 @@
     <color name="light_grey_cat">#DEDEDE</color>
     <color name="orange_cat">#F9A249</color>
     <color name="dark_grey_cat">#52606D</color>
+    <color name="star_color">#F9A249</color>
+
 </resources>

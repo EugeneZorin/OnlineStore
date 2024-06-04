@@ -18,14 +18,14 @@ class ButtonSetup(
 
     fun initButtons() {
         settingButtons(
-            colorButtonNorm = ContextCompat.getColor(context, R.color.light_grey_cat),
-            colorTextNorm = ContextCompat.getColor(context, R.color.grey_cat),
-            colorButtonAct = ContextCompat.getColor(context, R.color.dark_grey_cat),
-            colorTextAct = ContextCompat.getColor(context, R.color.white_cat)
+            colorButtonNorm = ContextCompat.getColor(context, com.example.core.R.color.light_grey_cat),
+            colorTextNorm = ContextCompat.getColor(context, com.example.core.R.color.grey_cat),
+            colorButtonAct = ContextCompat.getColor(context, com.example.core.R.color.dark_grey_cat),
+            colorTextAct = ContextCompat.getColor(context, com.example.core.R.color.white_cat)
         )
         firstTag(
-            colorButton = ContextCompat.getColor(context, R.color.dark_grey_cat),
-            colorText = ContextCompat.getColor(context, R.color.white_cat)
+            colorButton = ContextCompat.getColor(context, com.example.core.R.color.dark_grey_cat),
+            colorText = ContextCompat.getColor(context, com.example.core.R.color.white_cat)
         )
     }
 

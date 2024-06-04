@@ -43,6 +43,7 @@ dependencies {
 
     implementation("androidx.fragment:fragment-ktx:1.6.2")
     implementation(project(":domain:catalog"))
+    implementation(project(":core"))
 
 
 

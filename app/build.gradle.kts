@@ -50,6 +50,7 @@ dependencies {
     implementation(project(":domain:catalog"))
     implementation(project(":domain:characteristic"))
     implementation(project(":data"))
+    implementation(project(":core"))
 
     implementation(libs.hilt)
     implementation(project(":domain:catalog"))

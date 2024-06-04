@@ -15,7 +15,7 @@
         android:layout_marginTop="13dp"
         android:layout_marginBottom="12dp"
         android:backgroundTint="@android:color/transparent"
-        android:drawableLeft="@drawable/baseline_align_horizontal_left_24"
+        android:drawableStart="@drawable/baseline_align_horizontal_left_24"
         android:gravity="start"
         android:text="@string/by_popularity"
         android:textColor="@color/black_cat"

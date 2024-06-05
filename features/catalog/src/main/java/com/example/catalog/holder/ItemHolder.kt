@@ -30,7 +30,10 @@ class ItemHolder(private val binding: CatalogItemBinding) :
 
             // Handling a click on an element
             productItem.setOnClickListener {
-                navigationCharacteristic.navigationCharacteristic()
+                navigationCharacteristic.navigationCharacteristic(
+                    bitmap,
+                    item.toCatalogItem()
+                )
             }
         }
     }

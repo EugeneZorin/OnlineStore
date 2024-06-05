@@ -1,11 +1,12 @@
-package com.example.characteristic
+package com.example.characteristic.handler
 
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.util.Log
 import com.example.catalog.contract.NavigationCharacteristic
 import com.example.catalog.entity.CatalogItem
+import com.example.characteristic.entity.DataHolder
+import com.example.characteristic.view.CharacteristicActivity
 import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
 

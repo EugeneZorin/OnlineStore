@@ -1,9 +1,10 @@
-package com.example.characteristic
+package com.example.characteristic.viewmodel
 
 import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.characteristic.entity.DataHolder
 
 class CharacteristicViewModel(
 

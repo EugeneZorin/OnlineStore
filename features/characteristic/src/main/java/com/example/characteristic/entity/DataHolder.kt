@@ -1,4 +1,4 @@
-package com.example.characteristic
+package com.example.characteristic.entity
 
 import android.graphics.Bitmap
 import android.os.Parcelable

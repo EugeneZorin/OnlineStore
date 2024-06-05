@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".CharacteristicActivity">
+    tools:context=".view.CharacteristicActivity">
 
     <ScrollView
         android:id="@+id/mainScreen"
@@ -179,7 +179,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-                tools:context=".CharacteristicActivity"
+                tools:context=".view.CharacteristicActivity"
                 tools:ignore="MissingConstraints">
 
                 <TextView
@@ -355,7 +355,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-                tools:context=".CharacteristicActivity">
+                tools:context=".view.CharacteristicActivity">
 
 
                 <TextView

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">characteristic</string>
+    <string name="available_products">Доступно для заказа %1$d штук</string>
+    <string name="discount">-%1$d%%</string>
 </resources>

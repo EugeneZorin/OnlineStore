@@ -1,26 +1,57 @@
 package com.example.characteristic.view
 
+import android.content.Intent
 import android.graphics.Paint
 import androidx.activity.viewModels
 import android.os.Bundle
+import android.view.View
+import androidx.annotation.IntegerRes
 import androidx.appcompat.app.AppCompatActivity
 import com.example.catalog.entity.CatalogItem
 import com.example.characteristic.R
 import com.example.characteristic.adapter.ImageAdapterCharacteristic
 import com.example.characteristic.viewmodel.CharacteristicViewModel
 import com.example.characteristic.databinding.CharacteristicActivityBinding
+import com.example.characteristic.entity.Entity
 
 class CharacteristicActivity : AppCompatActivity() {
 
     private lateinit var binding: CharacteristicActivityBinding
     private val viewModel: CharacteristicViewModel by viewModels()
+    private val entity: Entity = Entity()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = CharacteristicActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         image()
         info()
+        description()
+        ingredients()
 
+    }
+
+    private fun description(){
+        with(binding){
+            toggleTextView.setOnClickListener {
+                descriptionTextView.visibility = if (descriptionTextView.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+                toggleTextView.text = if (descriptionTextView.visibility == View.GONE) getString(R.string.disclose) else getString(R.string.hide)
+            }
+        }
+    }
+
+    private fun ingredients(){
+        with(binding) {
+            moreTextView.setOnClickListener {
+                if (ingredients.maxLines == Integer.MAX_VALUE) {
+                    ingredients.maxLines = 2
+                    moreTextView.text = getString(R.string.more_details)
+                } else {
+                    ingredients.maxLines = Integer.MAX_VALUE
+                    moreTextView.text = getString(R.string.show_less)
+                }
+            }
+        }
     }
 
     private fun image(){
@@ -28,7 +59,7 @@ class CharacteristicActivity : AppCompatActivity() {
     }
 
     private fun info(){
-        val catalogItem: CatalogItem? = intent.getParcelableExtra("item")
+        val catalogItem: CatalogItem? = intent.getParcelableExtra(entity.item)
 
         catalogItem?.let { item ->
             with(binding) {
@@ -38,22 +69,22 @@ class CharacteristicActivity : AppCompatActivity() {
 
                 rating.rating = item.feedback.rating.toFloat()
                 productRating.text = item.feedback.rating.toString()
-                reviewNumber.text = item.feedback.count.toString()
+                reviewNumber.text = applicationContext.getString(R.string.review, item.feedback.count)
 
-                newPrice.text = item.price.price
+                newPrice.text = applicationContext.getString(R.string.price, item.price.price.toInt())
                 oldPrice.apply {
-                    text = item.price.priceWithDiscount
+                    text = applicationContext.getString(R.string.price, item.price.priceWithDiscount.toInt())
                     paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
                 }
-                // BUG
-                discountPercentage.text = applicationContext.getString(R.string.discount, item.available)
+
+                discountPercentage.text = applicationContext.getString(R.string.discount, item.price.discount)
 
                 buttonText.text = item.title
                 descriptionTextView.text = item.description
 
-                number.text = item.info.getOrNull(0)?.value ?: ""
-                utilization.text = item.info.getOrNull(1)?.value ?: ""
-                country.text = item.info.getOrNull(2)?.value ?: ""
+                number.text = item.info.getOrNull(0)?.value ?: entity.emptiness
+                utilization.text = item.info.getOrNull(1)?.value ?: entity.emptiness
+                country.text = item.info.getOrNull(2)?.value ?: entity.emptiness
                 ingredients.text = item.ingredients
             }
         }

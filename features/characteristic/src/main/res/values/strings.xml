@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">characteristic</string>
     <string name="available_products">Доступно для заказа %1$d штук</string>
+    <string name="review">%1$d отзыва</string>
+    <string name="price">%1$d₽</string>
     <string name="discount">-%1$d%%</string>
+    
+    <string name="disclose">Раскрыть"</string>
+    <string name="hide">Скрыть"</string>
+    <string name="more_details">Подробнее"</string>
+    <string name="show_less">Показать меньше</string>
 </resources>

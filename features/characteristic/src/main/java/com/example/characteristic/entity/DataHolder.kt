@@ -8,3 +8,5 @@ object DataHolder {
     var bitmap: Bitmap? = null
 }
 
+
+

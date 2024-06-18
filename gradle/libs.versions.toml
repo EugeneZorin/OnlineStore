@@ -1,9 +1,12 @@
 [versions]
+activity-ktx-version = "1.9.0"
 kotlinx-coroutines-android = "1.7.1"
 ktx = "1.12.0"
 fragment-version = "1.6.2"
 activity-version = "1.8.2"
 appcompat-version = "1.6.1"
+lifecycle-viewmodel-ktx = "2.8.1"
+lifecycle-viewmodel-ktx-version = "2.8.2"
 material-version = "1.11.0"
 constraintlayout-version = "2.1.4"
 junit-version = "4.13.2"
@@ -25,7 +28,11 @@ play-services-analytics-impl-version = "18.1.0"
 
 [libraries]
 
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity-ktx-version" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment-version" }
 androidx-ktx = {group = "androidx.core", name = "core-ktx", version.ref = "ktx"}
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle-viewmodel-ktx-version" }
+androidx-lifecycle-viewmodel-ktx-v281 = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle-viewmodel-ktx" }
 fragment = {group = "androidx.fragment", name = "fragment", version.ref = "fragment-version"}
 activity = {group = "androidx.activity", name = "activity", version.ref = "activity-version"}
 appcompat = {group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat-version"}

@@ -5,10 +5,12 @@
     <color name="pink">#D62F89</color>
     <color name="grey">#A0A1A3</color>
     <color name="light_grey">#DEDEDE</color>
+    <color name="light_dark_grey">#A0A1A3</color>
     <color name="orange">#F9A249</color>
     <color name="dark_grey">#52606D</color>
     <color name="star_color">#F9A249</color>
     <color name="pale_pink">#D697CA</color>
     <color name="red">#951212</color>
+    <color name="grey_button_profile">#F8F8F8</color>
 
 </resources>

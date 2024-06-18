@@ -1,18 +1,18 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id ("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
-    id ("kotlin-parcelize")
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.jetbrainsKotlinAndroid)
 }
 
 android {
-    namespace = "com.example.catalog"
+    namespace = "com.example.profile"
     compileSdk = 34
 
     defaultConfig {
+        applicationId = "com.example.profile"
         minSdk = 24
         targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -27,29 +27,18 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "17"
-    }
-    buildFeatures {
-        viewBinding = true
+        jvmTarget = "1.8"
     }
 }
 
 dependencies {
-    implementation(project(":domain:catalog"))
+
     implementation(project(":core"))
 
-
-    implementation(libs.androidx.fragment.ktx)
-    implementation(libs.hilt)
-    kapt(libs.hilt.compiler)
-    implementation(libs.hilt.navigation)
-    implementation (libs.androidx.lifecycle.viewmodel.ktx.v281)
-    implementation (libs.androidx.activity.ktx)
-    implementation(libs.fragment)
     implementation(libs.androidx.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)

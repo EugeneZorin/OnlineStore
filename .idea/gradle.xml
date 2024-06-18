@@ -21,6 +21,7 @@
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/catalog" />
             <option value="$PROJECT_DIR$/features/characteristic" />
+            <option value="$PROJECT_DIR$/features/profile" />
             <option value="$PROJECT_DIR$/features/registration" />
           </set>
         </option>

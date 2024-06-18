@@ -47,8 +47,8 @@ dependencies {
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
 
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.1")
-    implementation ("androidx.activity:activity-ktx:1.9.0")
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.androidx.activity.ktx)
     implementation(libs.fragment)
     implementation(libs.androidx.ktx)
     implementation(libs.appcompat)

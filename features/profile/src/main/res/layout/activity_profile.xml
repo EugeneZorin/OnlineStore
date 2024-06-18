@@ -7,6 +7,211 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
+    <LinearLayout
+        android:id="@+id/exit"
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="156dp"
+        android:background="@drawable/rounded_exit_button_profile"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/purchaseReturns">
+
+        <TextView
+            android:id="@+id/mainExitButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Выйти"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/purchaseReturns"
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_exit_button_profile"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/offer">
+
+        <ImageView
+            android:id="@+id/purchaseReturnsImage"
+            android:layout_width="60dp"
+            android:layout_height="31dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/baseline_keyboard_return_24" />
+
+        <LinearLayout
+            android:id="@+id/purchaseReturnsTextContainer"
+            android:layout_width="270dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/purchaseReturnsText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:text="Возврат товара" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/purchaseReturnsButton"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_arrow_right" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/offer"
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_exit_button_profile"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feedback">
+
+        <ImageView
+            android:id="@+id/offerImage"
+            android:layout_width="60dp"
+            android:layout_height="31dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/baseline_text_snippet_24" />
+
+        <LinearLayout
+            android:id="@+id/offerTextContainer"
+            android:layout_width="270dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/offerText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:text="Оферта" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/offerButton"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_arrow_right" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/feedback"
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_exit_button_profile"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonShop">
+
+        <ImageView
+            android:id="@+id/feedbackImage"
+            android:layout_width="60dp"
+            android:layout_height="31dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/baseline_message_24" />
+
+        <LinearLayout
+            android:id="@+id/feedbackTextContainer"
+            android:layout_width="270dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/feedbackText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:text="Обратная связь" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/feedbackButton"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_arrow_right" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonFavorite"
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rounded_exit_button_profile"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userButton">
+
+        <ImageView
+            android:id="@+id/heartImage"
+            android:layout_width="60dp"
+            android:layout_height="31dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/heart_24" />
+
+        <LinearLayout
+            android:id="@+id/descriptionsFavorite"
+            android:layout_width="270dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/favorite"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:gravity="bottom"
+                android:text="Избранное" />
+
+            <TextView
+                android:id="@+id/goods"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:text="1 товар"
+                android:textColor="@color/light_dark_grey"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/choiceFavoriteButton"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_arrow_right" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -19,26 +224,27 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="378dp"
+        android:id="@+id/userButton"
+        android:layout_width="380dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
+        android:layout_marginTop="24dp"
         android:background="@drawable/rounded_exit_button_profile"
         android:elevation="6dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title">
 
         <ImageView
             android:id="@+id/personImage"
-            android:layout_width="59dp"
-            android:layout_height="39dp"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             app:srcCompat="@drawable/baseline_person_outline_24" />
 
         <LinearLayout
-            android:layout_width="271dp"
+            android:layout_width="270dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -47,7 +253,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:gravity="center_vertical"
+                android:gravity="bottom"
                 android:text="Марина Иванова"
                 android:textColor="@color/black" />
 
@@ -56,7 +262,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:gravity="center_vertical"
+                android:gravity="start"
                 android:text="+ 7 993 877 44 02"
 
                 android:textColor="@color/light_dark_grey"
@@ -65,11 +271,55 @@
 
         <ImageView
             android:id="@+id/exitButton"
-            android:layout_width="39dp"
+            android:layout_width="40dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
 
             app:srcCompat="@drawable/baseline_exit_to_app_24" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/buttonShop"
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_exit_button_profile"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonFavorite">
+
+        <ImageView
+            android:id="@+id/shopImage"
+            android:layout_width="60dp"
+            android:layout_height="31dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/baseline_shopping_cart_24" />
+
+        <LinearLayout
+            android:id="@+id/shopText"
+            android:layout_width="270dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/shopName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                android:text="Магазин" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/shopButton"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_arrow_right" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

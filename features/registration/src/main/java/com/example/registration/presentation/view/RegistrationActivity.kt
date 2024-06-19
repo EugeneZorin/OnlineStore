@@ -1,4 +1,4 @@
-package com.example.registration.presentation
+package com.example.registration.presentation.view
 
 import android.graphics.Color
 import android.os.Bundle
@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.registration.R
 import com.example.registration.databinding.ActivityRegistrationBinding
+import com.example.registration.presentation.entity.EntityRegistrations
+import com.example.registration.presentation.viewmodel.RegistrationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,6 +30,7 @@ class RegistrationActivity : AppCompatActivity() {
     private var phoneNumberLength: Int = 0
     private val sizeNameArray: MutableList<Char> = mutableListOf()
     private val sizeFirsNameArray: MutableList<Char> = mutableListOf()
+    private val entityRegistrations = EntityRegistrations()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +40,7 @@ class RegistrationActivity : AppCompatActivity() {
 
         setupPhoneNumberEditText()
         setupView()
+
     }
 
 
@@ -74,7 +78,7 @@ class RegistrationActivity : AppCompatActivity() {
         binding.EditPhoneNumber.addTextChangedListener(phoneNumberWatcher)
         binding.EditPhoneNumber.setOnFocusChangeListener { _, hasFocus ->
             binding.EditPhoneNumber.hint =
-                if (hasFocus) "+7 XXX XXX XX XX" else getString(R.string.PhoneNumber)
+                if (hasFocus) entityRegistrations.phoneNumberEntryPattern else getString(R.string.PhoneNumber)
         }
     }
 
@@ -102,6 +106,7 @@ class RegistrationActivity : AppCompatActivity() {
 
     private fun counterArray(charArray: List<Char>, editText: EditText) {
         when (editText.id) {
+
             R.id.EditName -> {
                 sizeNameArray.clear()
                 sizeNameArray.addAll(charArray)

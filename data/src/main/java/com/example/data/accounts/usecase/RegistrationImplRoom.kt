@@ -5,7 +5,7 @@ import com.example.data.accounts.room.UserDao
 import com.example.registration.entities.SavingDataEntity
 import com.example.registration.repository.saving.DataSavingRepository
 
-class RegistrationImpl(
+class RegistrationImplRoom(
     private val userDao: UserDao
 ): DataSavingRepository {
 

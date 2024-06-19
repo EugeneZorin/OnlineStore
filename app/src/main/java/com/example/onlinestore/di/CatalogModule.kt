@@ -1,20 +1,18 @@
 package com.example.onlinestore.di
 
-import android.content.Context
 import com.example.catalog.contract.GetDataContract
 import com.example.catalog.contract.GetImageContract
 import com.example.catalog.repository.GetDataRepository
 import com.example.catalog.repository.GetDataTransformerRepository
 import com.example.catalog.usecase.ImageUseCase
 import com.example.catalog.usecase.ItemUseCase
-import com.example.data.goods.usecase.GetDataUseCase
+import com.example.data.goods.GetDataUseCase
 import com.example.data.image.contract.RequestContract
 import com.example.data.image.usecase.DataTransformer
 import com.example.data.image.usecase.RequestDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 
 

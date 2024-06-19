@@ -1,8 +1,9 @@
-package com.example.registration.presentation
+package com.example.registration.presentation.viewmodel
 
 import android.text.Editable
 import androidx.lifecycle.ViewModel
 import com.example.registration.entities.SavingDataEntity
+import com.example.registration.repository.register.RegistrationContract
 import com.example.registration.repository.saving.DataSaving
 import com.example.registration.repository.validation.DataValidation
 import com.example.registration.repository.validation.NumberPhoneValidation
@@ -14,10 +15,15 @@ import javax.inject.Inject
 class RegistrationViewModel @Inject constructor(
     private val dataValidation: DataValidation,
     private val numberPhoneValidation: NumberPhoneValidation,
-    private val dataSaving: DataSaving
+    private val dataSaving: DataSaving,
+    private val registrationContract: RegistrationContract
 ) : ViewModel() {
 
     suspend fun savingData(name: String, surname: String, number: String) {
+        registrationContract.registrationImpl(number, name)
+    }
+
+    /*suspend fun savingData(name: String, surname: String, number: String) {
         dataSaving.savingAllData(
             data = SavingDataEntity(
                 name = name,
@@ -25,7 +31,7 @@ class RegistrationViewModel @Inject constructor(
                 numberPhone = number
             )
         )
-    }
+    }*/
 
     fun nameValidation(name: String): MutableList<Char> {
         return dataValidation.validationName(name)

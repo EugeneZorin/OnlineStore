@@ -24,7 +24,7 @@
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EditPhoneNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/editPhoneNumber" />
 
     <TextView
         android:id="@+id/entryText"
@@ -42,7 +42,7 @@
 
 
     <EditText
-        android:id="@+id/EditName"
+        android:id="@+id/editName"
         android:layout_width="385dp"
         android:layout_height="56dp"
         android:layout_marginBottom="20dp"
@@ -58,12 +58,12 @@
         android:paddingEnd="16dp"
         android:paddingBottom="12dp"
         app:cornerRadius="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/EditSurname"
+        app:layout_constraintBottom_toTopOf="@+id/editSurname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/EditSurname"
+        android:id="@+id/editSurname"
         android:layout_width="385dp"
         android:layout_height="56dp"
         android:autofillHints="name"
@@ -84,7 +84,7 @@
         app:layout_constraintVertical_bias="0.369" />
 
     <EditText
-        android:id="@+id/EditPhoneNumber"
+        android:id="@+id/editPhoneNumber"
         android:layout_width="385dp"
         android:layout_height="56dp"
         android:layout_marginTop="20dp"
@@ -100,7 +100,7 @@
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EditSurname" />
+        app:layout_constraintTop_toBottomOf="@+id/editSurname" />
 
     <Button
         android:id="@+id/button"
@@ -142,11 +142,11 @@
         android:contentDescription="@drawable/baseline_clear_24"
         android:textAlignment="center"
         android:alpha="0"
-        app:layout_constraintBottom_toBottomOf="@+id/EditName"
-        app:layout_constraintEnd_toEndOf="@+id/EditName"
+        app:layout_constraintBottom_toBottomOf="@+id/editName"
+        app:layout_constraintEnd_toEndOf="@+id/editName"
         app:layout_constraintHorizontal_bias="0.96"
-        app:layout_constraintStart_toStartOf="@+id/EditName"
-        app:layout_constraintTop_toTopOf="@+id/EditName"
+        app:layout_constraintStart_toStartOf="@+id/editName"
+        app:layout_constraintTop_toTopOf="@+id/editName"
         app:srcCompat="@drawable/baseline_clear_24" />
 
 
@@ -159,11 +159,11 @@
         android:contentDescription="@drawable/baseline_clear_24"
         android:textAlignment="center"
 
-        app:layout_constraintBottom_toBottomOf="@+id/EditSurname"
-        app:layout_constraintEnd_toEndOf="@+id/EditSurname"
+        app:layout_constraintBottom_toBottomOf="@+id/editSurname"
+        app:layout_constraintEnd_toEndOf="@+id/editSurname"
         app:layout_constraintHorizontal_bias="0.96"
-        app:layout_constraintStart_toStartOf="@+id/EditSurname"
-        app:layout_constraintTop_toTopOf="@+id/EditSurname"
+        app:layout_constraintStart_toStartOf="@+id/editSurname"
+        app:layout_constraintTop_toTopOf="@+id/editSurname"
         app:srcCompat="@drawable/baseline_clear_24" />
 
     <ImageButton
@@ -174,11 +174,11 @@
         android:contentDescription="@drawable/baseline_clear_24"
         android:textAlignment="center"
         android:alpha="0"
-        app:layout_constraintBottom_toBottomOf="@+id/EditPhoneNumber"
-        app:layout_constraintEnd_toEndOf="@+id/EditPhoneNumber"
+        app:layout_constraintBottom_toBottomOf="@+id/editPhoneNumber"
+        app:layout_constraintEnd_toEndOf="@+id/editPhoneNumber"
         app:layout_constraintHorizontal_bias="0.96"
-        app:layout_constraintStart_toStartOf="@+id/EditPhoneNumber"
-        app:layout_constraintTop_toTopOf="@+id/EditPhoneNumber"
+        app:layout_constraintStart_toStartOf="@+id/editPhoneNumber"
+        app:layout_constraintTop_toTopOf="@+id/editPhoneNumber"
         app:srcCompat="@drawable/baseline_clear_24" />
 
     <ImageButton
@@ -205,20 +205,20 @@
         android:textColor="@color/red"
         android:visibility="invisible"
 
-        app:layout_constraintEnd_toEndOf="@+id/EditName"
+        app:layout_constraintEnd_toEndOf="@+id/editName"
         app:layout_constraintHorizontal_bias="0.076"
-        app:layout_constraintStart_toStartOf="@+id/EditName"
-        app:layout_constraintTop_toBottomOf="@+id/EditName" />
+        app:layout_constraintStart_toStartOf="@+id/editName"
+        app:layout_constraintTop_toBottomOf="@+id/editName" />
 
     <TextView
         android:id="@+id/errorMessageNumberPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
-        app:layout_constraintEnd_toEndOf="@+id/EditPhoneNumber"
+        app:layout_constraintEnd_toEndOf="@+id/editPhoneNumber"
         app:layout_constraintHorizontal_bias="0.076"
-        app:layout_constraintStart_toStartOf="@+id/EditPhoneNumber"
-        app:layout_constraintTop_toBottomOf="@+id/EditPhoneNumber" />
+        app:layout_constraintStart_toStartOf="@+id/editPhoneNumber"
+        app:layout_constraintTop_toBottomOf="@+id/editPhoneNumber" />
 
     <TextView
         android:id="@+id/errorMessageSurname"
@@ -226,9 +226,9 @@
         android:layout_height="wrap_content"
         android:textColor="@color/red"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/EditSurname"
+        app:layout_constraintEnd_toEndOf="@+id/editSurname"
         app:layout_constraintHorizontal_bias="0.076"
-        app:layout_constraintStart_toStartOf="@+id/EditSurname"
-        app:layout_constraintTop_toBottomOf="@+id/EditSurname" />
+        app:layout_constraintStart_toStartOf="@+id/editSurname"
+        app:layout_constraintTop_toBottomOf="@+id/editSurname" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

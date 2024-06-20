@@ -47,18 +47,18 @@ class RegistrationActivity : AppCompatActivity() {
     private fun setupView() {
         with(binding) {
 
-            EditName.addTextChangedListenerWithValidation(
+            editName.addTextChangedListenerWithValidation(
                 validator = { registrationViewModel.nameValidation(it) },
                 onError = { chars, editable ->
-                    updateErrorUI(binding.EditName, binding.errorMessageName, chars, editable)
+                    updateErrorUI(binding.editName, binding.errorMessageName, chars, editable)
                 }
             )
 
-            EditSurname.addTextChangedListenerWithValidation(
+            editSurname.addTextChangedListenerWithValidation(
                 validator = { registrationViewModel.firstNameValidation(it) },
                 onError = { chars, editable ->
                     updateErrorUI(
-                        binding.EditSurname,
+                        binding.editSurname,
                         binding.errorMessageSurname,
                         chars,
                         editable
@@ -66,18 +66,18 @@ class RegistrationActivity : AppCompatActivity() {
                 }
             )
 
-            cancelNameEntry.setOnClickListener { binding.EditName.text.clear() }
-            cancelSurnameEntry.setOnClickListener { binding.EditSurname.text.clear() }
-            cancelPhoneNumberEntry.setOnClickListener { binding.EditPhoneNumber.text.clear() }
+            cancelNameEntry.setOnClickListener { binding.editName.text.clear() }
+            cancelSurnameEntry.setOnClickListener { binding.editSurname.text.clear() }
+            cancelPhoneNumberEntry.setOnClickListener { binding.editPhoneNumber.text.clear() }
 
         }
     }
 
 
     private fun setupPhoneNumberEditText() {
-        binding.EditPhoneNumber.addTextChangedListener(phoneNumberWatcher)
-        binding.EditPhoneNumber.setOnFocusChangeListener { _, hasFocus ->
-            binding.EditPhoneNumber.hint =
+        binding.editPhoneNumber.addTextChangedListener(phoneNumberWatcher)
+        binding.editPhoneNumber.setOnFocusChangeListener { _, hasFocus ->
+            binding.editPhoneNumber.hint =
                 if (hasFocus) entityRegistrations.phoneNumberEntryPattern else getString(R.string.PhoneNumber)
         }
     }
@@ -107,12 +107,12 @@ class RegistrationActivity : AppCompatActivity() {
     private fun counterArray(charArray: List<Char>, editText: EditText) {
         when (editText.id) {
 
-            R.id.EditName -> {
+            R.id.editName -> {
                 sizeNameArray.clear()
                 sizeNameArray.addAll(charArray)
             }
 
-            R.id.EditSurname -> {
+            R.id.editSurname -> {
                 sizeFirsNameArray.clear()
                 sizeFirsNameArray.addAll(charArray)
             }
@@ -124,14 +124,15 @@ class RegistrationActivity : AppCompatActivity() {
     private fun loginButton() {
 
         with(binding){
-            val sizeName = EditName.text.isNotEmpty()
-            val sizeSurname = EditSurname.text.isNotEmpty()
+            val sizeName = editName.text.isNotEmpty()
+            val sizeSurname = editSurname.text.isNotEmpty()
+            val sizePassword = password.text.isNotEmpty()
 
-            if (phoneNumberLength == 17 && sizeNameArray.isEmpty() && sizeFirsNameArray.isEmpty() && sizeName && sizeSurname) {
+            if (phoneNumberLength == 17 && sizeNameArray.isEmpty() && sizeFirsNameArray.isEmpty() && sizeName && sizeSurname ) {
                 button.setBackgroundColor(ContextCompat.getColor(this@RegistrationActivity, R.color.pink))
                 button.setOnClickListener {
                     CoroutineScope(Dispatchers.IO).launch {
-                        val result = registrationViewModel.numberPhoneValidation(EditPhoneNumber.text)
+                        val result = registrationViewModel.numberPhoneValidation(editPhoneNumber.text)
                         createAccount(result)
                         messageErrorPhoneNumber(result)
                     }
@@ -146,9 +147,9 @@ class RegistrationActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             with(binding){
                 errorMessageNumberPhone.visibility = if (result) View.VISIBLE else View.INVISIBLE
-                EditPhoneNumber.setTextColor(if (result) Color.RED else Color.BLACK)
+                editPhoneNumber.setTextColor(if (result) Color.RED else Color.BLACK)
                 if (result) {
-                    EditPhoneNumber.text.setSpan(UnderlineSpan(), 0, EditPhoneNumber.text.length, 0)
+                    editPhoneNumber.text.setSpan(UnderlineSpan(), 0, editPhoneNumber.text.length, 0)
                     errorMessageNumberPhone.text = getString(R.string.error_number_phone)
                 }
             }
@@ -160,8 +161,10 @@ class RegistrationActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.Main).launch {
                 with(binding) {
                     registrationViewModel.savingData(
-                        EditPhoneNumber.text.toString(),
-                        password.text.toString()
+                        editPhoneNumber.text.toString(),
+                        password.text.toString(),
+                        editName.text.toString(),
+                        editSurname.text.toString()
                     )
                 }
             }
@@ -201,9 +204,9 @@ class RegistrationActivity : AppCompatActivity() {
 
             isFormatting = true
 
-            binding.EditPhoneNumber.setText(formattedPhone.toString())
-            binding.EditPhoneNumber.setSelection(formattedPhone.length)
-            phoneNumberLength = binding.EditPhoneNumber.text.length
+            binding.editPhoneNumber.setText(formattedPhone.toString())
+            binding.editPhoneNumber.setSelection(formattedPhone.length)
+            phoneNumberLength = binding.editPhoneNumber.text.length
 
             if (phoneNumberLength < 17) { messageErrorPhoneNumber(false) }
         }

@@ -2,9 +2,7 @@ package com.example.registration.presentation.viewmodel
 
 import android.text.Editable
 import androidx.lifecycle.ViewModel
-import com.example.registration.entities.SavingDataEntity
 import com.example.registration.repository.register.RegistrationContract
-import com.example.registration.repository.saving.DataSaving
 import com.example.registration.repository.validation.DataValidation
 import com.example.registration.repository.validation.NumberPhoneValidation
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,14 +13,17 @@ import javax.inject.Inject
 class RegistrationViewModel @Inject constructor(
     private val dataValidation: DataValidation,
     private val numberPhoneValidation: NumberPhoneValidation,
-    private val dataSaving: DataSaving,
     private val registrationContract: RegistrationContract
 ) : ViewModel() {
 
-    suspend fun savingData(numberPhone: String, password: String) {
+    suspend fun savingData(
+        numberPhone: String,
+        password: String,
+        toString: String,
+        toString1: String
+    ) {
         registrationContract.registrationImpl(numberPhone, password)
     }
-
 
     fun nameValidation(name: String): MutableList<Char> {
         return dataValidation.validationName(name)

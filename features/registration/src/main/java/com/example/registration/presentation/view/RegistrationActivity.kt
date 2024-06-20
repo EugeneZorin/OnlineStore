@@ -160,9 +160,8 @@ class RegistrationActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.Main).launch {
                 with(binding) {
                     registrationViewModel.savingData(
-                        EditName.text.toString(),
-                        EditSurname.text.toString(),
-                        EditPhoneNumber.text.toString()
+                        EditPhoneNumber.text.toString(),
+                        password.text.toString()
                     )
                 }
             }

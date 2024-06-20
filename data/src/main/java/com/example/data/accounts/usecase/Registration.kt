@@ -2,26 +2,35 @@ package com.example.data.accounts.usecase
 
 import android.util.Log
 import com.example.registration.repository.register.RegistrationRepository
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.database.FirebaseDatabase
+import org.mindrot.jbcrypt.BCrypt
 
-class Registration(): RegistrationRepository {
+class Registration() : RegistrationRepository {
 
-    private lateinit var auth: FirebaseAuth
+    override suspend fun registration(numberPhone: String, password: String) {
 
-    override suspend fun registration(numberPhone: String, password: String){
+        val hashedPassword = hashPassword(password)
+        val databaseReference = FirebaseDatabase.getInstance().getReference("users")
 
-        auth = Firebase.auth
+        val userId = databaseReference.push().key ?: return
 
-        auth.createUserWithEmailAndPassword(numberPhone, password).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Log.d("TAG isSuccessful", "createUserWithEmail:success")
-            } else {
-                Log.w("TAG exception", "createUserWithEmail:failure", task.exception)
+        val user = mapOf(
+            "password" to hashedPassword,
+            "number" to numberPhone
+        )
+
+        databaseReference.child(userId).setValue(user)
+            .addOnSuccessListener {
+            Log.d("NICE","NICE")
             }
-        }
+            .addOnFailureListener {
+                Log.d("LOSER","LOSER")
+            }
 
+    }
+
+    private fun hashPassword(password: String): String {
+        return BCrypt.hashpw(password, BCrypt.gensalt())
     }
 
 

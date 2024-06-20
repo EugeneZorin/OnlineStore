@@ -41,12 +41,11 @@ dependencies {
     implementation(project(":domain:registration"))
     implementation(project(":domain:catalog"))
 
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("io.coil-kt:coil:2.6.0")
+    implementation (libs.jbcrypt)
+    implementation (libs.coil)
 
-    implementation ("com.google.firebase:firebase-storage:21.0.0")
-    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+    implementation (libs.firebase.storage)
+    implementation(libs.firebase.bom)
 
     implementation(libs.hilt)
     implementation(libs.firebase.database)

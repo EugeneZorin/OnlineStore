@@ -5,6 +5,7 @@
     <string name="signIn">Войти</string>
     <string name="NameEditText">Имя</string>
     <string name="FirstName">Фамилия</string>
+    <string name="Password">Пароль</string>
     <string name="PhoneNumber">Номер телефона</string>
     <string name="entry">Вход</string>
 </resources>

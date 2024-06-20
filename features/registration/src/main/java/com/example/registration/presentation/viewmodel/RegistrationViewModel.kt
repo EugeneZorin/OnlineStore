@@ -19,19 +19,10 @@ class RegistrationViewModel @Inject constructor(
     private val registrationContract: RegistrationContract
 ) : ViewModel() {
 
-    suspend fun savingData(name: String, surname: String, number: String) {
-        registrationContract.registrationImpl(number, name)
+    suspend fun savingData(numberPhone: String, password: String) {
+        registrationContract.registrationImpl(numberPhone, password)
     }
 
-    /*suspend fun savingData(name: String, surname: String, number: String) {
-        dataSaving.savingAllData(
-            data = SavingDataEntity(
-                name = name,
-                surname = surname,
-                numberPhone = number
-            )
-        )
-    }*/
 
     fun nameValidation(name: String): MutableList<Char> {
         return dataValidation.validationName(name)

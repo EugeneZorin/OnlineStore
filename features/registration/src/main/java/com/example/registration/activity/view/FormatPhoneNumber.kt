@@ -1,4 +1,4 @@
-package com.example.registration.view
+package com.example.registration.activity.view
 
 class FormatPhoneNumber {
 

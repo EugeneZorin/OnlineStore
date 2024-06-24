@@ -11,10 +11,12 @@ import com.example.registration.repository.saving.DataSaving
 import com.example.registration.repository.saving.DataSavingRepository
 import com.example.registration.repository.validation.DataValidation
 import com.example.registration.repository.validation.NumberPhoneValidation
-import com.example.registration.usecase.DataValidationImpl
-import com.example.registration.usecase.PhoneNumberValidationImpl
+import com.example.registration.repository.validation.PasswordValidation
+import com.example.registration.usecase.validation.DataValidationImpl
+import com.example.registration.usecase.validation.PhoneNumberValidationImpl
 import com.example.registration.usecase.RegistrationImpl
 import com.example.registration.usecase.SavingDataImpl
+import com.example.registration.usecase.validation.PasswordValidationImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -69,6 +71,11 @@ object RegistrationModule{
         registrationRepository: RegistrationRepository
     ): RegistrationContract {
         return RegistrationImpl(registrationRepository)
+    }
+
+    @Provides
+    fun provideValidationPassword(): PasswordValidation {
+        return PasswordValidationImpl()
     }
 
     @Provides

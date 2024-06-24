@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.registration.repository.register.RegistrationContract
 import com.example.registration.repository.validation.DataValidation
 import com.example.registration.repository.validation.NumberPhoneValidation
+import com.example.registration.repository.validation.PasswordValidation
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -13,7 +14,8 @@ import javax.inject.Inject
 class RegistrationViewModel @Inject constructor(
     private val dataValidation: DataValidation,
     private val numberPhoneValidation: NumberPhoneValidation,
-    private val registrationContract: RegistrationContract
+    private val registrationContract: RegistrationContract,
+    private val passwordValidation: PasswordValidation,
 ) : ViewModel() {
 
     suspend fun savingData(
@@ -35,6 +37,10 @@ class RegistrationViewModel @Inject constructor(
 
     suspend fun numberPhoneValidation(number: Editable): Boolean {
         return numberPhoneValidation.validationNumberPhone(number.toString())
+    }
+
+    suspend fun passwordValidation(password: String): Boolean {
+        return passwordValidation.validationNumberPhone(password)
     }
 
 

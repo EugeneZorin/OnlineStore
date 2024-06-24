@@ -1,4 +1,4 @@
-package com.example.registration.view
+package com.example.registration.activity
 
 import android.os.Bundle
 import android.text.Editable
@@ -7,6 +7,11 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.registration.R
+import com.example.registration.activity.view.FormatPhoneNumber
+import com.example.registration.activity.view.LoginButton
+import com.example.registration.activity.view.Password
+import com.example.registration.activity.view.SetupPhoneNumberEditText
+import com.example.registration.activity.view.UpdateErrorUI
 import com.example.registration.databinding.ActivityRegistrationBinding
 import com.example.registration.entity.EntityRegistrations
 import com.example.registration.viewmodel.RegistrationViewModel
@@ -39,6 +44,7 @@ class RegistrationActivity : AppCompatActivity() {
             phoneNumberWatcher = phoneNumberWatcher,
             context = this
         )
+
 
         setupView()
     }
@@ -76,6 +82,8 @@ class RegistrationActivity : AppCompatActivity() {
                 }
             )
 
+
+
             cancelNameEntry.setOnClickListener { editName.text.clear() }
             cancelSurnameEntry.setOnClickListener { editSurname.text.clear() }
             cancelPhoneNumberEntry.setOnClickListener { editPhoneNumber.text.clear() }
@@ -103,6 +111,8 @@ class RegistrationActivity : AppCompatActivity() {
                     context = this@RegistrationActivity,
                     registrationViewModel = registrationViewModel
                 )
+
+
             }
 
             override fun afterTextChanged(s: Editable?) {}
@@ -155,6 +165,7 @@ class RegistrationActivity : AppCompatActivity() {
                 context = this@RegistrationActivity,
                 registrationViewModel = registrationViewModel
             )
+
         }
     }
 }

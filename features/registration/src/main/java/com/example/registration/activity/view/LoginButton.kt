@@ -1,4 +1,4 @@
-package com.example.registration.view
+package com.example.registration.activity.view
 
 import android.content.Context
 import android.graphics.Color
@@ -17,20 +17,27 @@ class LoginButton {
 
     private val entityRegistrations = EntityRegistrations()
 
-
     fun handleLoginButton(
         binding: ActivityRegistrationBinding,
         phoneNumberLength: Int,
         sizeNameArray: MutableList<Char>,
         sizeFirstNameArray: MutableList<Char>,
         context: Context,
-        registrationViewModel: RegistrationViewModel
+        registrationViewModel: RegistrationViewModel,
     ) {
         with(binding) {
             val sizeName = editName.text.isNotEmpty()
             val sizeSurname = editSurname.text.isNotEmpty()
 
-            if (isLoginButtonEnabled(phoneNumberLength, sizeNameArray, sizeFirstNameArray, sizeName, sizeSurname)) {
+
+            if (isLoginButtonEnabled(
+                    phoneNumberLength,
+                    sizeNameArray,
+                    sizeFirstNameArray,
+                    sizeName,
+                    sizeSurname
+                )
+            ) {
                 enableLoginButton(binding, context, registrationViewModel)
             } else {
                 disableLoginButton(binding, context)
@@ -71,7 +78,11 @@ class LoginButton {
         }
     }
 
-    private fun createAccount(result: Boolean, binding: ActivityRegistrationBinding, registrationViewModel: RegistrationViewModel) {
+    private fun createAccount(
+        result: Boolean,
+        binding: ActivityRegistrationBinding,
+        registrationViewModel: RegistrationViewModel
+    ) {
         if (!result) {
             CoroutineScope(Dispatchers.Main).launch {
                 with(binding) {
@@ -86,7 +97,11 @@ class LoginButton {
         }
     }
 
-    fun showErrorMessagePhoneNumber(result: Boolean, binding: ActivityRegistrationBinding, context: Context) {
+    fun showErrorMessagePhoneNumber(
+        result: Boolean,
+        binding: ActivityRegistrationBinding,
+        context: Context
+    ) {
         CoroutineScope(Dispatchers.Main).launch {
             with(binding) {
                 errorMessageNumberPhone.visibility = if (result) View.VISIBLE else View.INVISIBLE
@@ -98,5 +113,4 @@ class LoginButton {
             }
         }
     }
-
 }

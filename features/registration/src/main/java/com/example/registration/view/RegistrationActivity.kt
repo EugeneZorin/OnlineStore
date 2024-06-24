@@ -1,25 +1,16 @@
 package com.example.registration.view
 
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.text.style.UnderlineSpan
-import android.view.View
 import android.widget.EditText
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.example.registration.R
 import com.example.registration.databinding.ActivityRegistrationBinding
 import com.example.registration.entity.EntityRegistrations
 import com.example.registration.viewmodel.RegistrationViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-
 
 @AndroidEntryPoint
 class RegistrationActivity : AppCompatActivity() {
@@ -34,6 +25,8 @@ class RegistrationActivity : AppCompatActivity() {
 
     private var formatPhoneNumber: FormatPhoneNumber = FormatPhoneNumber()
     private val loginButton: LoginButton = LoginButton()
+    private val updateErrorUI: UpdateErrorUI = UpdateErrorUI()
+    private val setupPhoneNumberEditText: SetupPhoneNumberEditText = SetupPhoneNumberEditText()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +34,12 @@ class RegistrationActivity : AppCompatActivity() {
         binding = ActivityRegistrationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupPhoneNumberEditText()
+        setupPhoneNumberEditText.setupPhoneNumberEditText(
+            binding = binding,
+            phoneNumberWatcher = phoneNumberWatcher,
+            context = this
+        )
+
         setupView()
     }
 
@@ -55,11 +53,12 @@ class RegistrationActivity : AppCompatActivity() {
             editName.addTextChangedListenerWithValidation(
                 validator = { registrationViewModel.nameValidation(it) },
                 onError = { chars, editable ->
-                    updateErrorUI(
+                    updateErrorUI.updateErrorUI(
                         editText = editName,
                         errorTextView = errorMessageName,
                         charArray = chars,
-                        editable = editable
+                        editable = editable,
+                        context = this@RegistrationActivity
                     )
                 }
             )
@@ -67,11 +66,12 @@ class RegistrationActivity : AppCompatActivity() {
             editSurname.addTextChangedListenerWithValidation(
                 validator = { registrationViewModel.firstNameValidation(it) },
                 onError = { chars, editable ->
-                    updateErrorUI(
+                    updateErrorUI.updateErrorUI(
                         editText = editSurname,
                         errorTextView = errorMessageSurname,
                         charArray = chars,
-                        editable = editable
+                        editable = editable,
+                        context = this@RegistrationActivity
                     )
                 }
             )
@@ -82,15 +82,6 @@ class RegistrationActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupPhoneNumberEditText() {
-        with(binding) {
-            editPhoneNumber.addTextChangedListener(phoneNumberWatcher)
-            editPhoneNumber.setOnFocusChangeListener { _, hasFocus ->
-                editPhoneNumber.hint =
-                    if (hasFocus) entityRegistrations.phoneNumberEntryPattern else getString(R.string.PhoneNumber)
-            }
-        }
-    }
 
     fun EditText.addTextChangedListenerWithValidation(
         validator: (String) -> List<Char>,
@@ -104,7 +95,7 @@ class RegistrationActivity : AppCompatActivity() {
                 val charArray = validator(s.toString())
                 onError(charArray, editable)
                 counterArray(charArray, this@addTextChangedListenerWithValidation)
-                loginButton.loginButton(
+                loginButton.handleLoginButton(
                     binding = binding,
                     phoneNumberLength = phoneNumberLength,
                     sizeNameArray = sizeNameArray,
@@ -131,24 +122,6 @@ class RegistrationActivity : AppCompatActivity() {
         }
     }
 
-
-    private fun updateErrorUI(
-        editText: EditText,
-        errorTextView: TextView,
-        charArray: List<Char>,
-        editable: Editable
-    ) {
-        if (charArray.isNotEmpty()) {
-            editText.setTextColor(Color.RED)
-            editText.text.setSpan(UnderlineSpan(), 0, editable.length, 0)
-            errorTextView.text = getString(R.string.error_invalid_char, charArray[0])
-            errorTextView.visibility = View.VISIBLE
-        } else {
-            editText.setTextColor(Color.BLACK)
-            errorTextView.visibility = View.INVISIBLE
-        }
-    }
-
     private val phoneNumberWatcher = object : TextWatcher {
         private var isFormatting: Boolean = false
 
@@ -168,13 +141,13 @@ class RegistrationActivity : AppCompatActivity() {
                 phoneNumberLength = editPhoneNumber.text.length
 
                 if (phoneNumberLength < entityRegistrations.seventeen) {
-                    loginButton.messageErrorPhoneNumber(false, binding, this@RegistrationActivity)
+                    loginButton.showErrorMessagePhoneNumber(false, binding, this@RegistrationActivity)
                 }
             }
         }
 
         override fun afterTextChanged(s: Editable?) {
-            loginButton.loginButton(
+            loginButton.handleLoginButton(
                 binding = binding,
                 phoneNumberLength = phoneNumberLength,
                 sizeNameArray = sizeNameArray,

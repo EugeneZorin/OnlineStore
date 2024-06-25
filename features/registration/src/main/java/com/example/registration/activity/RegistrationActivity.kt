@@ -3,9 +3,11 @@ package com.example.registration.activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.registration.R
 import com.example.registration.activity.view.FormatPhoneNumber
 import com.example.registration.activity.view.LoginButton
@@ -44,7 +46,7 @@ class RegistrationActivity : AppCompatActivity() {
             phoneNumberWatcher = phoneNumberWatcher,
             context = this
         )
-
+        button()
 
         setupView()
     }
@@ -103,16 +105,6 @@ class RegistrationActivity : AppCompatActivity() {
                 val charArray = validator(s.toString())
                 onError(charArray, editable)
                 counterArray(charArray, this@addTextChangedListenerWithValidation)
-                loginButton.handleLoginButton(
-                    binding = binding,
-                    phoneNumberLength = phoneNumberLength,
-                    sizeNameArray = sizeNameArray,
-                    sizeFirstNameArray = sizeFirstNameArray,
-                    context = this@RegistrationActivity,
-                    registrationViewModel = registrationViewModel
-                )
-
-
             }
 
             override fun afterTextChanged(s: Editable?) {}
@@ -157,15 +149,33 @@ class RegistrationActivity : AppCompatActivity() {
         }
 
         override fun afterTextChanged(s: Editable?) {
-            loginButton.handleLoginButton(
-                binding = binding,
-                phoneNumberLength = phoneNumberLength,
-                sizeNameArray = sizeNameArray,
-                sizeFirstNameArray = sizeFirstNameArray,
-                context = this@RegistrationActivity,
-                registrationViewModel = registrationViewModel
-            )
+        }
+    }
 
+    fun button(){
+
+        registrationViewModel.listener.observe(this) { result ->
+
+            when (!result.contains(false)) {
+                true -> {
+                    binding.button.setBackgroundColor(ContextCompat.getColor(this, R.color.pink))
+                }
+
+                false -> {
+                    binding.button.setBackgroundColor(ContextCompat.getColor(this, R.color.pale_pink))
+                }
+            }
         }
     }
 }
+
+
+/*
+loginButton.handleLoginButton(
+binding = binding,
+phoneNumberLength = phoneNumberLength,
+sizeNameArray = sizeNameArray,
+sizeFirstNameArray = sizeFirstNameArray,
+context = this@RegistrationActivity,
+registrationViewModel = registrationViewModel
+)*/

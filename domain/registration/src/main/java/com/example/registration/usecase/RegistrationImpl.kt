@@ -9,7 +9,8 @@ class RegistrationImpl(
 
     override suspend fun registrationImpl(
         numberPhone: String,
-        password: String
+        password: String,
+        name: String
     ): Boolean {
         return try {
             registrationRepository.registration(numberPhone, password)

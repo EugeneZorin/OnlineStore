@@ -3,15 +3,12 @@ package com.example.registration.activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.registration.R
 import com.example.registration.activity.view.FormatPhoneNumber
-import com.example.registration.activity.view.LoginButton
-import com.example.registration.activity.view.Password
 import com.example.registration.activity.view.SetupPhoneNumberEditText
 import com.example.registration.activity.view.ShowErrorMessagePhoneNumber
 import com.example.registration.activity.view.UpdateErrorUI
@@ -19,6 +16,9 @@ import com.example.registration.databinding.ActivityRegistrationBinding
 import com.example.registration.entity.EntityRegistrations
 import com.example.registration.viewmodel.RegistrationViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RegistrationActivity : AppCompatActivity() {
@@ -120,6 +120,7 @@ class RegistrationActivity : AppCompatActivity() {
                 validator(s.toString())
 
                 with(binding) {
+
                     if (isFormatting) {
                         isFormatting = false
                         return
@@ -154,6 +155,15 @@ class RegistrationActivity : AppCompatActivity() {
             when (!result.contains(false)) {
                 true -> {
                     binding.button.setBackgroundColor(ContextCompat.getColor(this, R.color.pink))
+                    CoroutineScope(Dispatchers.IO).launch {
+                        registrationViewModel.savingData(
+                            registrationViewModel.accountDetails.value?.get(0)!!,
+                            registrationViewModel.accountDetails.value!![1],
+                            registrationViewModel.accountDetails.value!![2]
+
+                        )
+                    }
+
                 }
 
                 false -> {

@@ -1,13 +1,16 @@
 package com.example.registration.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.registration.repository.register.RegistrationContract
 import com.example.registration.repository.validation.DataValidation
 import com.example.registration.repository.validation.NumberPhoneValidation
 import com.example.registration.repository.validation.PasswordValidation
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -20,20 +23,20 @@ class RegistrationViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    private val _listener: MutableLiveData<MutableList<Boolean>> = MutableLiveData<MutableList<Boolean>>().apply { value = mutableListOf(false, false, false) }
+    private val _listener: MutableLiveData<MutableList<Boolean>> =
+        MutableLiveData<MutableList<Boolean>>().apply { value = mutableListOf(false, false, false, false) }
     val listener: LiveData<MutableList<Boolean>> get() = _listener
 
     private val _accountDetails: MutableLiveData<MutableList<String>> =
-        MutableLiveData<MutableList<String>>().apply { value = mutableListOf("", "", "") }
-    val accountDetails: LiveData<MutableList<String>> get() = _accountDetails
+        MutableLiveData<MutableList<String>>().apply { value = mutableListOf("", "", "", "") }
 
 
-    suspend fun savingData(
-        numberPhone: String,
-        surname: String,
-        name: String
-    ) {
-        registrationContract.registrationImpl(numberPhone, surname, name)
+    fun savingData() {
+        viewModelScope.launch {
+            registrationContract.registrationImpl(
+                _accountDetails.value!![0], _accountDetails.value!![1], _accountDetails.value!![2], _accountDetails.value!![3]
+            )
+        }
     }
 
     fun nameValidation(name: String): MutableList<Char> {
@@ -57,16 +60,12 @@ class RegistrationViewModel @Inject constructor(
         return result
     }
 
-   /* suspend fun numberPhoneValidation(number: Editable): Boolean {
-        val result = numberPhoneValidation.validationNumberPhone(number.toString())
-        updateListener(2, result)
-        return result
-    }*/
-
-
-    suspend fun passwordValidation(password: String): Boolean {
-        return passwordValidation.validationNumberPhone(password)
-    }
+    suspend fun passwordValidation(number: String): Boolean {
+         val result = passwordValidation.validationPassword(number)
+         updateListener(3, result)
+         updateAccountDetails(3, number, result)
+         return result
+     }
 
 
 
@@ -77,7 +76,6 @@ class RegistrationViewModel @Inject constructor(
             }
         }
     }
-
 
     private fun updateListener(index: Int, value: Boolean) {
         _listener.value = _listener.value?.toMutableList()?.apply {

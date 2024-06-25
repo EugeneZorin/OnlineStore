@@ -7,7 +7,12 @@ import org.mindrot.jbcrypt.BCrypt
 
 class Registration() : RegistrationRepository {
 
-    override suspend fun registration(numberPhone: String, password: String) {
+    override suspend fun registration(
+        numberPhone: String,
+        password: String,
+        name: String,
+        surname: String
+    ) {
 
         val hashedPassword = hashPassword(password)
         val databaseReference = FirebaseDatabase.getInstance().getReference("users")
@@ -16,7 +21,9 @@ class Registration() : RegistrationRepository {
 
         val user = mapOf(
             "password" to hashedPassword,
-            "number" to numberPhone
+            "number" to numberPhone,
+            "name" to name,
+            "surname" to surname
         )
 
         databaseReference.child(userId).setValue(user)

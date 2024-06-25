@@ -10,10 +10,11 @@ class RegistrationImpl(
     override suspend fun registrationImpl(
         numberPhone: String,
         password: String,
-        name: String
+        name: String,
+        surname: String
     ): Boolean {
         return try {
-            registrationRepository.registration(numberPhone, password)
+            registrationRepository.registration(numberPhone, password, name, surname)
             true
         } catch (e: Exception) {
             handleRegistrationError(e)

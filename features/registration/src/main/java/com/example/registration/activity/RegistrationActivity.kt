@@ -82,6 +82,8 @@ class RegistrationActivity : AppCompatActivity() {
                 validator = { registrationViewModel.validationLengthNumberPhone(it) }
             )
 
+
+
             cancelNameEntry.setOnClickListener { editName.text.clear() }
             cancelSurnameEntry.setOnClickListener { editSurname.text.clear() }
             cancelPhoneNumberEntry.setOnClickListener { editPhoneNumber.text.clear() }
@@ -142,11 +144,11 @@ class RegistrationActivity : AppCompatActivity() {
                 }
 
             }
-
             override fun afterTextChanged(s: Editable?) {}
-
         })
     }
+
+
 
     private fun button() {
 
@@ -155,15 +157,9 @@ class RegistrationActivity : AppCompatActivity() {
             when (!result.contains(false)) {
                 true -> {
                     binding.button.setBackgroundColor(ContextCompat.getColor(this, R.color.pink))
-                    CoroutineScope(Dispatchers.IO).launch {
-                        registrationViewModel.savingData(
-                            registrationViewModel.accountDetails.value?.get(0)!!,
-                            registrationViewModel.accountDetails.value!![1],
-                            registrationViewModel.accountDetails.value!![2]
-
-                        )
+                    binding.button.setOnClickListener {
+                        registrationViewModel.savingData()
                     }
-
                 }
 
                 false -> {

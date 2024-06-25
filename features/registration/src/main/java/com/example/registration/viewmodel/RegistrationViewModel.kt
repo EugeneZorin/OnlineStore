@@ -23,7 +23,7 @@ class RegistrationViewModel @Inject constructor(
 
 
     private val _listener: MutableLiveData<MutableList<Boolean>> =
-        MutableLiveData<MutableList<Boolean>>().apply { value = mutableListOf(false, false) }
+        MutableLiveData<MutableList<Boolean>>().apply { value = mutableListOf(false, false, false) }
     val listener: LiveData<MutableList<Boolean>> get() = _listener
 
 
@@ -50,11 +50,18 @@ class RegistrationViewModel @Inject constructor(
         return result
     }
 
-    suspend fun numberPhoneValidation(number: Editable): Boolean {
-        val result = numberPhoneValidation.validationNumberPhone(number.toString())
-        /*updateListener(2, result)*/
+    fun validationLengthNumberPhone(number: String): Boolean {
+        val result = number.length >= 17
+        updateListener(2, result)
         return result
     }
+
+   /* suspend fun numberPhoneValidation(number: Editable): Boolean {
+        val result = numberPhoneValidation.validationNumberPhone(number.toString())
+        updateListener(2, result)
+        return result
+    }*/
+
 
     suspend fun passwordValidation(password: String): Boolean {
         return passwordValidation.validationNumberPhone(password)

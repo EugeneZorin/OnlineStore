@@ -12,11 +12,9 @@ class SetupPhoneNumberEditText {
 
     fun setupPhoneNumberEditText(
         binding: ActivityRegistrationBinding,
-        phoneNumberWatcher: TextWatcher,
         context: Context
     ) {
         with(binding) {
-            editPhoneNumber.addTextChangedListener(phoneNumberWatcher)
             editPhoneNumber.setOnFocusChangeListener { _, hasFocus ->
                 editPhoneNumber.hint =
                     if (hasFocus) entityRegistrations.phoneNumberEntryPattern else context.getString(

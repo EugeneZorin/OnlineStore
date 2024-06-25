@@ -64,7 +64,7 @@ class LoginButton {
             button.setBackgroundColor(ContextCompat.getColor(context, R.color.pink))
             button.setOnClickListener {
                 CoroutineScope(Dispatchers.IO).launch {
-                    val result = registrationViewModel.numberPhoneValidation(editPhoneNumber.text)
+                    val result = registrationViewModel.validationLengthNumberPhone(editPhoneNumber.text.toString())
                     createAccount(result, binding, registrationViewModel)
                     showErrorMessagePhoneNumber(result, binding, context)
                 }

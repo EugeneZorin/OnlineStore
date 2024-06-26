@@ -1,11 +1,14 @@
 package com.example.data.accounts
 
 import android.util.Log
+import com.example.data.entity.DatabaseEntity
 import com.example.registration.repository.register.RegistrationRepository
 import com.google.firebase.database.FirebaseDatabase
 import org.mindrot.jbcrypt.BCrypt
 
 class Registration() : RegistrationRepository {
+
+    private val databaseEntity: DatabaseEntity = DatabaseEntity()
 
     override suspend fun registration(
         name: String,
@@ -15,15 +18,15 @@ class Registration() : RegistrationRepository {
     ) {
 
         val hashedPassword = hashPassword(password)
-        val databaseReference = FirebaseDatabase.getInstance().getReference("users")
+        val databaseReference = FirebaseDatabase.getInstance().getReference(databaseEntity.accountDatabase)
 
         val userId = databaseReference.push().key ?: return
 
         val user = mapOf(
-            "name" to name,
-            "surname" to surname,
-            "numberPhone" to numberPhone,
-            "password" to hashedPassword
+            databaseEntity.name to name,
+            databaseEntity.surname to surname,
+            databaseEntity.numberPhone to numberPhone,
+            databaseEntity.password to hashedPassword
         )
 
         databaseReference.child(userId).setValue(user)

@@ -3,6 +3,7 @@ package com.example.data.goods
 import com.example.catalog.entity.Item
 import com.example.catalog.entity.Items
 import com.example.catalog.repository.GetDataRepository
+import com.example.data.entity.DatabaseEntity
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -10,6 +11,8 @@ import kotlinx.coroutines.withContext
 import java.io.IOException
 
 class GetDataUseCase: GetDataRepository {
+
+    private val databaseEntity: DatabaseEntity = DatabaseEntity()
 
     override suspend fun getData(): Items {
         return withContext(Dispatchers.IO) {
@@ -23,7 +26,7 @@ class GetDataUseCase: GetDataRepository {
 
     private suspend fun getDataFromFirebase(): Items? {
         val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("items")
+        val myRef = database.getReference(databaseEntity.itemDatabase)
         return try {
             val snapshot = myRef.get().await()
             val itemList = snapshot.children.mapNotNull { it.getValue(Item::class.java) }

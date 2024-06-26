@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.registration.entity.EntityRegistrations
 import com.example.registration.repository.register.RegistrationContract
 import com.example.registration.repository.validation.DataValidation
 import com.example.registration.repository.validation.PasswordValidation
@@ -18,6 +19,7 @@ class RegistrationViewModel @Inject constructor(
     private val registrationContract: RegistrationContract,
     private val passwordValidation: PasswordValidation,
 ) : ViewModel() {
+
 
 
     private val _listener: MutableLiveData<MutableList<Boolean>> =

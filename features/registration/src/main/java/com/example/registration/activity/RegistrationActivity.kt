@@ -3,6 +3,7 @@ package com.example.registration.activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -124,12 +125,23 @@ class RegistrationActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val editable = this@addTextChangedListenerWithValidation.text ?: return
-                val charArray = validator(s.toString())
+                val capitalized = capitalizeFirstLetter(s.toString())
+                this@addTextChangedListenerWithValidation.removeTextChangedListener(this)
+                this@addTextChangedListenerWithValidation.setText(capitalized)
+                this@addTextChangedListenerWithValidation.setSelection(capitalized.length)
+                val charArray = validator(capitalized)
+                this@addTextChangedListenerWithValidation.addTextChangedListener(this)
                 onError(charArray, editable)
             }
 
             override fun afterTextChanged(s: Editable?) {}
         })
+    }
+
+    private fun capitalizeFirstLetter(input: String): String {
+        return input.replaceFirstChar {
+            if (it.isLowerCase()) it.titlecase() else it.toString()
+        }
     }
 
     private fun EditText.addPhoneNumberChangedListenerWithValidation(

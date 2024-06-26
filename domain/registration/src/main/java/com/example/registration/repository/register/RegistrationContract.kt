@@ -1,5 +1,10 @@
 package com.example.registration.repository.register
 
 interface RegistrationContract {
-    suspend fun registrationImpl(numberPhone: String, password: String, name: String, surname: String): Boolean
+    suspend fun registrationImpl(
+        name: String,
+        surname: String,
+        numberPhone: String,
+        password: String
+    ): Boolean
 }

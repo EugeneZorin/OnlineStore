@@ -8,10 +8,10 @@ import org.mindrot.jbcrypt.BCrypt
 class Registration() : RegistrationRepository {
 
     override suspend fun registration(
-        numberPhone: String,
-        password: String,
         name: String,
-        surname: String
+        surname: String,
+        numberPhone: String,
+        password: String
     ) {
 
         val hashedPassword = hashPassword(password)
@@ -20,18 +20,18 @@ class Registration() : RegistrationRepository {
         val userId = databaseReference.push().key ?: return
 
         val user = mapOf(
-            "password" to hashedPassword,
-            "number" to numberPhone,
             "name" to name,
-            "surname" to surname
+            "surname" to surname,
+            "numberPhone" to numberPhone,
+            "password" to hashedPassword
         )
 
         databaseReference.child(userId).setValue(user)
             .addOnSuccessListener {
-            Log.d("NICE","NICE")
+                Log.d("Registration: ","successfully")
             }
             .addOnFailureListener {
-                Log.d("LOSER","LOSER")
+                Log.d("Registration: ","failure")
             }
 
     }

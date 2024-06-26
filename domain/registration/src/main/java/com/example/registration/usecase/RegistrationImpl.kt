@@ -8,13 +8,13 @@ class RegistrationImpl(
 ) : RegistrationContract {
 
     override suspend fun registrationImpl(
-        numberPhone: String,
-        password: String,
         name: String,
-        surname: String
+        surname: String,
+        numberPhone: String,
+        password: String
     ): Boolean {
         return try {
-            registrationRepository.registration(numberPhone, password, name, surname)
+            registrationRepository.registration(name, surname, numberPhone, password)
             true
         } catch (e: Exception) {
             handleRegistrationError(e)

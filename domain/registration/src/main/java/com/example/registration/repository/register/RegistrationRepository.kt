@@ -1,5 +1,10 @@
 package com.example.registration.repository.register
 
 interface RegistrationRepository {
-    suspend fun registration(numberPhone: String, password: String, name: String, surname: String)
+    suspend fun registration(
+        name: String,
+        surname: String,
+        numberPhone: String,
+        password: String
+    )
 }

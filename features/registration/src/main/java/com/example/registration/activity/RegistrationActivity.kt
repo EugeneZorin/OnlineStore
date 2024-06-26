@@ -7,6 +7,7 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.registration.R
 import com.example.registration.activity.view.FormatPhoneNumber
 import com.example.registration.activity.view.SetupPhoneNumberEditText
@@ -17,7 +18,6 @@ import com.example.registration.entity.EntityRegistrations
 import com.example.registration.viewmodel.RegistrationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -66,7 +66,7 @@ class RegistrationActivity : AppCompatActivity() {
             )
 
             editSurname.addTextChangedListenerWithValidation(
-                validator = { registrationViewModel.firstNameValidation(it) },
+                validator = { registrationViewModel.surnameValidation(it) },
                 onError = { chars, editable ->
                     updateErrorUI.updateErrorUI(
                         editText = editSurname,
@@ -78,11 +78,17 @@ class RegistrationActivity : AppCompatActivity() {
                 }
             )
 
+            password.addPasswordChangedListenerWithValidation(
+                coroutineScope = lifecycleScope,
+                validator = { registrationViewModel.passwordValidation(it) },
+                onError = {
+
+                }
+            )
+
             editPhoneNumber.addPhoneNumberChangedListenerWithValidation(
                 validator = { registrationViewModel.validationLengthNumberPhone(it) }
             )
-
-
 
             cancelNameEntry.setOnClickListener { editName.text.clear() }
             cancelSurnameEntry.setOnClickListener { editSurname.text.clear() }
@@ -90,6 +96,25 @@ class RegistrationActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun EditText.addPasswordChangedListenerWithValidation(
+        coroutineScope: CoroutineScope,
+        validator: suspend (String) -> Boolean,
+        onError: (Boolean) -> Unit
+    ){
+        this.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                coroutineScope.launch {
+                    val result = validator(s.toString())
+                    onError(result)
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
 
     fun EditText.addTextChangedListenerWithValidation(
         validator: (String) -> List<Char>,

@@ -1,6 +1,5 @@
 package com.example.registration.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,7 +33,10 @@ class RegistrationViewModel @Inject constructor(
     fun savingData() {
         viewModelScope.launch {
             registrationContract.registrationImpl(
-                _accountDetails.value!![0], _accountDetails.value!![1], _accountDetails.value!![2], _accountDetails.value!![3]
+                _accountDetails.value!![0],
+                _accountDetails.value!![1],
+                _accountDetails.value!![2],
+                _accountDetails.value!![3]
             )
         }
     }
@@ -46,7 +48,7 @@ class RegistrationViewModel @Inject constructor(
         return result
     }
 
-    fun firstNameValidation(surname: String): MutableList<Char> {
+    fun surnameValidation(surname: String): MutableList<Char> {
         val result = dataValidation.validationName(surname)
         updateListener(1, result.isEmpty())
         updateAccountDetails(1, surname, result.isEmpty())

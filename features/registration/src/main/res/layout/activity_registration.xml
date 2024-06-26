@@ -214,9 +214,8 @@
         android:id="@+id/errorMessageNumberPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
         app:layout_constraintEnd_toEndOf="@+id/editPhoneNumber"
-        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintStart_toStartOf="@+id/editPhoneNumber"
         app:layout_constraintTop_toBottomOf="@+id/editPhoneNumber" />
 
@@ -230,5 +229,17 @@
         app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="@+id/editSurname"
         app:layout_constraintTop_toBottomOf="@+id/editSurname" />
+
+    <TextView
+        android:id="@+id/errorPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:visibility="invisible"
+
+        app:layout_constraintEnd_toEndOf="@+id/password"
+        app:layout_constraintHorizontal_bias="0.039"
+        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

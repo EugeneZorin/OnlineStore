@@ -2,6 +2,7 @@ package com.example.registration.activity.view
 
 class FormatPhoneNumber {
 
+    // Provides the required pattern to the entered phone number
     fun formatPhoneNumber(input: CharSequence?): CharSequence {
 
         val formattedPhone = StringBuilder()

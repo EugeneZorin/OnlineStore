@@ -10,6 +10,7 @@ class SetupPhoneNumberEditText {
 
     private val entityRegistrations = EntityRegistrations()
 
+    // Displays the phone number entry form when an input field is selected
     fun setupPhoneNumberEditText(
         binding: ActivityRegistrationBinding,
         context: Context

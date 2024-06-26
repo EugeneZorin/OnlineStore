@@ -11,6 +11,7 @@ import com.example.registration.R
 
 class UpdateErrorUI {
 
+    // Displays error messages in input fields
     fun updateErrorUI(
         editText: EditText,
         errorTextView: TextView,
@@ -25,6 +26,7 @@ class UpdateErrorUI {
         }
     }
 
+    // For first and last name
     private fun setErrorState(
         editText: EditText,
         errorTextView: TextView,
@@ -41,5 +43,23 @@ class UpdateErrorUI {
     private fun setNormalState(editText: EditText, errorTextView: TextView) {
         editText.setTextColor(Color.BLACK)
         errorTextView.visibility = View.INVISIBLE
+    }
+
+    // For password
+    fun updateErrorPassword(
+        editText: EditText,
+        errorTextView: TextView,
+        context: Context,
+        status: Boolean
+    ){
+        if (!status) {
+            editText.setTextColor(Color.RED)
+            editText.text.setSpan(UnderlineSpan(), 0, editText.length(), 0)
+            errorTextView.text = context.getText(R.string.error_password)
+            errorTextView.visibility = View.VISIBLE
+        } else {
+            editText.setTextColor(Color.BLACK)
+            errorTextView.visibility = View.INVISIBLE
+        }
     }
 }

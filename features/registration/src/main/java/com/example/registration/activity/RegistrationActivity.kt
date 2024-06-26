@@ -25,11 +25,6 @@ class RegistrationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegistrationBinding
     private val registrationViewModel: RegistrationViewModel by viewModels()
-    private val showErrorMessagePhoneNumber: ShowErrorMessagePhoneNumber =
-        ShowErrorMessagePhoneNumber()
-
-    private var phoneNumberLength: Int = 0
-    private val entityRegistrations = EntityRegistrations()
 
     private var formatPhoneNumber: FormatPhoneNumber = FormatPhoneNumber()
     private val updateErrorUI: UpdateErrorUI = UpdateErrorUI()
@@ -45,11 +40,8 @@ class RegistrationActivity : AppCompatActivity() {
         setupView()
     }
 
-    override fun onRestart() {
-        super.onRestart()
-        binding.errorMessageSurname.text = getString(R.string.PhoneNumber)
-    }
 
+    // Initialization of input field observers
     private fun setupView() {
         with(binding) {
             editName.addTextChangedListenerWithValidation(
@@ -81,7 +73,13 @@ class RegistrationActivity : AppCompatActivity() {
             password.addPasswordChangedListenerWithValidation(
                 coroutineScope = lifecycleScope,
                 validator = { registrationViewModel.passwordValidation(it) },
-                onError = {
+                onError = { status ->
+                    updateErrorUI.updateErrorPassword(
+                        password,
+                        errorPassword,
+                        this@RegistrationActivity,
+                        status
+                    )
 
                 }
             )
@@ -93,6 +91,7 @@ class RegistrationActivity : AppCompatActivity() {
             cancelNameEntry.setOnClickListener { editName.text.clear() }
             cancelSurnameEntry.setOnClickListener { editSurname.text.clear() }
             cancelPhoneNumberEntry.setOnClickListener { editPhoneNumber.text.clear() }
+            cancelPassword.setOnClickListener { password.text.clear() }
         }
     }
 
@@ -116,7 +115,7 @@ class RegistrationActivity : AppCompatActivity() {
         })
     }
 
-    fun EditText.addTextChangedListenerWithValidation(
+    private fun EditText.addTextChangedListenerWithValidation(
         validator: (String) -> List<Char>,
         onError: (List<Char>, Editable) -> Unit
     ) {
@@ -157,15 +156,7 @@ class RegistrationActivity : AppCompatActivity() {
                     isFormatting = true
                     editPhoneNumber.setText(formattedPhone.toString())
                     editPhoneNumber.setSelection(formattedPhone.length)
-                    phoneNumberLength = editPhoneNumber.text.length
 
-                    if (phoneNumberLength < entityRegistrations.seventeen) {
-                        showErrorMessagePhoneNumber.showErrorMessagePhoneNumber(
-                            result = false,
-                            binding = binding,
-                            context = this@RegistrationActivity
-                        )
-                    }
                 }
 
             }
@@ -174,7 +165,9 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
 
-
+    // Tracks the state of fields and its values,
+    // if all data in the registration field is correct,
+    // the registration button becomes active.
     private fun button() {
 
         registrationViewModel.listener.observe(this) { result ->

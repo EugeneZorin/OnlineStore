@@ -11,6 +11,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ShowErrorMessagePhoneNumber {
+
+    // Displays error messages when entering a phone number if an account with that number already exists
+
+    // OFF
     fun showErrorMessagePhoneNumber(
         result: Boolean,
         binding: ActivityRegistrationBinding,

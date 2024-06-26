@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.registration.repository.register.RegistrationContract
 import com.example.registration.repository.validation.DataValidation
-import com.example.registration.repository.validation.NumberPhoneValidation
 import com.example.registration.repository.validation.PasswordValidation
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,7 +15,6 @@ import javax.inject.Inject
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
     private val dataValidation: DataValidation,
-    private val numberPhoneValidation: NumberPhoneValidation,
     private val registrationContract: RegistrationContract,
     private val passwordValidation: PasswordValidation,
 ) : ViewModel() {

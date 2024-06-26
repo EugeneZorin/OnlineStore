@@ -1,4 +1,4 @@
-package com.example.data.accounts.usecase
+package com.example.data.accounts
 
 import android.util.Log
 import com.example.registration.repository.register.RegistrationRepository

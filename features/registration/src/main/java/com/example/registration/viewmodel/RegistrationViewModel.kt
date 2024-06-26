@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.registration.entity.EntityRegistrations
 import com.example.registration.repository.register.RegistrationContract
 import com.example.registration.repository.validation.DataValidation
 import com.example.registration.repository.validation.PasswordValidation
@@ -41,19 +40,26 @@ class RegistrationViewModel @Inject constructor(
         }
     }
 
-    fun nameValidation(name: String): MutableList<Char> {
-        val result = dataValidation.validationName(name)
+    fun nameValidationSymbols(name: String): MutableList<Char> {
+        val result = dataValidation.validationNameSymbols(name)
         updateListener(0, result.isEmpty())
         updateAccountDetails(0, name, result.isEmpty())
         return result
     }
 
+    fun validationLengths(value: Int): Boolean {
+        val result = dataValidation.validationLengths(value)
+        return result
+    }
+
     fun surnameValidation(surname: String): MutableList<Char> {
-        val result = dataValidation.validationName(surname)
+        val result = dataValidation.validationNameSymbols(surname)
         updateListener(1, result.isEmpty())
         updateAccountDetails(1, surname, result.isEmpty())
         return result
     }
+
+
 
     fun validationLengthNumberPhone(number: String): Boolean {
         val result = number.length >= 17

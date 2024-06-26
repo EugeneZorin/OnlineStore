@@ -11,55 +11,21 @@ import com.example.registration.R
 
 class UpdateErrorUI {
 
-    // Displays error messages in input fields
-    fun updateErrorUI(
-        editText: EditText,
-        errorTextView: TextView,
-        charArray: List<Char>,
-        editable: Editable,
-        context: Context
+    data class Builder(
+        var editText: EditText? = null,
+        var errorTextView: TextView? = null,
+        var charArray: List<Char>? = null,
+        var editable: Editable? = null,
+        var context: Context? = null,
+        var check: Boolean? = null
     ) {
-        if (charArray.isNotEmpty()) {
-            setErrorState(editText, errorTextView, charArray, editable, context)
-        } else {
-            setNormalState(editText, errorTextView)
-        }
+        fun editText(editText: EditText) = apply { this.editText = editText }
+        fun errorTextView(errorTextView: TextView) = apply { this.errorTextView = errorTextView }
+        fun charArray(charArray: List<Char>) = apply { this.charArray = charArray }
+        fun editable(editable: Editable) = apply { this.editable = editable }
+        fun context(context: Context) = apply { this.context = context }
+        fun check(check: Boolean) = apply { this.check = check }
+
     }
 
-    // For first and last name
-    private fun setErrorState(
-        editText: EditText,
-        errorTextView: TextView,
-        charArray: List<Char>,
-        editable: Editable,
-        context: Context
-    ) {
-        editText.setTextColor(Color.RED)
-        editText.text.setSpan(UnderlineSpan(), 0, editable.length, 0)
-        errorTextView.text = context.getString(R.string.error_invalid_char, charArray[0])
-        errorTextView.visibility = View.VISIBLE
-    }
-
-    private fun setNormalState(editText: EditText, errorTextView: TextView) {
-        editText.setTextColor(Color.BLACK)
-        errorTextView.visibility = View.INVISIBLE
-    }
-
-    // For password
-    fun updateErrorPassword(
-        editText: EditText,
-        errorTextView: TextView,
-        context: Context,
-        status: Boolean
-    ){
-        if (!status) {
-            editText.setTextColor(Color.RED)
-            editText.text.setSpan(UnderlineSpan(), 0, editText.length(), 0)
-            errorTextView.text = context.getText(R.string.error_password)
-            errorTextView.visibility = View.VISIBLE
-        } else {
-            editText.setTextColor(Color.BLACK)
-            errorTextView.visibility = View.INVISIBLE
-        }
-    }
 }

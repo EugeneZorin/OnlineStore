@@ -11,8 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import com.example.registration.R
 import com.example.registration.activity.view.FormatPhoneNumber
 import com.example.registration.activity.view.SetupPhoneNumberEditText
-import com.example.registration.activity.view.UpdateErrorUI
-import com.example.registration.activity.view.ViewErrorUI
+import com.example.registration.activity.view.error.UpdateErrorBuilder
+import com.example.registration.activity.view.error.ViewErrorUI
 import com.example.registration.databinding.ActivityRegistrationBinding
 import com.example.registration.viewmodel.RegistrationViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,27 +45,32 @@ class RegistrationActivity : AppCompatActivity() {
             editName.addTextChangedListenerWithValidation(
                 validatorSymbols = { registrationViewModel.nameValidationSymbols(it) },
                 validatorLengths = { registrationViewModel.validationLengths(it.length) },
-                onError = { chars, editable, check ->
-                    val update = UpdateErrorUI.Builder()
+                onErrorSymbols = { chars, editable, check ->
+                    val update = UpdateErrorBuilder.Builder()
                         .editText(editName)
                         .errorTextView(errorMessageName)
                         .charArray(chars)
-                        .editable(editable).context(this@RegistrationActivity)
+                        .editable(editable)
+                        .context(this@RegistrationActivity)
                         .check(check)
+                        .build()
                     viewErrorUI.updateErrorUI(update)
                 }
+
             )
 
             editSurname.addTextChangedListenerWithValidation(
                 validatorSymbols = { registrationViewModel.surnameValidation(it) },
                 validatorLengths = { registrationViewModel.validationLengths(it.length) },
-                onError = { chars, editable, check ->
-                    val update = UpdateErrorUI.Builder()
+                onErrorSymbols = { chars, editable, check ->
+                    val update = UpdateErrorBuilder.Builder()
                         .editText(editSurname)
                         .errorTextView(errorMessageSurname)
                         .charArray(chars)
-                        .editable(editable).context(this@RegistrationActivity)
+                        .editable(editable)
+                        .context(this@RegistrationActivity)
                         .check(check)
+                        .build()
                     viewErrorUI.updateErrorUI(update)
                 }
             )
@@ -118,7 +123,7 @@ class RegistrationActivity : AppCompatActivity() {
     private fun EditText.addTextChangedListenerWithValidation(
         validatorSymbols: (String) -> List<Char>,
         validatorLengths: (String) -> Boolean,
-        onError: (List<Char>, Editable, Boolean) -> Unit
+        onErrorSymbols: (List<Char>, Editable, Boolean) -> Unit,
     ) {
         this.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -132,7 +137,7 @@ class RegistrationActivity : AppCompatActivity() {
                 val charArray = validatorSymbols(capitalized)
                 val intValue = validatorLengths(capitalized)
                 this@addTextChangedListenerWithValidation.addTextChangedListener(this)
-                onError(charArray, editable, intValue)
+                onErrorSymbols(charArray, editable, intValue)
             }
 
             override fun afterTextChanged(s: Editable?) {}

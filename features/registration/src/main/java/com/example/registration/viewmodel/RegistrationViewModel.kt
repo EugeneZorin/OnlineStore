@@ -20,9 +20,10 @@ class RegistrationViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-
     private val _listener: MutableLiveData<MutableList<Boolean>> =
-        MutableLiveData<MutableList<Boolean>>().apply { value = mutableListOf(false, false, false, false) }
+        MutableLiveData<MutableList<Boolean>>().apply {
+            value = mutableListOf(false, false, false, false, false, false, false)
+        }
     val listener: LiveData<MutableList<Boolean>> get() = _listener
 
     private val _accountDetails: MutableLiveData<MutableList<String>> =
@@ -47,10 +48,6 @@ class RegistrationViewModel @Inject constructor(
         return result
     }
 
-    fun validationLengths(value: Int): Boolean {
-        val result = dataValidation.validationLengths(value)
-        return result
-    }
 
     fun surnameValidation(surname: String): MutableList<Char> {
         val result = dataValidation.validationNameSymbols(surname)
@@ -60,7 +57,6 @@ class RegistrationViewModel @Inject constructor(
     }
 
 
-
     fun validationLengthNumberPhone(number: String): Boolean {
         val result = number.length >= 17
         updateListener(2, result)
@@ -68,13 +64,30 @@ class RegistrationViewModel @Inject constructor(
         return result
     }
 
-    suspend fun passwordValidation(number: String): Boolean {
-         val result = passwordValidation.validationPassword(number)
-         updateListener(3, result)
-         updateAccountDetails(3, number, result)
-         return result
-     }
+    suspend fun passwordValidationCharacter(password: String): Boolean {
+        val result = passwordValidation.validationPasswordCharacter(password)
+        updateListener(3, result)
+        updateAccountDetails(3, password, result)
+        return result
+    }
 
+    suspend fun passwordValidationSecurity(password: String): Boolean {
+        val result = passwordValidation.validationPasswordSecurity(password)
+        updateListener(4, result)
+        return result
+    }
+
+    fun validationNameLengths(value: Int): Boolean {
+        val result = dataValidation.validationLengths(value)
+        updateListener(5, result)
+        return result
+    }
+
+    fun validationSurnameLengths(value: Int): Boolean {
+        val result = dataValidation.validationLengths(value)
+        updateListener(6, result)
+        return result
+    }
 
 
     private fun updateAccountDetails(index: Int, data: String, check: Boolean) {

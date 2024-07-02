@@ -25,7 +25,7 @@ class RegistrationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegistrationBinding
     private val registrationViewModel: RegistrationViewModel by viewModels()
 
-    private val viewErrorUI: ViewErrorUI = ViewErrorUI()
+    private val viewErrorUI: ViewErrorUI by lazy { ViewErrorUI() }
     private var formatPhoneNumber: FormatPhoneNumber = FormatPhoneNumber()
     private val setupPhoneNumberEditText: SetupPhoneNumberEditText = SetupPhoneNumberEditText()
 
@@ -44,7 +44,7 @@ class RegistrationActivity : AppCompatActivity() {
         with(binding) {
             editName.addTextChangedListenerWithValidation(
                 validatorSymbols = { registrationViewModel.nameValidationSymbols(it) },
-                validatorLengths = { registrationViewModel.validationLengths(it.length) },
+                validatorLengths = { registrationViewModel.validationNameLengths(it.length) },
                 onErrorSymbols = { chars, editable, check ->
                     val update = UpdateErrorBuilder.Builder()
                         .editText(editName)
@@ -61,7 +61,7 @@ class RegistrationActivity : AppCompatActivity() {
 
             editSurname.addTextChangedListenerWithValidation(
                 validatorSymbols = { registrationViewModel.surnameValidation(it) },
-                validatorLengths = { registrationViewModel.validationLengths(it.length) },
+                validatorLengths = { registrationViewModel.validationSurnameLengths(it.length) },
                 onErrorSymbols = { chars, editable, check ->
                     val update = UpdateErrorBuilder.Builder()
                         .editText(editSurname)
@@ -77,14 +77,17 @@ class RegistrationActivity : AppCompatActivity() {
 
             password.addPasswordChangedListenerWithValidation(
                 coroutineScope = lifecycleScope,
-                validator = { registrationViewModel.passwordValidation(it) },
-                onError = { status ->
-                    viewErrorUI.updateErrorPassword(
-                        password,
-                        errorPassword,
-                        this@RegistrationActivity,
-                        status
-                    )
+                validatorCharacter = { registrationViewModel.passwordValidationCharacter(it) },
+                validatorSecurity = { registrationViewModel.passwordValidationSecurity(it) },
+                onError = { characterValid, securityValid ->
+                    val update = UpdateErrorBuilder.Builder()
+                        .editText(password)
+                        .errorTextView(errorPassword)
+                        .context(this@RegistrationActivity)
+                        .characterValid(characterValid)
+                        .securityValid(securityValid).build()
+                    viewErrorUI.passwordErrorHandler(update)
+
 
                 }
             )
@@ -103,16 +106,20 @@ class RegistrationActivity : AppCompatActivity() {
 
     private fun EditText.addPasswordChangedListenerWithValidation(
         coroutineScope: CoroutineScope,
-        validator: suspend (String) -> Boolean,
-        onError: (Boolean) -> Unit
-    ) {
+        validatorCharacter: suspend (String) -> Boolean,
+        validatorSecurity: suspend (String) -> Boolean,
+        onError: (Boolean, Boolean) -> Unit,
+
+        ) {
         this.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 coroutineScope.launch {
-                    val result = validator(s.toString())
-                    onError(result)
+                    val resultCharacter = validatorCharacter(s.toString())
+                    val resultSecurity = validatorSecurity(s.toString())
+                    onError(resultCharacter, resultSecurity)
+
                 }
             }
 

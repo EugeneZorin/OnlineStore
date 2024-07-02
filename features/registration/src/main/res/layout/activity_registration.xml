@@ -199,47 +199,48 @@
 
     <TextView
         android:id="@+id/errorMessageName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
         android:textColor="@color/red"
+        android:layout_marginStart="8dp"
         android:visibility="invisible"
-
         app:layout_constraintEnd_toEndOf="@+id/editName"
-        app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="@+id/editName"
         app:layout_constraintTop_toBottomOf="@+id/editName" />
 
     <TextView
         android:id="@+id/errorMessageNumberPhone"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:layout_marginStart="8dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/editPhoneNumber"
-        app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintStart_toStartOf="@+id/editPhoneNumber"
         app:layout_constraintTop_toBottomOf="@+id/editPhoneNumber" />
 
     <TextView
         android:id="@+id/errorMessageSurname"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="@color/red"
+        android:layout_marginStart="8dp"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/editSurname"
-        app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="@+id/editSurname"
         app:layout_constraintTop_toBottomOf="@+id/editSurname" />
 
     <TextView
         android:id="@+id/errorPassword"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="@color/red"
+        android:layout_marginStart="8dp"
         android:visibility="invisible"
-
         app:layout_constraintEnd_toEndOf="@+id/password"
-        app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintStart_toStartOf="@+id/password"
         app:layout_constraintTop_toBottomOf="@+id/password" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

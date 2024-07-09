@@ -22,7 +22,7 @@
             <option value="$PROJECT_DIR$/features/catalog" />
             <option value="$PROJECT_DIR$/features/characteristic" />
             <option value="$PROJECT_DIR$/features/profile" />
-            <option value="$PROJECT_DIR$/features/registration" />
+            <option value="$PROJECT_DIR$/features/sign-up" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

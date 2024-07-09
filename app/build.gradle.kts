@@ -43,7 +43,7 @@ android {
 
 dependencies {
 
-    implementation(project(":features:registration"))
+    implementation(project(":features:sign-up"))
     implementation(project(":features:catalog"))
     implementation(project(":features:characteristic"))
     implementation(project(":domain:registration"))

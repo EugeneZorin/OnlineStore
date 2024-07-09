@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">registration</string>
     <string name="termsAgreement">By clicking the “Login” button, you accept the <u> terms and conditions of the loyalty program</u></string>
-    <string name="signIn">Sign-In</string>
+    <string name="signUp">Sign-up</string>
     <string name="NameEditText">Name</string>
     <string name="FirstName">Surname</string>
     <string name="PhoneNumber">Phone number</string>

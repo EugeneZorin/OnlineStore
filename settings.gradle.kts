@@ -17,7 +17,7 @@ rootProject.name = "Online Store"
 include(":app")
 include(":domain")
 include(":features")
-include(":features:registration")
+include(":features:sign-up")
 include(":domain:registration")
 include(":data")
 include(":domain:catalog")

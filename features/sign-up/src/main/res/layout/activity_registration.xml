@@ -110,7 +110,7 @@
         android:focusable="true"
         android:gravity="center"
 
-        android:text="@string/signIn"
+        android:text="@string/signUp"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/termsAgreement"
         app:layout_constraintEnd_toEndOf="parent"

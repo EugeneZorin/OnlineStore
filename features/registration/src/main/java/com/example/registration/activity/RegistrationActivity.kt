@@ -3,6 +3,9 @@ package com.example.registration.activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.text.style.UnderlineSpan
+import android.util.Log
+import android.view.View
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.registration.R
 import com.example.registration.activity.view.FormatPhoneNumber
+import com.example.registration.activity.view.PhoneNumberVerificationSupervisor
 import com.example.registration.activity.view.SetupPhoneNumberEditText
 import com.example.registration.activity.view.error.UpdateErrorBuilder
 import com.example.registration.activity.view.error.ViewErrorUI
@@ -24,6 +28,8 @@ class RegistrationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegistrationBinding
     private val registrationViewModel: RegistrationViewModel by viewModels()
+    private val buttonRegistration: ButtonRegistration = ButtonRegistration()
+    private val phoneNumberVerificationSupervisor: PhoneNumberVerificationSupervisor = PhoneNumberVerificationSupervisor()
 
     private val viewErrorUI: ViewErrorUI by lazy { ViewErrorUI() }
     private var formatPhoneNumber: FormatPhoneNumber = FormatPhoneNumber()
@@ -35,7 +41,8 @@ class RegistrationActivity : AppCompatActivity() {
         binding = ActivityRegistrationBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupPhoneNumberEditText.setupPhoneNumberEditText(binding = binding, context = this)
-        button()
+        buttonRegistration.buttonRegistration(registrationViewModel, binding, this)
+        phoneNumberVerificationSupervisor.phoneNumberVerificationSupervisor(registrationViewModel, binding, this)
         setupView()
     }
 
@@ -85,7 +92,8 @@ class RegistrationActivity : AppCompatActivity() {
                         .errorTextView(errorPassword)
                         .context(this@RegistrationActivity)
                         .characterValid(characterValid)
-                        .securityValid(securityValid).build()
+                        .securityValid(securityValid)
+                        .build()
                     viewErrorUI.passwordErrorHandler(update)
 
 
@@ -149,6 +157,7 @@ class RegistrationActivity : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {}
         })
+
     }
 
     private fun capitalizeFirstLetter(input: String): String {
@@ -167,56 +176,25 @@ class RegistrationActivity : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
                 validator(s.toString())
-
                 with(binding) {
-
                     if (isFormatting) {
                         isFormatting = false
                         return
                     }
-
                     val formattedPhone = formatPhoneNumber.formatPhoneNumber(s)
                     isFormatting = true
                     editPhoneNumber.setText(formattedPhone.toString())
                     editPhoneNumber.setSelection(formattedPhone.length)
-
                 }
 
             }
-
             override fun afterTextChanged(s: Editable?) {}
         })
     }
 
 
-    // Tracks the state of fields and its values,
-    // if all data in the registration field is correct,
-    // the registration button becomes active.
-    private fun button() {
 
-        registrationViewModel.listener.observe(this) { result ->
-
-            when (!result.contains(false)) {
-                true -> {
-                    binding.button.setBackgroundColor(ContextCompat.getColor(this, R.color.pink))
-                    binding.button.setOnClickListener {
-                        registrationViewModel.savingData()
-                    }
-                }
-
-                false -> {
-                    binding.button.setBackgroundColor(
-                        ContextCompat.getColor(
-                            this,
-                            R.color.pale_pink
-                        )
-                    )
-                }
-            }
-        }
-    }
 }
 
 

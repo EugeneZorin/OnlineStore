@@ -1,13 +1,16 @@
 package com.example.registration.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.registration.repository.register.RegistrationContract
+import com.example.registration.repository.register.ValidationNumberPhoneContract
 import com.example.registration.repository.validation.DataValidation
 import com.example.registration.repository.validation.PasswordValidation
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,13 +20,17 @@ class RegistrationViewModel @Inject constructor(
     private val dataValidation: DataValidation,
     private val registrationContract: RegistrationContract,
     private val passwordValidation: PasswordValidation,
+    private val validationNumberPhoneContract: ValidationNumberPhoneContract
 ) : ViewModel() {
 
+    private val _listenerNumberPhone: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
+    val listenerNumberPhone: MutableLiveData<Boolean> = _listenerNumberPhone
 
     private val _listener: MutableLiveData<MutableList<Boolean>> =
         MutableLiveData<MutableList<Boolean>>().apply {
             value = mutableListOf(false, false, false, false, false, false, false)
         }
+
     val listener: LiveData<MutableList<Boolean>> get() = _listener
 
     private val _accountDetails: MutableLiveData<MutableList<String>> =
@@ -32,14 +39,29 @@ class RegistrationViewModel @Inject constructor(
 
     fun savingData() {
         viewModelScope.launch {
-            registrationContract.registrationImpl(
-                _accountDetails.value!![0],
-                _accountDetails.value!![1],
-                _accountDetails.value!![2],
-                _accountDetails.value!![3]
-            )
+            when (checkingPhoneNumberMatches(_accountDetails.value?.get(2) ?: "")
+            ) {
+                true -> {
+                    listenerNumberPhone.value = true
+                    registrationContract.registrationImpl(
+                        _accountDetails.value!![0],
+                        _accountDetails.value!![1],
+                        _accountDetails.value!![2],
+                        _accountDetails.value!![3]
+                    )
+                }
+
+                false -> {
+                    listenerNumberPhone.value = false
+                }
+            }
         }
     }
+
+    private suspend fun checkingPhoneNumberMatches(number: String): Boolean {
+        return validationNumberPhoneContract.numberCheck(number)
+    }
+
 
     fun nameValidationSymbols(name: String): MutableList<Char> {
         val result = dataValidation.validationNameSymbols(name)
@@ -63,6 +85,7 @@ class RegistrationViewModel @Inject constructor(
         updateAccountDetails(2, number, result)
         return result
     }
+
 
     suspend fun passwordValidationCharacter(password: String): Boolean {
         val result = passwordValidation.validationPasswordCharacter(password)
@@ -103,4 +126,6 @@ class RegistrationViewModel @Inject constructor(
             this[index] = value
         }
     }
+
+
 }

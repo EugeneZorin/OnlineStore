@@ -12,5 +12,5 @@
     <string name="error_lengths" translatable="false">Используйте более одной буквы</string>
     <string name="error_password_character" translatable="false">Используйте в пароле только латинские символы</string>
     <string name="error_password_security" translatable="false">Создайте более безопасный пароль</string>
-    <string name="error_number_phone" translatable="false">Пользователь с таким именем уже существует</string>
+    <string name="error_number_phone" translatable="false">Пользователь с таким номером уже существует</string>
 </resources>

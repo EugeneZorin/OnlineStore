@@ -6,14 +6,19 @@ import com.example.catalog.repository.GetDataRepository
 import com.example.catalog.repository.GetDataTransformerRepository
 import com.example.catalog.usecase.ImageUseCase
 import com.example.catalog.usecase.ItemUseCase
+import com.example.data.check.NumberCheck
 import com.example.data.goods.GetDataUseCase
 import com.example.data.image.contract.RequestContract
 import com.example.data.image.usecase.DataTransformer
 import com.example.data.image.usecase.RequestDatabase
+import com.example.registration.repository.register.ValidationNumberPhoneContract
+import com.example.registration.repository.register.ValidationNumberPhoneRepository
+import com.example.registration.usecase.validation.ValidationNumberPhone
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 
 @Module
@@ -54,4 +59,15 @@ object CatalogModule {
         return ImageUseCase(getDataTransformerRepository)
     }
 
+    @Provides
+    fun provideValidationPhoneNumber(
+        validationNumberPhoneRepository: ValidationNumberPhoneRepository
+    ): ValidationNumberPhoneContract {
+        return ValidationNumberPhone(validationNumberPhoneRepository)
+    }
+
+    @Provides
+    fun provideNumberCheck(): ValidationNumberPhoneRepository{
+        return NumberCheck()
+    }
 }

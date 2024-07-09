@@ -3,15 +3,19 @@ package com.example.onlinestore.di
 import com.example.data.accounts.Registration
 import com.example.registration.repository.register.RegistrationContract
 import com.example.registration.repository.register.RegistrationRepository
+import com.example.registration.repository.register.ValidationNumberPhoneContract
+import com.example.registration.repository.register.ValidationNumberPhoneRepository
 import com.example.registration.repository.validation.DataValidation
 import com.example.registration.repository.validation.PasswordValidation
 import com.example.registration.usecase.RegistrationImpl
 import com.example.registration.usecase.validation.DataValidationImpl
 import com.example.registration.usecase.validation.PasswordValidationImpl
+import com.example.registration.usecase.validation.ValidationNumberPhone
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 
 @Module
@@ -31,6 +35,8 @@ object RegistrationModule{
     ): RegistrationContract {
         return RegistrationImpl(registrationRepository)
     }
+
+
 
     @Provides
     fun provideValidationPassword(): PasswordValidation {

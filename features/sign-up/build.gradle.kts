@@ -44,12 +44,12 @@ android {
 
 dependencies {
 
-    implementation(project(":domain:registration"))
+    implementation(project(":domain:sign-up"))
     implementation(project(":core"))
 
-    implementation("androidx.hilt:hilt-navigation-fragment:1.2.0")
-    implementation("com.google.dagger:hilt-android:2.47")
-    kapt("com.google.dagger:hilt-android-compiler:2.47")
+    implementation(libs.hilt.navigation)
+    implementation(libs.hilt)
+    kapt(libs.hilt.compiler)
 
     implementation(libs.activity)
     implementation(libs.fragment)

@@ -4,11 +4,11 @@ import android.content.Context
 import android.graphics.Color
 import android.text.Editable
 import android.text.style.UnderlineSpan
-import android.util.Log
+import com.example.core.R
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
-import com.example.registration.R
+
 
 class ViewErrorUI {
 

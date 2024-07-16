@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">registration</string>
-    <string name="termsAgreement">"Нажимая кнопку “Войти”, Вы принимаете <u> условия программы лояльности</u> "</string>
+    <string name="termsAgreement">"Нажимая кнопку “Регистрация”, Вы принимаете <u> условия программы лояльности</u> "</string>
     <string name="signUp">Регистрация</string>
     <string name="NameEditText">Имя</string>
     <string name="FirstName">Фамилия</string>
     <string name="Password">Пароль</string>
     <string name="PhoneNumber">Номер телефона</string>
     <string name="entry">Вход</string>
+    <string name="registration">Регистрация</string>
     <string name="error_invalid_char" translatable="false">Символ %s не может быть использован.</string>
     <string name="error_lengths" translatable="false">Используйте более одной буквы</string>
     <string name="error_password_character" translatable="false">Используйте в пароле только латинские символы</string>

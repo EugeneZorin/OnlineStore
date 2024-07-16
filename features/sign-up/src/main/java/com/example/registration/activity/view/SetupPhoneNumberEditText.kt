@@ -1,8 +1,7 @@
 package com.example.registration.activity.view
 
 import android.content.Context
-import android.text.TextWatcher
-import com.example.registration.R
+import com.example.core.R
 import com.example.registration.databinding.ActivityRegistrationBinding
 import com.example.registration.entity.EntityRegistrations
 

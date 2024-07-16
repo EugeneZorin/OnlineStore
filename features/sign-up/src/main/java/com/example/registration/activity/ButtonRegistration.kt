@@ -1,11 +1,9 @@
 package com.example.registration.activity
 
 import android.content.Context
-import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModel
-import com.example.registration.R
+import com.example.core.R
 import com.example.registration.databinding.ActivityRegistrationBinding
 import com.example.registration.viewmodel.RegistrationViewModel
 

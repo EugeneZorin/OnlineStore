@@ -5,10 +5,9 @@ import android.graphics.Color
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.style.UnderlineSpan
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.LifecycleOwner
-import com.example.registration.R
+import com.example.core.R
 import com.example.registration.databinding.ActivityRegistrationBinding
 import com.example.registration.viewmodel.RegistrationViewModel
 import kotlinx.coroutines.CoroutineScope

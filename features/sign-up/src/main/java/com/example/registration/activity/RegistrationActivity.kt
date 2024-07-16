@@ -169,25 +169,23 @@ class RegistrationActivity : AppCompatActivity() {
     ) {
         this.addTextChangedListener(object : TextWatcher {
 
-            private var isFormatting: Boolean = false
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 validator(s.toString())
+
+
+            }
+            override fun afterTextChanged(s: Editable?) {
+                removeTextChangedListener(this)
                 with(binding) {
-                    if (isFormatting) {
-                        isFormatting = false
-                        return
-                    }
                     val formattedPhone = registrationViewModel.setFormatNumber(s)
-                    isFormatting = true
                     editPhoneNumber.setText(formattedPhone.toString())
                     editPhoneNumber.setSelection(formattedPhone.length)
                 }
-
+                addTextChangedListener(this)
             }
-            override fun afterTextChanged(s: Editable?) {}
         })
     }
 

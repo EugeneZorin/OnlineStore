@@ -1,9 +1,11 @@
-package com.example.registration.activity.view
+package com.example.registration.usecase
 
-class FormatPhoneNumber {
+import com.example.registration.contract.ContractFormatPhoneNumber
+
+class SetFormatPhoneNumberImpl: ContractFormatPhoneNumber {
 
     // Provides the required pattern to the entered phone number
-    fun formatPhoneNumber(input: CharSequence?): CharSequence {
+    override fun formatPhoneNumber(input: CharSequence?): CharSequence {
 
         val formattedPhone = StringBuilder()
 
@@ -26,4 +28,5 @@ class FormatPhoneNumber {
 
         return formattedPhone
     }
+
 }

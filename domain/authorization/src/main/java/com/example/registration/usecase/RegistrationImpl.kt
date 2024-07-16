@@ -1,9 +1,9 @@
 package com.example.registration.usecase
 
-import com.example.registration.repository.register.RegistrationContract
-import com.example.registration.repository.register.RegistrationRepository
+import com.example.registration.contract.RegistrationContract
+import com.example.registration.repository.RegistrationRepository
 
-class RegistrationImpl(
+private class RegistrationImpl(
     private val registrationRepository: RegistrationRepository
 ) : RegistrationContract {
 
@@ -24,5 +24,11 @@ class RegistrationImpl(
 
     private fun handleRegistrationError(e: Exception) {
         println("Error RegistrationImpl: ${e.message}")
+    }
+}
+
+object RegistrationFactory {
+    fun create(registrationRepository: RegistrationRepository): RegistrationContract {
+        return RegistrationImpl(registrationRepository)
     }
 }

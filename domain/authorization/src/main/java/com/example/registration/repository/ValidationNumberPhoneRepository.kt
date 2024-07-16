@@ -1,4 +1,4 @@
-package com.example.registration.repository.register
+package com.example.registration.repository
 
 interface ValidationNumberPhoneRepository {
     suspend fun numberCheck(numberPhoneValidation: String): Boolean

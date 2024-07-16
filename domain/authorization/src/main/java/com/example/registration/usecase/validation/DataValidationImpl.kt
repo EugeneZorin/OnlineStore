@@ -1,6 +1,6 @@
 package com.example.registration.usecase.validation
 
-import com.example.registration.repository.validation.DataValidation
+import com.example.registration.validation.DataValidation
 
 class DataValidationImpl: DataValidation {
 

@@ -2,7 +2,7 @@ package com.example.data.accounts
 
 import android.util.Log
 import com.example.data.entity.DatabaseEntity
-import com.example.registration.repository.register.RegistrationRepository
+import com.example.registration.repository.RegistrationRepository
 import com.google.firebase.database.FirebaseDatabase
 import org.mindrot.jbcrypt.BCrypt
 

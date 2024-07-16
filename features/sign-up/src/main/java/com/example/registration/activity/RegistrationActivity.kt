@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.registration.R
-import com.example.registration.activity.view.FormatPhoneNumber
 import com.example.registration.activity.view.PhoneNumberVerificationSupervisor
 import com.example.registration.activity.view.SetupPhoneNumberEditText
 import com.example.registration.activity.view.error.UpdateErrorBuilder
@@ -32,7 +31,6 @@ class RegistrationActivity : AppCompatActivity() {
     private val phoneNumberVerificationSupervisor: PhoneNumberVerificationSupervisor = PhoneNumberVerificationSupervisor()
 
     private val viewErrorUI: ViewErrorUI by lazy { ViewErrorUI() }
-    private var formatPhoneNumber: FormatPhoneNumber = FormatPhoneNumber()
     private val setupPhoneNumberEditText: SetupPhoneNumberEditText = SetupPhoneNumberEditText()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -182,7 +180,7 @@ class RegistrationActivity : AppCompatActivity() {
                         isFormatting = false
                         return
                     }
-                    val formattedPhone = formatPhoneNumber.formatPhoneNumber(s)
+                    val formattedPhone = registrationViewModel.setFormatNumber(s)
                     isFormatting = true
                     editPhoneNumber.setText(formattedPhone.toString())
                     editPhoneNumber.setSelection(formattedPhone.length)

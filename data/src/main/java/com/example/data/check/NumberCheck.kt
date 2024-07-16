@@ -1,7 +1,7 @@
 package com.example.data.check
 
 import com.example.data.entity.DatabaseEntity
-import com.example.registration.repository.register.ValidationNumberPhoneRepository
+import com.example.registration.repository.ValidationNumberPhoneRepository
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase

@@ -38,7 +38,7 @@ android {
 
 dependencies {
     
-    implementation(project(":domain:sign-up"))
+    implementation(project(":domain:authorization"))
     implementation(project(":domain:catalog"))
 
     implementation (libs.jbcrypt)

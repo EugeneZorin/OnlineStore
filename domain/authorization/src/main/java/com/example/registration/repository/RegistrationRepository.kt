@@ -1,4 +1,4 @@
-package com.example.registration.repository.register
+package com.example.registration.repository
 
 interface RegistrationRepository {
     suspend fun registration(

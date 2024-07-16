@@ -1,16 +1,15 @@
 package com.example.registration.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.registration.repository.register.RegistrationContract
-import com.example.registration.repository.register.ValidationNumberPhoneContract
-import com.example.registration.repository.validation.DataValidation
-import com.example.registration.repository.validation.PasswordValidation
+import com.example.registration.contract.ContractFormatPhoneNumber
+import com.example.registration.contract.RegistrationContract
+import com.example.registration.contract.ValidationNumberPhoneContract
+import com.example.registration.validation.DataValidation
+import com.example.registration.validation.PasswordValidation
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,7 +19,8 @@ class RegistrationViewModel @Inject constructor(
     private val dataValidation: DataValidation,
     private val registrationContract: RegistrationContract,
     private val passwordValidation: PasswordValidation,
-    private val validationNumberPhoneContract: ValidationNumberPhoneContract
+    private val validationNumberPhoneContract: ValidationNumberPhoneContract,
+    private val contractFormatPhoneNumber: ContractFormatPhoneNumber
 ) : ViewModel() {
 
     private val _listenerNumberPhone: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
@@ -56,6 +56,10 @@ class RegistrationViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun setFormatNumber(input: CharSequence?): CharSequence {
+        return contractFormatPhoneNumber.formatPhoneNumber(input)
     }
 
     private suspend fun checkingPhoneNumberMatches(number: String): Boolean {
@@ -126,6 +130,7 @@ class RegistrationViewModel @Inject constructor(
             this[index] = value
         }
     }
+
 
 
 }

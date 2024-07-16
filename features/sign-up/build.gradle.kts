@@ -44,7 +44,7 @@ android {
 
 dependencies {
 
-    implementation(project(":domain:sign-up"))
+    implementation(project(":domain:authorization"))
     implementation(project(":core"))
 
     implementation(libs.hilt.navigation)

@@ -1,4 +1,4 @@
-package com.example.registration.repository.validation
+package com.example.registration.validation
 
 interface DataValidation {
     fun validationNameSymbols(name: String): MutableList<Char>

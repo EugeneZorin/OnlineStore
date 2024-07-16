@@ -1,7 +1,7 @@
 package com.example.registration.usecase.validation
 
-import com.example.registration.repository.register.ValidationNumberPhoneContract
-import com.example.registration.repository.register.ValidationNumberPhoneRepository
+import com.example.registration.contract.ValidationNumberPhoneContract
+import com.example.registration.repository.ValidationNumberPhoneRepository
 
 class ValidationNumberPhone(
     private val validationNumberPhoneRepository: ValidationNumberPhoneRepository

@@ -11,14 +11,13 @@ import com.example.data.goods.GetDataUseCase
 import com.example.data.image.contract.RequestContract
 import com.example.data.image.usecase.DataTransformer
 import com.example.data.image.usecase.RequestDatabase
-import com.example.registration.repository.register.ValidationNumberPhoneContract
-import com.example.registration.repository.register.ValidationNumberPhoneRepository
+import com.example.registration.contract.ValidationNumberPhoneContract
+import com.example.registration.repository.ValidationNumberPhoneRepository
 import com.example.registration.usecase.validation.ValidationNumberPhone
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 
 @Module
@@ -67,7 +66,7 @@ object CatalogModule {
     }
 
     @Provides
-    fun provideNumberCheck(): ValidationNumberPhoneRepository{
+    fun provideNumberCheck(): ValidationNumberPhoneRepository {
         return NumberCheck()
     }
 }

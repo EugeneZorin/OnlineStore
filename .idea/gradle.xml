@@ -13,12 +13,11 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/domain/authorization" />
             <option value="$PROJECT_DIR$/domain/catalog" />
             <option value="$PROJECT_DIR$/domain/characteristic" />
             <option value="$PROJECT_DIR$/domain/product" />
             <option value="$PROJECT_DIR$/domain/profile" />
-            <option value="$PROJECT_DIR$/domain/sign-in" />
-            <option value="$PROJECT_DIR$/domain/sign-up" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/catalog" />
             <option value="$PROJECT_DIR$/features/characteristic" />

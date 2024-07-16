@@ -7,15 +7,114 @@
     android:layout_height="match_parent"
     tools:context=".SignInActivity">
 
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="177dp"
-        android:text="TextView"
+        android:text="@string/entry"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.038" />
+
+
+    <EditText
+        android:id="@+id/editPassword"
+        android:layout_width="385dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="40dp"
+        android:autofillHints="name"
+        android:background="@drawable/rounded_edittext_bg"
+        android:hint="@string/Password"
+        android:inputType="text"
+
+        android:maxLength="20"
+        android:paddingStart="16dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="12dp"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPhoneNumber" />
+
+    <EditText
+        android:id="@+id/editPhoneNumber"
+        android:layout_width="385dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="188dp"
+        android:autofillHints="PhoneNumber"
+        android:background="@drawable/rounded_edittext_bg"
+        android:hint="@string/PhoneNumber"
+        android:inputType="text"
+        android:maxLength="20"
+
+        android:paddingStart="16dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="12dp"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/entry" />
+
+    <TextView
+        android:id="@+id/errorMessagePhoneNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/red"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/editPhoneNumber"
+        app:layout_constraintStart_toStartOf="@+id/editPhoneNumber"
+        app:layout_constraintTop_toBottomOf="@+id/editPhoneNumber" />
+
+    <TextView
+        android:id="@+id/errorMessagePassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/red"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/editName"
+        app:layout_constraintStart_toStartOf="@+id/editName"
+        app:layout_constraintTop_toBottomOf="@+id/editName" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="385dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="68dp"
+        android:backgroundTint="@color/pale_pink"
+
+        android:focusable="true"
+        android:gravity="center"
+        android:text="@string/signIn"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPassword" />
+
+    <TextView
+        android:id="@+id/termsAgreement"
+        android:layout_width="233dp"
+        android:layout_height="27dp"
+        android:layout_marginBottom="10dp"
+        android:alpha="0.6"
+        android:text="@string/termsAgreementLogin"
+        android:textAlignment="center"
+        android:textColor="#504E4E"
+        android:textSize="11sp"
+        app:flow_horizontalAlign="center"
+        app:flow_verticalAlign="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

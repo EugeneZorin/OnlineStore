@@ -28,7 +28,7 @@
 
 
     <TextView
-        android:id="@+id/entryText"
+        android:id="@+id/registrationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/registration"
@@ -124,7 +124,7 @@
         android:layout_height="27dp"
         android:layout_marginBottom="10dp"
         android:alpha="0.6"
-        android:text="@string/termsAgreement"
+        android:text="@string/termsAgreementRegistration"
         android:textAlignment="center"
         android:textColor="#504E4E"
         android:textSize="11sp"

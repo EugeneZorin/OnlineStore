@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">registration</string>
-    <string name="termsAgreement">"Нажимая кнопку “Регистрация”, Вы принимаете <u> условия программы лояльности</u> "</string>
+    <string name="termsAgreementRegistration">"Нажимая кнопку “Регистрация”, Вы принимаете <u> условия программы лояльности</u> "</string>
+    <string name="termsAgreementLogin">"Нажимая кнопку “Войти”, Вы принимаете <u> условия программы лояльности</u> "</string>
     <string name="signUp">Регистрация</string>
+    <string name="signIn">Войти</string>
     <string name="NameEditText">Имя</string>
     <string name="FirstName">Фамилия</string>
     <string name="Password">Пароль</string>

@@ -44,6 +44,7 @@ android {
 dependencies {
 
     implementation(project(":features:sign-up"))
+    implementation(project(":features:sign-in"))
     implementation(project(":features:catalog"))
     implementation(project(":features:characteristic"))
     implementation(project(":domain:sign-up"))

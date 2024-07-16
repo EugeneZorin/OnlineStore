@@ -28,19 +28,25 @@ class RegistrationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegistrationBinding
     private val registrationViewModel: RegistrationViewModel by viewModels()
     private val buttonRegistration: ButtonRegistration = ButtonRegistration()
-    private val phoneNumberVerificationSupervisor: PhoneNumberVerificationSupervisor = PhoneNumberVerificationSupervisor()
+    private val phoneNumberVerificationSupervisor: PhoneNumberVerificationSupervisor =
+        PhoneNumberVerificationSupervisor()
 
     private val viewErrorUI: ViewErrorUI by lazy { ViewErrorUI() }
     private val setupPhoneNumberEditText: SetupPhoneNumberEditText = SetupPhoneNumberEditText()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityRegistrationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         setupPhoneNumberEditText.setupPhoneNumberEditText(binding = binding, context = this)
         buttonRegistration.buttonRegistration(registrationViewModel, binding, this)
-        phoneNumberVerificationSupervisor.phoneNumberVerificationSupervisor(registrationViewModel, binding, this)
+        phoneNumberVerificationSupervisor.phoneNumberVerificationSupervisor(
+            registrationViewModel,
+            binding,
+            this
+        )
+
         setupView()
     }
 
@@ -177,6 +183,7 @@ class RegistrationActivity : AppCompatActivity() {
 
 
             }
+
             override fun afterTextChanged(s: Editable?) {
                 removeTextChangedListener(this)
                 with(binding) {
@@ -188,7 +195,6 @@ class RegistrationActivity : AppCompatActivity() {
             }
         })
     }
-
 
 
 }

@@ -14,6 +14,7 @@
     <string name="error_invalid_char" translatable="false">Символ %s не может быть использован.</string>
     <string name="error_lengths" translatable="false">Используйте более одной буквы</string>
     <string name="error_password_character" translatable="false">Используйте в пароле только латинские символы</string>
-    <string name="error_password_security" translatable="false">Создайте более безопасный пароль</string>
+    <string name="error_password_security" translatable="false">Придумайте более безопасный пароль</string>
+    <string name="error_password_entry" translatable="false">Минимальная длина пароля 10 символов</string>
     <string name="error_number_phone" translatable="false">Пользователь с таким номером уже существует</string>
 </resources>

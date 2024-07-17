@@ -1,21 +1,19 @@
 package com.example.login.error
 
-import android.content.Context
 import android.graphics.Color
-import android.text.Editable
 import android.text.style.UnderlineSpan
+import android.util.Log
 import com.example.core.R
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 
 
-class ViewErrorUILogin {
+class ViewErrorPassword {
 
     // Updates the error UI specifically for password fields
     fun passwordErrorHandler(
         update: UpdateErrorLoginBuilder
     ){
+
         with(update) {
             when {
                 !characterValid!! && editText.text.isNotEmpty() -> {

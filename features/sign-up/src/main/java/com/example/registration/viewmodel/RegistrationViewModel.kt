@@ -8,7 +8,7 @@ import com.example.registration.contract.ContractFormatPhoneNumber
 import com.example.registration.contract.RegistrationContract
 import com.example.registration.contract.ValidationNumberPhoneContract
 import com.example.registration.validation.DataValidation
-import com.example.registration.validation.PasswordValidation
+import com.example.registration.validation.PasswordValidationContract
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class RegistrationViewModel @Inject constructor(
     private val dataValidation: DataValidation,
     private val registrationContract: RegistrationContract,
-    private val passwordValidation: PasswordValidation,
+    private val passwordValidation: PasswordValidationContract,
     private val validationNumberPhoneContract: ValidationNumberPhoneContract,
     private val contractFormatPhoneNumber: ContractFormatPhoneNumber
 ) : ViewModel() {

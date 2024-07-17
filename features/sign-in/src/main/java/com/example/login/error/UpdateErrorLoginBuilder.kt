@@ -16,10 +16,7 @@ class UpdateErrorLoginBuilder(
     class Builder {
         private lateinit var editText: EditText
         private lateinit var errorTextView: TextView
-        private var editable: Editable? = null
         private lateinit var context: Context
-        private var check: Boolean? = null
-        private var charArray: List<Char>? = null
         private var characterValid: Boolean? = null
         private var securityValid: Boolean? = null
 

@@ -42,9 +42,9 @@ class RegistrationActivity : AppCompatActivity() {
         setupPhoneNumberEditText.setupPhoneNumberEditText(binding = binding, context = this)
         buttonRegistration.buttonRegistration(registrationViewModel, binding, this)
         phoneNumberVerificationSupervisor.phoneNumberVerificationSupervisor(
-            registrationViewModel,
-            binding,
-            this
+            registrationViewModel = registrationViewModel,
+            binding = binding,
+            context = this
         )
 
         setupView()
@@ -180,8 +180,6 @@ class RegistrationActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 validator(s.toString())
-
-
             }
 
             override fun afterTextChanged(s: Editable?) {

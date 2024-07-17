@@ -5,7 +5,7 @@ import com.example.registration.contract.ContractFormatPhoneNumber
 import com.example.registration.contract.RegistrationContract
 import com.example.registration.repository.RegistrationRepository
 import com.example.registration.validation.DataValidation
-import com.example.registration.validation.PasswordValidation
+import com.example.registration.validation.PasswordValidationContract
 import com.example.registration.usecase.RegistrationFactory
 import com.example.registration.usecase.SetFormatPhoneNumberImpl
 import com.example.registration.usecase.validation.DataValidationImpl
@@ -42,7 +42,7 @@ object RegistrationModule{
 
 
     @Provides
-    fun provideValidationPassword(): PasswordValidation {
+    fun provideValidationPassword(): PasswordValidationContract {
         return PasswordValidationImpl()
     }
 

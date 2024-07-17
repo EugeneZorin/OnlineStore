@@ -14,18 +14,16 @@ class NumberCheck(): ValidationNumberPhoneRepository {
     private val databaseEntity: DatabaseEntity = DatabaseEntity()
 
     override suspend fun numberCheck(numberPhoneValidation: String): Boolean {
+
         return suspendCoroutine { continuation ->
             val databaseReference = FirebaseDatabase.getInstance().getReference(databaseEntity.accountDatabase)
 
             databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    var result = true
-                    snapshot.children.forEach {
-                        if (it.child(databaseEntity.numberPhone).value == numberPhoneValidation) {
-                            result = false
-                        }
+                    val result = snapshot.children.any {
+                        it.child(databaseEntity.numberPhone).value == numberPhoneValidation
                     }
-                    continuation.resume(result)
+                    continuation.resume(!result)
                 }
 
                 override fun onCancelled(error: DatabaseError) {

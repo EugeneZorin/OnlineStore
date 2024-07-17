@@ -13,7 +13,7 @@ import com.example.data.image.usecase.DataTransformer
 import com.example.data.image.usecase.RequestDatabase
 import com.example.registration.contract.ValidationNumberPhoneContract
 import com.example.registration.repository.ValidationNumberPhoneRepository
-import com.example.registration.usecase.validation.ValidationNumberPhone
+import com.example.registration.usecase.validation.request.ValidationNumberPhone
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

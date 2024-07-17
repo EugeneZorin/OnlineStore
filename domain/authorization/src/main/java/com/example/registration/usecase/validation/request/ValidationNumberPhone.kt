@@ -1,4 +1,4 @@
-package com.example.registration.usecase.validation
+package com.example.registration.usecase.validation.request
 
 import com.example.registration.contract.ValidationNumberPhoneContract
 import com.example.registration.repository.ValidationNumberPhoneRepository

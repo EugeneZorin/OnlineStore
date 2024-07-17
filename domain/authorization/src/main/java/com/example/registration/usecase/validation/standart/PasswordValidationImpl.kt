@@ -1,4 +1,4 @@
-package com.example.registration.usecase.validation
+package com.example.registration.usecase.validation.standart
 
 import com.example.registration.validation.PasswordValidationContract
 

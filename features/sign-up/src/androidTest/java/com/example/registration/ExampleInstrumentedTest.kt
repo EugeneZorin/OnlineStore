@@ -1,7 +1,7 @@
 package com.example.registration
 
 import androidx.test.runner.AndroidJUnit4
-import com.example.registration.usecase.validation.DataValidationImpl
+import com.example.registration.usecase.validation.standart.DataValidationImpl
 import org.junit.runner.RunWith
 
 /**

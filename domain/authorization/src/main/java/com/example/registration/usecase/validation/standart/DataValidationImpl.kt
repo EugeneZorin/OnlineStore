@@ -1,4 +1,4 @@
-package com.example.registration.usecase.validation
+package com.example.registration.usecase.validation.standart
 
 import com.example.registration.validation.DataValidation
 
@@ -46,7 +46,5 @@ class DataValidationImpl: DataValidation {
     override fun validationLengths(value: Int): Boolean {
         return value >= 2
     }
-
-
 
 }

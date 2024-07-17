@@ -2,7 +2,7 @@ package com.example.registration.usecase
 
 import com.example.registration.contract.ContractFormatPhoneNumber
 
-class SetFormatPhoneNumberImpl: ContractFormatPhoneNumber {
+private class SetFormatPhoneNumberImpl: ContractFormatPhoneNumber {
 
     // Provides the required pattern to the entered phone number
     override fun formatPhoneNumber(input: CharSequence?): CharSequence {
@@ -29,4 +29,10 @@ class SetFormatPhoneNumberImpl: ContractFormatPhoneNumber {
         return formattedPhone
     }
 
+}
+
+object SetFormatPhoneNumberFactory {
+    fun create(): ContractFormatPhoneNumber {
+        return SetFormatPhoneNumberImpl()
+    }
 }

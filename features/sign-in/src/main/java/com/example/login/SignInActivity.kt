@@ -3,6 +3,7 @@ package com.example.login
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ import com.example.login.error.UpdateErrorLoginBuilder
 import com.example.login.error.ViewErrorPassword
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -30,8 +32,8 @@ class SignInActivity : AppCompatActivity() {
         setContentView(binding.root)
         setView()
         buttonFirstValidation()
-    }
 
+    }
 
 
     private fun setView() {
@@ -100,16 +102,35 @@ class SignInActivity : AppCompatActivity() {
         })
     }
 
-    private fun buttonFirstValidation(){
-        signInViewModel.dataCustodian.observe(this){ result ->
-            with(binding){
+    private fun buttonFirstValidation() {
+        signInViewModel.dataCustodian.observe(this) { result ->
+            with(binding) {
                 if (!result.contains(false)) {
-                    button.setBackgroundColor(ContextCompat.getColor(this@SignInActivity, R.color.pink))
+                    button.setBackgroundColor(
+                        ContextCompat.getColor(this@SignInActivity, R.color.pink)
+                    )
+                    button.setOnClickListener {
+                        lifecycleScope.launch {
+                            val resultNumber = !signInViewModel.validationNumberPhone(editPhoneNumber.text.toString())
+                            if (resultNumber) {
+                                errorMessagePhoneNumber.visibility = View.INVISIBLE
+                            } else {
+                                errorMessagePhoneNumber.visibility = View.VISIBLE
+                                errorMessagePhoneNumber.text = getString(R.string.error_no_phone_number_found)
+                            }
+                        }
+                    }
                 } else {
-                   button.setBackgroundColor(ContextCompat.getColor(this@SignInActivity, R.color.pale_pink))
+                    button.setBackgroundColor(
+                        ContextCompat.getColor(this@SignInActivity, R.color.pale_pink)
+                    )
+                    errorMessagePhoneNumber.visibility = View.INVISIBLE
+                    button.setOnClickListener(null)
                 }
             }
-
         }
     }
+
+
+
 }

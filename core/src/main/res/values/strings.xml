@@ -16,4 +16,5 @@
     <string name="error_password_security" translatable="false">Create a more secure password</string>
     <string name="error_password_entry" translatable="false">Minimum password length 10 characters</string>
     <string name="error_number_phone" translatable="false">A user with the same number already exists</string>
+    <string name="error_no_phone_number_found" translatable="false">There is no account with this number</string>
 </resources>

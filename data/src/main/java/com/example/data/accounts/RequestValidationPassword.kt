@@ -1,18 +1,20 @@
 package com.example.data.accounts
 
 import com.example.data.entity.DatabaseEntity
+import com.example.registration.repository.RequestValidationPasswordRepository
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.getValue
 import kotlinx.coroutines.tasks.await
 import org.mindrot.jbcrypt.BCrypt
 
 
-class RequestValidationPassword {
+private class RequestValidationPassword: RequestValidationPasswordRepository {
+
     private val databaseEntity: DatabaseEntity = DatabaseEntity()
     private val databaseReference =
         FirebaseDatabase.getInstance().getReference(databaseEntity.accountDatabase)
 
-    suspend fun requestValidationPassword(login: String, password: String): Boolean {
+    override suspend fun requestValidationPassword(login: String, password: String): Boolean {
         return try {
             val snapshot =
                 databaseReference.orderByChild(databaseEntity.numberPhone).equalTo(login).get()
@@ -38,6 +40,12 @@ class RequestValidationPassword {
         } catch (e: IllegalArgumentException) {
             false
         }
+    }
+}
+
+object RequestValidationPasswordFactory{
+    fun create(): RequestValidationPasswordRepository{
+        return RequestValidationPassword()
     }
 }
 

@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -15,7 +16,6 @@ import com.example.login.error.UpdateErrorLoginBuilder
 import com.example.login.error.ViewErrorPassword
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -31,8 +31,7 @@ class SignInActivity : AppCompatActivity() {
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setView()
-        buttonFirstValidation()
-
+        buttonValidation()
     }
 
 
@@ -102,35 +101,60 @@ class SignInActivity : AppCompatActivity() {
         })
     }
 
-    private fun buttonFirstValidation() {
+
+    private fun buttonValidation() {
         signInViewModel.dataCustodian.observe(this) { result ->
             with(binding) {
                 if (!result.contains(false)) {
-                    button.setBackgroundColor(
-                        ContextCompat.getColor(this@SignInActivity, R.color.pink)
-                    )
+                    setButtonActive(true)
                     button.setOnClickListener {
                         lifecycleScope.launch {
-                            val resultNumber = !signInViewModel.validationNumberPhone(editPhoneNumber.text.toString())
-                            if (resultNumber) {
-                                errorMessagePhoneNumber.visibility = View.INVISIBLE
-                            } else {
-                                errorMessagePhoneNumber.visibility = View.VISIBLE
-                                errorMessagePhoneNumber.text = getString(R.string.error_no_phone_number_found)
-                            }
+                            validatePhoneNumberAndPassword()
                         }
                     }
                 } else {
-                    button.setBackgroundColor(
-                        ContextCompat.getColor(this@SignInActivity, R.color.pale_pink)
-                    )
-                    errorMessagePhoneNumber.visibility = View.INVISIBLE
+                    setButtonActive(false)
                     button.setOnClickListener(null)
                 }
             }
         }
     }
 
+    private fun setButtonActive(isActive: Boolean) {
+        with(binding) {
+            if (isActive) {
+                button.setBackgroundColor(ContextCompat.getColor(this@SignInActivity, R.color.pink))
+            } else {
+                button.setBackgroundColor(ContextCompat.getColor(this@SignInActivity, R.color.pale_pink))
+            }
+            errorMessagePhoneNumber.visibility = View.INVISIBLE
+            errorMessagePassword.visibility = View.INVISIBLE
+        }
+    }
 
+    private suspend fun validatePhoneNumberAndPassword() {
+        with(binding) {
+            val phoneNumber = editPhoneNumber.text.toString()
+            val password = editPassword.text.toString()
+            val isPhoneNumberValid = !signInViewModel.validationNumberPhone(phoneNumber)
 
+            if (isPhoneNumberValid) {
+                errorMessagePhoneNumber.visibility = View.INVISIBLE
+                val isPasswordValid = signInViewModel.requestValidationPassword(phoneNumber, password)
+
+                if (isPasswordValid) {
+                    // Login
+                } else {
+                    showError(errorMessagePassword, R.string.error_password)
+                }
+            } else {
+                showError(errorMessagePhoneNumber, R.string.error_no_phone_number_found)
+            }
+        }
+    }
+
+    private fun showError(view: TextView, errorMessageResId: Int) {
+        view.visibility = View.VISIBLE
+        view.text = getString(errorMessageResId)
+    }
 }

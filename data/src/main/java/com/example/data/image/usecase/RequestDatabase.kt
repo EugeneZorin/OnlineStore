@@ -9,8 +9,9 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 import java.io.IOException
 import java.net.URL
+import javax.inject.Inject
 
-class RequestDatabase : RequestContract {
+class RequestDatabase @Inject constructor() : RequestContract {
 
     private val databaseEntity: DatabaseEntity = DatabaseEntity()
 

@@ -1,6 +1,5 @@
-package com.example.onlinestore.di
+package com.example.onlinestore.di.provides
 
-import com.example.data.accounts.Registration
 import com.example.registration.contract.ContractFormatPhoneNumber
 import com.example.registration.contract.RegistrationContract
 import com.example.registration.repository.RegistrationRepository
@@ -46,11 +45,7 @@ object RegistrationModule{
         return PasswordValidationImpl()
     }
 
-    @Provides
-    fun provideRegistration(): RegistrationRepository {
-        return Registration()
-    }
-
 
 
 }
+

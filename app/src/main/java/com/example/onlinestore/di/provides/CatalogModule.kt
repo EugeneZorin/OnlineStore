@@ -1,4 +1,4 @@
-package com.example.onlinestore.di
+package com.example.onlinestore.di.provides
 
 import com.example.catalog.contract.GetDataContract
 import com.example.catalog.contract.GetImageContract
@@ -7,11 +7,8 @@ import com.example.catalog.repository.GetDataTransformerRepository
 import com.example.catalog.usecase.ImageUseCase
 import com.example.catalog.usecase.ItemUseCase
 import com.example.data.accounts.RequestValidationPasswordFactory
-import com.example.data.check.NumberCheck
-import com.example.data.goods.GetDataUseCase
 import com.example.data.image.contract.RequestContract
 import com.example.data.image.usecase.DataTransformer
-import com.example.data.image.usecase.RequestDatabase
 import com.example.registration.contract.RequestValidationPasswordContract
 import com.example.registration.contract.ValidationNumberPhoneContract
 import com.example.registration.repository.RequestValidationPasswordRepository
@@ -28,24 +25,11 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 object CatalogModule {
 
-
-
-    @Provides
-    fun provideGetData(): GetDataRepository{
-        return GetDataUseCase()
-    }
-
-
     @Provides
     fun provideItemUseCase(
         getDataRepository: GetDataRepository
     ): GetDataContract {
         return ItemUseCase(getDataRepository)
-    }
-
-    @Provides
-    fun provideRequestDatabase(): RequestContract {
-        return RequestDatabase()
     }
 
     @Provides
@@ -69,10 +53,6 @@ object CatalogModule {
         return ValidationNumberPhone(validationNumberPhoneRepository)
     }
 
-    @Provides
-    fun provideNumberCheck(): ValidationNumberPhoneRepository {
-        return NumberCheck()
-    }
 
     @Provides
     fun provideRequestValidationPassword(): RequestValidationPasswordRepository {

@@ -6,10 +6,11 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-class NumberCheck(): ValidationNumberPhoneRepository {
+class NumberCheck @Inject constructor(): ValidationNumberPhoneRepository {
 
     private val databaseEntity: DatabaseEntity = DatabaseEntity()
 

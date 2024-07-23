@@ -1,4 +1,4 @@
-package com.example.onlinestore.di
+package com.example.onlinestore.di.provides
 
 import android.content.Context
 import com.example.catalog.contract.NavigationCharacteristic
@@ -17,6 +17,4 @@ object NavigationCharacteristicModule {
     fun provideCharacteristicHandler(@ActivityContext context: Context): NavigationCharacteristic {
         return CharacteristicHandler(context)
     }
-
-
 }

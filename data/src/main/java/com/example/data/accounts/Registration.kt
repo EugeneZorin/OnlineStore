@@ -5,8 +5,9 @@ import com.example.data.entity.DatabaseEntity
 import com.example.registration.repository.RegistrationRepository
 import com.google.firebase.database.FirebaseDatabase
 import org.mindrot.jbcrypt.BCrypt
+import javax.inject.Inject
 
-class Registration() : RegistrationRepository {
+class Registration @Inject constructor() : RegistrationRepository {
 
     private val databaseEntity: DatabaseEntity = DatabaseEntity()
 

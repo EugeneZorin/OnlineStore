@@ -9,8 +9,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.io.IOException
+import javax.inject.Inject
 
-class GetDataUseCase: GetDataRepository {
+class GetDataUseCase @Inject constructor(): GetDataRepository {
 
     private val databaseEntity: DatabaseEntity = DatabaseEntity()
 

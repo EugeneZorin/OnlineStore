@@ -133,24 +133,24 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private suspend fun validatePhoneNumberAndPassword() {
-        with(binding) {
+       /* with(binding) {
             val phoneNumber = editPhoneNumber.text.toString()
             val password = editPassword.text.toString()
             val isPhoneNumberValid = !signInViewModel.validationNumberPhone(phoneNumber)
 
             if (isPhoneNumberValid) {
                 errorMessagePhoneNumber.visibility = View.INVISIBLE
-                val isPasswordValid = signInViewModel.requestValidationPassword(phoneNumber, password)
+               *//* val isPasswordValid = signInViewModel.requestValidationPassword(phoneNumber, password)*//*
 
-                if (isPasswordValid) {
+                *//*if (isPasswordValid) {
                     // Login
                 } else {
                     showError(errorMessagePassword, R.string.error_password)
-                }
+                }*//*
             } else {
                 showError(errorMessagePhoneNumber, R.string.error_no_phone_number_found)
             }
-        }
+        }*/
     }
 
     private fun showError(view: TextView, errorMessageResId: Int) {

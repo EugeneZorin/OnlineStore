@@ -1,12 +1,8 @@
 package com.example.login
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.registration.contract.ContractFormatPhoneNumber
-import com.example.registration.contract.RequestValidationPasswordContract
-import com.example.registration.contract.ValidationNumberPhoneContract
 import com.example.registration.validation.PasswordValidationContract
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -15,8 +11,6 @@ import javax.inject.Inject
 class SignInViewModel @Inject constructor(
     private val contractFormatPhoneNumber: ContractFormatPhoneNumber,
     private val passwordValidationContract: PasswordValidationContract,
-    private val validationNumberPhoneContract: ValidationNumberPhoneContract,
-    private val requestValidationPasswordContract: RequestValidationPasswordContract
 ) : ViewModel() {
 
     private val _dataCustodian: MutableLiveData<MutableList<Boolean>> =
@@ -58,13 +52,13 @@ class SignInViewModel @Inject constructor(
         }
     }
 
-
+/*
     suspend fun validationNumberPhone(number: String): Boolean {
         return validationNumberPhoneContract.numberCheck(number)
-    }
+    }*/
 
-    suspend fun requestValidationPassword(login: String, password: String): Boolean {
+    /*suspend fun requestValidationPassword(login: String, password: String): Boolean {
         return requestValidationPasswordContract.requestValidationPasswordContract(login, password)
-    }
+    }*/
 
 }

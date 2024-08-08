@@ -6,15 +6,8 @@ import com.example.catalog.repository.GetDataRepository
 import com.example.catalog.repository.GetDataTransformerRepository
 import com.example.catalog.usecase.ImageUseCase
 import com.example.catalog.usecase.ItemUseCase
-import com.example.data.accounts.RequestValidationPasswordFactory
 import com.example.data.image.contract.RequestContract
 import com.example.data.image.usecase.DataTransformer
-import com.example.registration.contract.RequestValidationPasswordContract
-import com.example.registration.contract.ValidationNumberPhoneContract
-import com.example.registration.repository.RequestValidationPasswordRepository
-import com.example.registration.repository.ValidationNumberPhoneRepository
-import com.example.registration.usecase.validation.request.ValidationNumberPhone
-import com.example.registration.usecase.validation.request.ValidationPasswordImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -46,23 +39,18 @@ object CatalogModule {
         return ImageUseCase(getDataTransformerRepository)
     }
 
-    @Provides
+    /*@Provides
     fun provideValidationPhoneNumber(
         validationNumberPhoneRepository: ValidationNumberPhoneRepository
     ): ValidationNumberPhoneContract {
         return ValidationNumberPhone(validationNumberPhoneRepository)
-    }
+    }*/
 
 
-    @Provides
-    fun provideRequestValidationPassword(): RequestValidationPasswordRepository {
-        return RequestValidationPasswordFactory.create()
-    }
-
-    @Provides
+   /* @Provides
     fun provideValidationPassword(
         requestValidationPasswordRepository: RequestValidationPasswordRepository
     ): RequestValidationPasswordContract{
         return ValidationPasswordImpl(requestValidationPasswordRepository)
-    }
+    }*/
 }

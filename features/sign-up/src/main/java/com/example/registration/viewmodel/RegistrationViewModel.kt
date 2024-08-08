@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.registration.contract.ContractFormatPhoneNumber
 import com.example.registration.contract.RegistrationContract
-import com.example.registration.contract.ValidationNumberPhoneContract
 import com.example.registration.validation.DataValidation
 import com.example.registration.validation.PasswordValidationContract
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +18,6 @@ class RegistrationViewModel @Inject constructor(
     private val dataValidation: DataValidation,
     private val registrationContract: RegistrationContract,
     private val passwordValidation: PasswordValidationContract,
-    private val validationNumberPhoneContract: ValidationNumberPhoneContract,
     private val contractFormatPhoneNumber: ContractFormatPhoneNumber
 ) : ViewModel() {
 
@@ -38,7 +36,7 @@ class RegistrationViewModel @Inject constructor(
 
 
     fun savingData() {
-        viewModelScope.launch {
+        /*viewModelScope.launch {
             when (checkingPhoneNumberMatches(_accountDetails.value?.get(2) ?: "")
             ) {
                 true -> {
@@ -55,16 +53,16 @@ class RegistrationViewModel @Inject constructor(
                     listenerNumberPhone.value = false
                 }
             }
-        }
+        }*/
     }
 
     fun setFormatNumber(input: CharSequence?): CharSequence {
         return contractFormatPhoneNumber.formatPhoneNumber(input)
     }
 
-    private suspend fun checkingPhoneNumberMatches(number: String): Boolean {
+    /*private suspend fun checkingPhoneNumberMatches(number: String): Boolean {
         return validationNumberPhoneContract.numberCheck(number)
-    }
+    }*/
 
 
     fun nameValidationSymbols(name: String): MutableList<Char> {

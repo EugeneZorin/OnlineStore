@@ -4,7 +4,7 @@ data class DatabaseEntity(
 
     val name: String = "name",
     val surname: String = "surname",
-    val numberPhone: String = "numberPhone",
+    val email: String = "email",
     val password: String = "password",
 
 

@@ -3,9 +3,17 @@ package com.example.data.accounts
 import android.util.Log
 import com.example.data.entity.DatabaseEntity
 import com.example.registration.repository.RegistrationRepository
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.database
+import kotlinx.coroutines.suspendCancellableCoroutine
 import org.mindrot.jbcrypt.BCrypt
 import javax.inject.Inject
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 
 class Registration @Inject constructor() : RegistrationRepository {
 
@@ -18,26 +26,58 @@ class Registration @Inject constructor() : RegistrationRepository {
         password: String
     ) {
 
+        val auth: FirebaseAuth = Firebase.auth
+        val database: DatabaseReference = Firebase.database.reference
         val hashedPassword = hashPassword(password)
-        val databaseReference = FirebaseDatabase.getInstance().getReference(databaseEntity.accountDatabase)
-
-        val userId = databaseReference.push().key ?: return
+        val email = transformNumberToEmail(numberPhone)
 
         val user = mapOf(
             databaseEntity.name to name,
             databaseEntity.surname to surname,
-            databaseEntity.numberPhone to numberPhone,
+            databaseEntity.email to email,
             databaseEntity.password to hashedPassword
         )
 
-        databaseReference.child(userId).setValue(user)
-            .addOnSuccessListener {
-                Log.d("Registration: ","successfully")
+        try {
+            createUser(auth, email, hashedPassword)
+            val currentUser = auth.currentUser
+            currentUser?.let {
+                setUserData(database, it.uid, user)
             }
-            .addOnFailureListener {
-                Log.d("Registration: ","failure")
-            }
+        } catch (e: Exception) {
+            Log.d("ERROR CREATE USER: ", "${e.message}")
+        }
 
+
+    }
+
+    private suspend fun createUser(auth: FirebaseAuth, email: String, password: String) {
+        suspendCancellableCoroutine { continuation ->
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnSuccessListener {
+                    continuation.resume(Unit)
+                }
+                .addOnFailureListener { exception ->
+                    continuation.resumeWithException(exception)
+                }
+        }
+    }
+
+    private suspend fun setUserData(database: DatabaseReference, uid: String, user: Map<String, String>) {
+        suspendCancellableCoroutine { continuation ->
+            database.child("user").child(uid).setValue(user)
+                .addOnSuccessListener {
+                    continuation.resume(Unit)
+                }
+                .addOnFailureListener { exception ->
+                    continuation.resumeWithException(exception)
+                }
+
+        }
+    }
+
+    private fun transformNumberToEmail(numberPhone: String): String {
+        return "$numberPhone@number.com".replace(" ", "")
     }
 
     private fun hashPassword(password: String): String {

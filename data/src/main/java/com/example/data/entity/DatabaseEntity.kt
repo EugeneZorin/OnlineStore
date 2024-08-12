@@ -12,5 +12,12 @@ data class DatabaseEntity(
 
     val itemDatabase: String = "items",
 
-    val imageDatabase: String = "imageDatabase"
+    val imageDatabase: String = "imageDatabase",
+
+    // Create an account
+    val errorCreateUser: String = "ERROR_CREATE_USER",
+    val createAccounts: String = "create_user_accounts",
+    val setDataAccounts: String = "set_data_user",
+
+    val databaseAccounts: String = "users"
 )

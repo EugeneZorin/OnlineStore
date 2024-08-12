@@ -7,13 +7,11 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.database
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.mindrot.jbcrypt.BCrypt
 import javax.inject.Inject
 import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
 
 class Registration @Inject constructor() : RegistrationRepository {
 
@@ -24,7 +22,7 @@ class Registration @Inject constructor() : RegistrationRepository {
         surname: String,
         numberPhone: String,
         password: String
-    ) {
+    ): String? {
 
         val auth: FirebaseAuth = Firebase.auth
         val database: DatabaseReference = Firebase.database.reference
@@ -38,39 +36,40 @@ class Registration @Inject constructor() : RegistrationRepository {
             databaseEntity.password to hashedPassword
         )
 
-        try {
+        return try {
             createUser(auth, email, hashedPassword)
             val currentUser = auth.currentUser
             currentUser?.let {
                 setUserData(database, it.uid, user)
             }
         } catch (e: Exception) {
-            Log.d("ERROR CREATE USER: ", "${e.message}")
+            Log.d(databaseEntity.errorCreateUser, "${e.message}")
+            databaseEntity.errorCreateUser
         }
 
 
     }
 
-    private suspend fun createUser(auth: FirebaseAuth, email: String, password: String) {
-        suspendCancellableCoroutine { continuation ->
+    private suspend fun createUser(auth: FirebaseAuth, email: String, password: String): String {
+        return suspendCancellableCoroutine { continuation ->
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
-                    continuation.resume(Unit)
+                    continuation.resume(databaseEntity.createAccounts)
                 }
                 .addOnFailureListener { exception ->
-                    continuation.resumeWithException(exception)
+                    continuation.resume( exception.message.toString() )
                 }
         }
     }
 
-    private suspend fun setUserData(database: DatabaseReference, uid: String, user: Map<String, String>) {
-        suspendCancellableCoroutine { continuation ->
-            database.child("user").child(uid).setValue(user)
+    private suspend fun setUserData(database: DatabaseReference, uid: String, user: Map<String, String>): String {
+        return suspendCancellableCoroutine { continuation ->
+            database.child(databaseEntity.databaseAccounts).child(uid).setValue(user)
                 .addOnSuccessListener {
-                    continuation.resume(Unit)
+                    continuation.resume(databaseEntity.setDataAccounts)
                 }
                 .addOnFailureListener { exception ->
-                    continuation.resumeWithException(exception)
+                    continuation.resume(exception.message.toString())
                 }
 
         }

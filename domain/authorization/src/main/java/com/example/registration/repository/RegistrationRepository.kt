@@ -6,5 +6,5 @@ interface RegistrationRepository {
         surname: String,
         numberPhone: String,
         password: String
-    )
+    ): String?
 }

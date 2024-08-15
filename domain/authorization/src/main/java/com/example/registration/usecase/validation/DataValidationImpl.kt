@@ -1,4 +1,4 @@
-package com.example.registration.usecase.validation.standart
+package com.example.registration.usecase.validation
 
 import com.example.registration.validation.DataValidation
 

@@ -5,8 +5,8 @@ import com.example.registration.contract.RegistrationContract
 import com.example.registration.repository.RegistrationRepository
 import com.example.registration.usecase.RegistrationFactory
 import com.example.registration.usecase.SetFormatPhoneNumberFactory
-import com.example.registration.usecase.validation.standart.DataValidationImpl
-import com.example.registration.usecase.validation.standart.PasswordValidationImpl
+import com.example.registration.usecase.validation.DataValidationImpl
+import com.example.registration.usecase.validation.PasswordValidationImpl
 import com.example.registration.validation.DataValidation
 import com.example.registration.validation.PasswordValidationContract
 import dagger.Module

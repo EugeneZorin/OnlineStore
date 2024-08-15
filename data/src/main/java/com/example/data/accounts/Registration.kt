@@ -37,6 +37,7 @@ class Registration @Inject constructor() : RegistrationRepository {
         )
 
         return try {
+
             createUser(auth, email, hashedPassword)
             val currentUser = auth.currentUser
             currentUser?.let {
@@ -54,10 +55,10 @@ class Registration @Inject constructor() : RegistrationRepository {
         return suspendCancellableCoroutine { continuation ->
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
-                    continuation.resume(databaseEntity.createAccounts)
+                    continuation.resume(it.user?.uid.toString())
                 }
-                .addOnFailureListener { exception ->
-                    continuation.resume( exception.message.toString() )
+                .addOnFailureListener {
+                    continuation.resume(it.message.toString())
                 }
         }
     }

@@ -3,15 +3,10 @@ package com.example.registration.activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.text.style.UnderlineSpan
-import android.util.Log
-import android.view.View
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
-import com.example.registration.R
 import com.example.registration.activity.view.PhoneNumberVerificationSupervisor
 import com.example.registration.activity.view.SetupPhoneNumberEditText
 import com.example.registration.activity.view.error.UpdateErrorBuilder

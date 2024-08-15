@@ -8,18 +8,25 @@ private class RegistrationImpl(
     private val registrationRepository: RegistrationRepository
 ) : RegistrationContract {
 
-    private val registrationResultNamesEntity: RegistrationResultNamesEntity = RegistrationResultNamesEntity()
+    private val registrationResultNamesEntity: RegistrationResultNamesEntity =
+        RegistrationResultNamesEntity()
 
     override suspend fun registrationImpl(
         name: String,
         surname: String,
         numberPhone: String,
         password: String
-    ): Boolean {
+    ): String {
         val result = registrationRepository.registration(name, surname, numberPhone, password)
+        println(result)
         return when (result) {
-            registrationResultNamesEntity.errorCreateUser -> { false }
-            else -> { true }
+            registrationResultNamesEntity.errorCreateUser -> {
+                registrationResultNamesEntity.numberErrorCreateUser
+            }
+
+            else -> {
+                registrationResultNamesEntity.numberCreateAccount
+            }
         }
     }
 

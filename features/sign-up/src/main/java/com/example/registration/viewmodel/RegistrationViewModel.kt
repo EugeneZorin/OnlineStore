@@ -37,12 +37,18 @@ class RegistrationViewModel @Inject constructor(
 
     fun savingData() {
         viewModelScope.launch {
-            registrationContract.registrationImpl(
+            val result = registrationContract.registrationImpl(
                 _accountDetails.value!![0],
                 _accountDetails.value!![1],
                 _accountDetails.value!![2],
                 _accountDetails.value!![3]
             )
+
+            when (result) {
+                "ERROR_NUMBER_PHONE" -> {
+                    _listenerNumberPhone.value = false
+                }
+            }
         }
     }
 

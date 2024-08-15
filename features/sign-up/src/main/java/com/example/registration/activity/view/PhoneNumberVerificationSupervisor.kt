@@ -24,7 +24,7 @@ class PhoneNumberVerificationSupervisor {
     ) {
         registrationViewModel.listenerNumberPhone.observe(context as LifecycleOwner) { result ->
 
-            if (!result && binding.editPhoneNumber.text.length == 17 ) {
+            if (result && binding.editPhoneNumber.text.length == 17 ) {
                 CoroutineScope(Dispatchers.Main).launch {
                     with(binding) {
                         errorMessageNumberPhone.visibility = View.VISIBLE

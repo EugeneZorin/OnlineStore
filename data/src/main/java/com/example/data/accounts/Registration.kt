@@ -37,7 +37,6 @@ class Registration @Inject constructor() : RegistrationRepository {
         )
 
         return try {
-
             createUser(auth, email, hashedPassword)
             val currentUser = auth.currentUser
             currentUser?.let {
@@ -58,6 +57,7 @@ class Registration @Inject constructor() : RegistrationRepository {
                     continuation.resume(it.user?.uid.toString())
                 }
                 .addOnFailureListener {
+                    Log.d("asdasd", (it.message.toString()))
                     continuation.resume(it.message.toString())
                 }
         }

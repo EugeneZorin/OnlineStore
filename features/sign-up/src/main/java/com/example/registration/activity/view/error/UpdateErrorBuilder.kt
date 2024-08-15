@@ -17,6 +17,7 @@ class UpdateErrorBuilder(
 
 ) {
     class Builder {
+
         private lateinit var editText: EditText
         private lateinit var errorTextView: TextView
         private var editable: Editable? = null

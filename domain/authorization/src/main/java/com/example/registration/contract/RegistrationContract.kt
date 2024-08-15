@@ -6,5 +6,5 @@ interface RegistrationContract {
         surname: String,
         numberPhone: String,
         password: String
-    ): Boolean
+    ): String?
 }

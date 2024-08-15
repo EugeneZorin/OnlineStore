@@ -6,12 +6,8 @@ data class DatabaseEntity(
     val surname: String = "surname",
     val email: String = "email",
     val password: String = "password",
-
-
     val accountDatabase: String = "users",
-
     val itemDatabase: String = "items",
-
     val imageDatabase: String = "imageDatabase",
 
     // Create an account

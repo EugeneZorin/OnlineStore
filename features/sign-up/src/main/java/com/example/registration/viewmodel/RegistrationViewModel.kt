@@ -36,33 +36,20 @@ class RegistrationViewModel @Inject constructor(
 
 
     fun savingData() {
-        /*viewModelScope.launch {
-            when (checkingPhoneNumberMatches(_accountDetails.value?.get(2) ?: "")
-            ) {
-                true -> {
-                    listenerNumberPhone.value = true
-                    registrationContract.registrationImpl(
-                        _accountDetails.value!![0],
-                        _accountDetails.value!![1],
-                        _accountDetails.value!![2],
-                        _accountDetails.value!![3]
-                    )
-                }
-
-                false -> {
-                    listenerNumberPhone.value = false
-                }
-            }
-        }*/
+        viewModelScope.launch {
+            registrationContract.registrationImpl(
+                _accountDetails.value!![0],
+                _accountDetails.value!![1],
+                _accountDetails.value!![2],
+                _accountDetails.value!![3]
+            )
+        }
     }
 
     fun setFormatNumber(input: CharSequence?): CharSequence {
         return contractFormatPhoneNumber.formatPhoneNumber(input)
     }
 
-    /*private suspend fun checkingPhoneNumberMatches(number: String): Boolean {
-        return validationNumberPhoneContract.numberCheck(number)
-    }*/
 
 
     fun nameValidationSymbols(name: String): MutableList<Char> {

@@ -12,13 +12,13 @@ private class RegistrationImpl(
         surname: String,
         numberPhone: String,
         password: String
-    ): Boolean {
+    ): String? {
         return try {
             registrationRepository.registration(name, surname, numberPhone, password)
-            true
+
         } catch (e: Exception) {
             handleRegistrationError(e)
-            false
+            e.message
         }
     }
 

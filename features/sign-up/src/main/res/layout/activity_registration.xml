@@ -9,7 +9,7 @@
 
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/editPassword"
         android:layout_width="385dp"
         android:layout_height="56dp"
         android:layout_marginTop="20dp"
@@ -103,7 +103,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editSurname" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/singUpButton"
         android:layout_width="385dp"
         android:layout_height="56dp"
         android:backgroundTint="@color/pale_pink"
@@ -115,7 +115,7 @@
         app:layout_constraintBottom_toTopOf="@+id/termsAgreement"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/editPassword"
         app:layout_constraintVertical_bias="0.644" />
 
     <TextView
@@ -188,13 +188,14 @@
         android:alpha="0"
         android:background="@drawable/rounded_edittext_bg"
         android:contentDescription="@drawable/baseline_clear_24"
-        android:textAlignment="center"
 
-        app:layout_constraintBottom_toBottomOf="@+id/password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.924"
-        app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toTopOf="@+id/password"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/editPassword"
+        app:layout_constraintEnd_toEndOf="@+id/editPassword"
+        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintStart_toStartOf="@+id/editPassword"
+        app:layout_constraintTop_toBottomOf="@+id/errorMessageNumberPhone"
+        app:layout_constraintVertical_bias="0.59"
         app:srcCompat="@drawable/baseline_clear_24" />
 
     <TextView
@@ -237,9 +238,9 @@
         android:textColor="@color/red"
         android:layout_marginStart="8dp"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/password"
-        app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintEnd_toEndOf="@+id/editPassword"
+        app:layout_constraintStart_toStartOf="@+id/editPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editPassword" />
 
 
 

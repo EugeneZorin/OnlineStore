@@ -1,4 +1,4 @@
-package com.example.registration.view
+package com.example.registration.view.error
 
 import android.content.Context
 import android.view.View

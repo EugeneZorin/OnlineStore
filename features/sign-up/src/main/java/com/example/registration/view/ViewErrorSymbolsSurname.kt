@@ -18,7 +18,7 @@ class ViewErrorSymbolsSurname {
             with(binding) {
                 if (value.isNotEmpty()) {
                     errorMessageSurname.visibility = View.VISIBLE
-                    errorMessageSurname.text = context.getText(R.string.error_invalid_char)
+                    errorMessageSurname.text = context.getString(R.string.error_invalid_char, value[0])
                 } else {
                     errorMessageSurname.visibility = View.INVISIBLE
                 }

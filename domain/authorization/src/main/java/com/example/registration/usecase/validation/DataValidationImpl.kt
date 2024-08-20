@@ -6,27 +6,7 @@ class DataValidationImpl: DataValidation {
 
     private var regex = '\u0400'..'\u04FF'
 
-    override fun validationNameSymbols(name: String): MutableList<Char> {
-        return try {
-            val result = mutableListOf<Char>()
-            for (char in name) {
-                when (char in regex){
-                    false -> result.add(char)
-                    else -> {}
-                }
-            }
-            return result
-
-        } catch (e : Exception){
-            println("Error in DataValidation (validationName): ${e.message}")
-            mutableListOf()
-        }
-    }
-
-
-
-
-    override fun validationSurnameSymbols(surname: String): MutableList<Char> {
+    override fun validationNameSurname(surname: String): MutableList<Char> {
         return try {
             val result = mutableListOf<Char>()
             for (char in surname) {
@@ -38,7 +18,7 @@ class DataValidationImpl: DataValidation {
             return result
 
         } catch (e : Exception){
-            println("Error in DataValidation (validationSurname): ${e.message}")
+            println("Error in DataValidation (validationNameSurname): ${e.message}")
             mutableListOf()
         }
     }

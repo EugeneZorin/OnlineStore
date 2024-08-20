@@ -20,17 +20,18 @@ class ViewModelValidations @Inject constructor(
     val listenerSymbolsName: MutableLiveData<List<Char>> = _listenerSymbolsName
 
     private val _listenerSymbolsSurname: MutableLiveData<List<Char>> = MutableLiveData<List<Char>>()
-    val listenerSymbolsSurname: MutableLiveData<List<Char>> = _listenerSymbolsName
+    val listenerSymbolsSurname: MutableLiveData<List<Char>> = _listenerSymbolsSurname
 
-    fun validationSurname(surname: String) {
+
+    fun validationName(name: String){
         viewModelScope.launch {
-            _listenerSymbolsSurname.value = validationImpl.validationSurnameSymbols(surname)
+            _listenerSymbolsName.value = validationImpl.validationNameSurname(name)
         }
     }
 
-    fun validationName(name: String) {
+    fun validationSurname(surname: String) {
         viewModelScope.launch {
-            _listenerSymbolsName.value = validationImpl.validationNameSymbols(name)
+            _listenerSymbolsSurname.value = validationImpl.validationNameSurname(surname)
         }
     }
 }

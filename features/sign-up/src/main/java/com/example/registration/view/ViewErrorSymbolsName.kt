@@ -3,6 +3,7 @@ package com.example.registration.view
 import android.content.Context
 import android.view.View
 import androidx.lifecycle.LifecycleOwner
+import com.example.core.R
 import com.example.registration.databinding.ActivityRegistrationBinding
 import com.example.registration.viewmodel.ViewModelValidations
 
@@ -13,8 +14,16 @@ class ViewErrorSymbolsName{
         binding: ActivityRegistrationBinding,
         context: Context
     ){
-        viewModelValidations.listenerSymbolsName.observe(context as LifecycleOwner) {
-            TODO()
+        viewModelValidations.listenerSymbolsName.observe(context as LifecycleOwner) { value ->
+            with(binding) {
+                if (value.isNotEmpty()) {
+                    errorMessageName.visibility = View.VISIBLE
+                    errorMessageName.text = context.getText(R.string.error_invalid_char, )
+                } else {
+                    errorMessageName.visibility = View.INVISIBLE
+                }
+            }
+
         }
     }
 

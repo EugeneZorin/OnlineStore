@@ -10,7 +10,7 @@ class PasswordValidationImpl: PasswordValidationContract {
     }
 
     override suspend fun validationPasswordSecurity(password: String): Boolean {
-        return password.length >= 10 || password.contains("[a-zA-Z]")
+        return password.length >= 10 || password.contains("[a-zA-Z]") || password.isEmpty()
     }
 
 

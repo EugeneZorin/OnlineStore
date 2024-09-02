@@ -7,8 +7,25 @@ import com.example.core.R
 import com.example.registration.databinding.ActivityRegistrationBinding
 import com.example.registration.viewmodel.ViewModelValidations
 
-class ViewErrorSymbolsSurname {
+class ViewErrorSymbolsNameSurname{
 
+    fun viewErrorSymbolsName(
+        viewModelValidations: ViewModelValidations,
+        binding: ActivityRegistrationBinding,
+        context: Context
+    ){
+        viewModelValidations.listenerSymbolsName.observe(context as LifecycleOwner) { value ->
+            with(binding) {
+                if (value.isNotEmpty()) {
+                    errorMessageName.visibility = View.VISIBLE
+                    errorMessageName.text = context.getString(R.string.error_invalid_char, value[0])
+                } else {
+                    errorMessageName.visibility = View.INVISIBLE
+                }
+            }
+
+        }
+    }
     fun viewErrorSymbolsSurname(
         viewModelValidations: ViewModelValidations,
         binding: ActivityRegistrationBinding,
@@ -25,4 +42,6 @@ class ViewErrorSymbolsSurname {
             }
         }
     }
+
+
 }

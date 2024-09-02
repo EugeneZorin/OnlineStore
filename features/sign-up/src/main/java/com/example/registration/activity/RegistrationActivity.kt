@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.registration.databinding.ActivityRegistrationBinding
-import com.example.registration.view.error.ViewErrorSymbolsName
-import com.example.registration.view.error.ViewErrorSymbolsSurname
+import com.example.registration.view.error.ViewErrorPassword
+import com.example.registration.view.error.ViewErrorSymbolsNameSurname
 import com.example.registration.viewmodel.ViewModelSetFormat
 import com.example.registration.viewmodel.ViewModelValidations
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,8 +21,8 @@ class RegistrationActivity : AppCompatActivity() {
     private val viewModelValidations: ViewModelValidations by viewModels()
     private val viewModelSetFormat: ViewModelSetFormat by viewModels()
 
-    private val viewErrorSymbolsName: ViewErrorSymbolsName = ViewErrorSymbolsName()
-    private val viewErrorSymbolsSurname: ViewErrorSymbolsSurname = ViewErrorSymbolsSurname()
+    private val viewErrorSymbolsNameSurname: ViewErrorSymbolsNameSurname = ViewErrorSymbolsNameSurname()
+    private val viewErrorPassword: ViewErrorPassword = ViewErrorPassword()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +32,10 @@ class RegistrationActivity : AppCompatActivity() {
 
         setup()
 
-        viewErrorSymbolsName.viewErrorSymbolsName(viewModelValidations, binding, this)
-        viewErrorSymbolsSurname.viewErrorSymbolsSurname(viewModelValidations, binding, this)
+        viewErrorSymbolsNameSurname.viewErrorSymbolsName(viewModelValidations, binding, this)
+        viewErrorSymbolsNameSurname.viewErrorSymbolsSurname(viewModelValidations, binding, this)
+        viewErrorPassword.viewErrorSecurity(viewModelValidations, binding, this)
+        viewErrorPassword.viewErrorCharacter(viewModelValidations, binding, this)
 
     }
 
@@ -51,6 +53,17 @@ class RegistrationActivity : AppCompatActivity() {
                 setFormatNumberPhone = {viewModelSetFormat.setFormatNumberPhone(it) },
                 viewNumberPhone = editPhoneNumber,
                 editNumberPhone = editPhoneNumber
+            )
+
+            editPassword.addListenerTextNameSurname(
+                validatorCharacter = {
+                    viewModelValidations.validationPasswordSecurity(it)
+                }
+            )
+            editPassword.addListenerTextNameSurname(
+                validatorCharacter = {
+                    viewModelValidations.validationPasswordCharacter(it)
+                }
             )
         }
     }

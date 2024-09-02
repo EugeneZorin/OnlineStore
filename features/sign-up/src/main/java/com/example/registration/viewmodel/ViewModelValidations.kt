@@ -45,7 +45,7 @@ class ViewModelValidations @Inject constructor(
 
     fun validationPasswordCharacter(password: String) {
         viewModelScope.launch {
-            _listenerPasswordCharacter.value = passwordValidation.validationPasswordSecurity(password)
+            _listenerPasswordCharacter.value = passwordValidation.validationPasswordCharacter(password)
         }
     }
 

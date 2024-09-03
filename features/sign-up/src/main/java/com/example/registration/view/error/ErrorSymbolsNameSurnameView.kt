@@ -5,15 +5,17 @@ import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import com.example.core.R
 import com.example.registration.databinding.ActivityRegistrationBinding
+import com.example.registration.view.error.contract.ErrorSymbolsNameSurname
 import com.example.registration.viewmodel.ViewModelValidations
+import javax.inject.Inject
 
-class ViewErrorSymbolsNameSurname{
+class ErrorSymbolsNameSurnameView @Inject constructor() : ErrorSymbolsNameSurname {
 
-    fun viewErrorSymbolsName(
+    override fun viewErrorSymbolsName(
         viewModelValidations: ViewModelValidations,
         binding: ActivityRegistrationBinding,
         context: Context
-    ){
+    ) {
         viewModelValidations.listenerSymbolsName.observe(context as LifecycleOwner) { value ->
             with(binding) {
                 if (value.isNotEmpty()) {
@@ -26,7 +28,8 @@ class ViewErrorSymbolsNameSurname{
 
         }
     }
-    fun viewErrorSymbolsSurname(
+
+    override fun viewErrorSymbolsSurname(
         viewModelValidations: ViewModelValidations,
         binding: ActivityRegistrationBinding,
         context: Context
@@ -35,7 +38,8 @@ class ViewErrorSymbolsNameSurname{
             with(binding) {
                 if (value.isNotEmpty()) {
                     errorMessageSurname.visibility = View.VISIBLE
-                    errorMessageSurname.text = context.getString(R.string.error_invalid_char, value[0])
+                    errorMessageSurname.text =
+                        context.getString(R.string.error_invalid_char, value[0])
                 } else {
                     errorMessageSurname.visibility = View.INVISIBLE
                 }

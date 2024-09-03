@@ -8,11 +8,12 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.registration.databinding.ActivityRegistrationBinding
-import com.example.registration.view.error.ViewErrorPassword
-import com.example.registration.view.error.ViewErrorSymbolsNameSurname
+import com.example.registration.view.error.contract.ErrorPassword
+import com.example.registration.view.error.contract.ErrorSymbolsNameSurname
 import com.example.registration.viewmodel.ViewModelSetFormat
 import com.example.registration.viewmodel.ViewModelValidations
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class RegistrationActivity : AppCompatActivity() {
@@ -21,8 +22,12 @@ class RegistrationActivity : AppCompatActivity() {
     private val viewModelValidations: ViewModelValidations by viewModels()
     private val viewModelSetFormat: ViewModelSetFormat by viewModels()
 
-    private val viewErrorSymbolsNameSurname: ViewErrorSymbolsNameSurname = ViewErrorSymbolsNameSurname()
-    private val viewErrorPassword: ViewErrorPassword = ViewErrorPassword()
+    @Inject
+    lateinit var errorSymbolsNameSurname: ErrorSymbolsNameSurname
+
+    @Inject
+    lateinit var errorPassword: ErrorPassword
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,20 +37,20 @@ class RegistrationActivity : AppCompatActivity() {
 
         setup()
 
-        viewErrorSymbolsNameSurname.viewErrorSymbolsName(viewModelValidations, binding, this)
-        viewErrorSymbolsNameSurname.viewErrorSymbolsSurname(viewModelValidations, binding, this)
-        viewErrorPassword.viewErrorSecurity(viewModelValidations, binding, this)
-        viewErrorPassword.viewErrorCharacter(viewModelValidations, binding, this)
+        errorSymbolsNameSurname.viewErrorSymbolsName(viewModelValidations, binding, this)
+        errorSymbolsNameSurname.viewErrorSymbolsSurname(viewModelValidations, binding, this)
+        errorPassword.errorPasswordHolder(viewModelValidations, binding, this)
+
 
     }
 
     private fun setup() {
         with(binding) {
-            editName.addListenerTextNameSurname(
+            editName.addListenerValidation(
                 validatorCharacter = { viewModelValidations.validationName(it) }
             )
 
-            editSurname.addListenerTextNameSurname(
+            editSurname.addListenerValidation(
                 validatorCharacter = { viewModelValidations.validationSurname(it) }
             )
 
@@ -55,12 +60,12 @@ class RegistrationActivity : AppCompatActivity() {
                 editNumberPhone = editPhoneNumber
             )
 
-            editPassword.addListenerTextNameSurname(
+            editPassword.addListenerValidation(
                 validatorCharacter = {
                     viewModelValidations.validationPasswordSecurity(it)
                 }
             )
-            editPassword.addListenerTextNameSurname(
+            editPassword.addListenerValidation(
                 validatorCharacter = {
                     viewModelValidations.validationPasswordCharacter(it)
                 }
@@ -69,7 +74,7 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
 
-    private fun EditText.addListenerTextNameSurname(
+    private fun EditText.addListenerValidation(
         validatorCharacter: (String) -> Unit
     ) {
         this.addTextChangedListener(object : TextWatcher {
@@ -104,6 +109,7 @@ class RegistrationActivity : AppCompatActivity() {
 
         })
     }
+
 }
 
 

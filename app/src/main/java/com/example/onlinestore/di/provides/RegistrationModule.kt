@@ -9,6 +9,11 @@ import com.example.registration.usecase.validation.DataValidationImpl
 import com.example.registration.usecase.validation.PasswordValidationImpl
 import com.example.registration.validation.DataValidation
 import com.example.registration.validation.PasswordValidationContract
+import com.example.registration.view.error.ErrorPasswordView
+import com.example.registration.view.error.ErrorSymbolsNameSurnameView
+import com.example.registration.view.error.contract.ErrorPassword
+import com.example.registration.view.error.contract.ErrorSymbolsNameSurname
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,7 +50,15 @@ object RegistrationModule{
         return PasswordValidationImpl()
     }
 
+    @Provides
+    fun providesErrorPasswordView(): ErrorPassword {
+        return ErrorPasswordView()
+    }
 
+    @Provides
+    fun providesErrorSymbolsNameSurnameView(): ErrorSymbolsNameSurname {
+        return ErrorSymbolsNameSurnameView()
+    }
 
 }
 

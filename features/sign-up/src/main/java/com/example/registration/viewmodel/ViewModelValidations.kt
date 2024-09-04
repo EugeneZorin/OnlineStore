@@ -1,5 +1,7 @@
 package com.example.registration.viewmodel
 
+import android.util.Log
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -31,9 +33,30 @@ class ViewModelValidations @Inject constructor(
     private val _listenerPasswordSecurity: MutableLiveData<Boolean> = MutableLiveData()
     val listenerPasswordSecurity: MutableLiveData<Boolean> = _listenerPasswordSecurity
 
-    fun validationName(name: String){
+    private val _listenerFieldCheck: MediatorLiveData<Boolean> = MediatorLiveData(false)
+    var listenerFieldCheck: MutableLiveData<Boolean> = _listenerFieldCheck
+
+    private fun mediator(){
+        val nameValid = _listenerSymbolsName.value?.isEmpty() ?: true
+        val surnameValid = _listenerSymbolsSurname.value?.isEmpty() ?: true
+        val passwordCharacterValid = _listenerPasswordCharacter.value == true
+        val passwordSecurityValid = _listenerPasswordSecurity.value == true
+
+        _listenerFieldCheck.value = nameValid && surnameValid && passwordCharacterValid && passwordSecurityValid
+    }
+
+    init {
+        _listenerFieldCheck.addSource(_listenerSymbolsName) {mediator()}
+        _listenerFieldCheck.addSource(_listenerSymbolsSurname) {mediator()}
+        _listenerFieldCheck.addSource(_listenerPasswordCharacter) {mediator()}
+        _listenerFieldCheck.addSource(_listenerPasswordSecurity) {mediator()}
+    }
+
+
+    fun validationName(name: String) {
         viewModelScope.launch {
             _listenerSymbolsName.value = dataValidation.validationNameSurname(name)
+
         }
     }
 
@@ -45,13 +68,20 @@ class ViewModelValidations @Inject constructor(
 
     fun validationPasswordCharacter(password: String) {
         viewModelScope.launch {
-            _listenerPasswordCharacter.value = passwordValidation.validationPasswordCharacter(password)
+            _listenerPasswordCharacter.value =
+                passwordValidation.validationPasswordCharacter(password)
         }
     }
 
     fun validationPasswordSecurity(password: String) {
         viewModelScope.launch {
-            _listenerPasswordSecurity.value = passwordValidation.validationPasswordSecurity(password)
+            _listenerPasswordSecurity.value =
+                passwordValidation.validationPasswordSecurity(password)
         }
     }
+    init {
+        _listenerFieldCheck.value = _listenerSymbolsName.value != null || _listenerSymbolsSurname.value != null || _listenerPasswordSecurity.value == true || _listenerPasswordCharacter.value == true
+
+    }
+
 }

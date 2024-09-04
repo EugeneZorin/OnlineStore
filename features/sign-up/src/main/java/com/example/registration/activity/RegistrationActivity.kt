@@ -1,6 +1,7 @@
 package com.example.registration.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.registration.databinding.ActivityRegistrationBinding
@@ -36,6 +37,9 @@ class RegistrationActivity : AppCompatActivity() {
 
         setup()
 
+        viewModelValidations.listenerFieldCheck.observe(this) {
+            Log.d("dasd", "$it")
+        }
         errorSymbolsNameSurname.viewErrorSymbolsName(viewModelValidations, binding, this)
         errorSymbolsNameSurname.viewErrorSymbolsSurname(viewModelValidations, binding, this)
         errorPassword.errorPasswordHolder(viewModelValidations, binding, this)
@@ -43,6 +47,9 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     private fun setup() {
+
+
+
         with(binding) {
             editName.addTextChangedListener(
                 ValidationTextWatcher { viewModelValidations.validationName(it) }

@@ -1,12 +1,11 @@
-package com.example.registration.view.error
+package com.example.registration.error
 
 import android.content.Context
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import com.example.core.R
 import com.example.registration.databinding.ActivityRegistrationBinding
-import com.example.registration.view.error.contract.ErrorPassword
+import com.example.registration.error.contract.ErrorPassword
 import com.example.registration.viewmodel.ViewModelValidations
 import javax.inject.Inject
 

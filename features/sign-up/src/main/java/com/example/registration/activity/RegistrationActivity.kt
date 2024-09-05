@@ -1,12 +1,12 @@
 package com.example.registration.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.registration.button.FieldCheckContract
 import com.example.registration.databinding.ActivityRegistrationBinding
-import com.example.registration.view.error.contract.ErrorPassword
-import com.example.registration.view.error.contract.ErrorSymbolsNameSurname
+import com.example.registration.error.contract.ErrorPassword
+import com.example.registration.error.contract.ErrorSymbolsNameSurname
 import com.example.registration.viewmodel.ViewModelSetFormat
 import com.example.registration.viewmodel.ViewModelValidations
 import com.example.registration.watcher.PhoneNumberTextWatcher
@@ -28,6 +28,8 @@ class RegistrationActivity : AppCompatActivity() {
     @Inject
     lateinit var errorPassword: ErrorPassword
 
+    @Inject
+    lateinit var fieldCheck: FieldCheckContract
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +39,7 @@ class RegistrationActivity : AppCompatActivity() {
 
         setup()
 
-        viewModelValidations.listenerFieldCheck.observe(this) {
-            Log.d("dasd", "$it")
-        }
+        fieldCheck.fieldCheck( viewModelValidations, binding ,this)
         errorSymbolsNameSurname.viewErrorSymbolsName(viewModelValidations, binding, this)
         errorSymbolsNameSurname.viewErrorSymbolsSurname(viewModelValidations, binding, this)
         errorPassword.errorPasswordHolder(viewModelValidations, binding, this)
@@ -79,6 +79,8 @@ class RegistrationActivity : AppCompatActivity() {
             )
         }
     }
+
+
 
 }
 

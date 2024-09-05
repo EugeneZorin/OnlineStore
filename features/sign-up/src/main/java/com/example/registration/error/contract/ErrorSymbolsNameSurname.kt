@@ -1,4 +1,4 @@
-package com.example.registration.view.error.contract
+package com.example.registration.error.contract
 
 import android.content.Context
 import com.example.registration.databinding.ActivityRegistrationBinding

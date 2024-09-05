@@ -2,8 +2,6 @@ package com.example.onlinestore.di.binds
 
 import com.example.data.accounts.Registration
 import com.example.registration.repository.RegistrationRepository
-import com.example.registration.view.error.contract.ErrorPassword
-import com.example.registration.view.error.contract.ErrorSymbolsNameSurname
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

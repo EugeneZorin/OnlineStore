@@ -2,12 +2,12 @@ package com.example.registration.error.contract
 
 import android.content.Context
 import com.example.registration.databinding.ActivityRegistrationBinding
-import com.example.registration.viewmodel.ViewModelValidations
+import com.example.registration.viewmodel.ViewModel
 
 interface ErrorPassword {
 
     fun errorPasswordHolder(
-        viewModelValidations: ViewModelValidations,
+        viewModel: ViewModel,
         binding: ActivityRegistrationBinding,
         context: Context
     )

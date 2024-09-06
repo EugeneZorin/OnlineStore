@@ -6,29 +6,28 @@ import androidx.lifecycle.LifecycleOwner
 import com.example.core.R
 import com.example.registration.databinding.ActivityRegistrationBinding
 import com.example.registration.error.contract.ErrorPassword
-import com.example.registration.viewmodel.ViewModelValidations
+import com.example.registration.viewmodel.ViewModel
 import javax.inject.Inject
 
 class ErrorPasswordView @Inject constructor(): ErrorPassword {
 
     override fun errorPasswordHolder(
-        viewModelValidations: ViewModelValidations,
+        viewModel: ViewModel,
         binding: ActivityRegistrationBinding,
         context: Context
     ){
 
-        viewModelValidations.listenerPasswordSecurity.observe(context as LifecycleOwner) { securityValid ->
-            val characterValid = viewModelValidations.listenerPasswordCharacter.value ?: true
+        viewModel.listenerPasswordSecurity.observe(context as LifecycleOwner) { securityValid ->
+            val characterValid = viewModel.listenerPasswordCharacter.value ?: true
             updatePasswordError(binding, context, securityValid, characterValid)
         }
 
-        viewModelValidations.listenerPasswordCharacter.observe(context as LifecycleOwner) { characterValid ->
-            val securityValid = viewModelValidations.listenerPasswordSecurity.value ?: true
+        viewModel.listenerPasswordCharacter.observe(context as LifecycleOwner) { characterValid ->
+            val securityValid = viewModel.listenerPasswordSecurity.value ?: true
             updatePasswordError(binding, context, securityValid, characterValid)
         }
 
     }
-
 
     private fun updatePasswordError(
         binding: ActivityRegistrationBinding,

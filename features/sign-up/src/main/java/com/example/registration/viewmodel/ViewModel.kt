@@ -1,34 +1,37 @@
 package com.example.registration.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.registration.contract.ContractFormatPhoneNumber
-import com.example.registration.usecase.validation.DataValidationImpl
-import com.example.registration.usecase.validation.PasswordValidationImpl
 import com.example.registration.validation.DataValidation
 import com.example.registration.validation.PasswordValidationContract
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ViewModelValidations @Inject constructor(
+class ViewModel @Inject constructor(
     private val dataValidation: DataValidation,
-    private val passwordValidation: PasswordValidationContract
+    private val passwordValidation: PasswordValidationContract,
+    private val contractFormatPhoneNumber: ContractFormatPhoneNumber
 ) : ViewModel() {
 
+    // Check that all fields are entered correctly to open access to the registration button
+    private val _lengthsNumberPhone: MutableLiveData<Int> = MutableLiveData<Int>()
+
     private val _lengthsName: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
-    // temporarily
-    private val lengthsName: MutableLiveData<Boolean> = _lengthsName
+    val lengthsName: MutableLiveData<Boolean> = _lengthsName
 
     private val _lengthsSurname: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
-    // temporarily
-    private val lengthsSurname: MutableLiveData<Boolean> = _lengthsSurname
+    val lengthsSurname: MutableLiveData<Boolean> = _lengthsSurname
 
+    //
+    private val _listenerFieldCheck: MediatorLiveData<Boolean> = MediatorLiveData(false)
+    var listenerFieldCheck: MutableLiveData<Boolean> = _listenerFieldCheck
+
+    // Checking each individual element for correct input for further processing
     private val _listenerSymbolsName: MutableLiveData<List<Char>> = MutableLiveData<List<Char>>()
     val listenerSymbolsName: MutableLiveData<List<Char>> = _listenerSymbolsName
 
@@ -41,8 +44,7 @@ class ViewModelValidations @Inject constructor(
     private val _listenerPasswordSecurity: MutableLiveData<Boolean> = MutableLiveData()
     val listenerPasswordSecurity: MutableLiveData<Boolean> = _listenerPasswordSecurity
 
-    private val _listenerFieldCheck: MediatorLiveData<Boolean> = MediatorLiveData(false)
-    var listenerFieldCheck: MutableLiveData<Boolean> = _listenerFieldCheck
+
 
     private fun mediator() {
 
@@ -52,9 +54,10 @@ class ViewModelValidations @Inject constructor(
         val passwordSecurityValid = _listenerPasswordSecurity.value == true
         val lengthsName = _lengthsName.value == true
         val lengthsSurname = _lengthsSurname.value == true
+        val lengthsNumberPhone = _lengthsNumberPhone.value == (17)
 
         _listenerFieldCheck.value =
-            nameValid && surnameValid && passwordCharacterValid && passwordSecurityValid && lengthsName && lengthsSurname
+            nameValid && surnameValid && passwordCharacterValid && passwordSecurityValid && lengthsName && lengthsSurname && lengthsNumberPhone
     }
 
     init {
@@ -64,6 +67,7 @@ class ViewModelValidations @Inject constructor(
         _listenerFieldCheck.addSource(_listenerPasswordSecurity) { mediator() }
         _listenerFieldCheck.addSource(_lengthsName) { mediator() }
         _listenerFieldCheck.addSource(_lengthsSurname) { mediator() }
+        _listenerFieldCheck.addSource(_lengthsNumberPhone) { mediator() }
     }
 
 
@@ -96,5 +100,9 @@ class ViewModelValidations @Inject constructor(
         }
     }
 
+    fun setFormatNumberPhone(number: String): CharSequence {
+        _lengthsNumberPhone.value = number.length
+        return contractFormatPhoneNumber.formatPhoneNumber(number)
+    }
 
 }

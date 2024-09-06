@@ -5,10 +5,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.registration.button.FieldCheckContract
 import com.example.registration.databinding.ActivityRegistrationBinding
+import com.example.registration.error.ErrorNameSurnameView
 import com.example.registration.error.contract.ErrorPassword
-import com.example.registration.error.contract.ErrorSymbolsNameSurname
-import com.example.registration.viewmodel.ViewModelSetFormat
-import com.example.registration.viewmodel.ViewModelValidations
+import com.example.registration.viewmodel.ViewModel
 import com.example.registration.watcher.PhoneNumberTextWatcher
 import com.example.registration.watcher.ValidationTextWatcher
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,11 +18,10 @@ class RegistrationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegistrationBinding
 
-    private val viewModelValidations: ViewModelValidations by viewModels()
-    private val viewModelSetFormat: ViewModelSetFormat by viewModels()
+    private val viewModel: ViewModel by viewModels()
 
     @Inject
-    lateinit var errorSymbolsNameSurname: ErrorSymbolsNameSurname
+    lateinit var errorSymbolsNameSurname: ErrorNameSurnameView
 
     @Inject
     lateinit var errorPassword: ErrorPassword
@@ -39,29 +37,26 @@ class RegistrationActivity : AppCompatActivity() {
 
         setup()
 
-        fieldCheck.fieldCheck( viewModelValidations, binding ,this)
-        errorSymbolsNameSurname.viewErrorSymbolsName(viewModelValidations, binding, this)
-        errorSymbolsNameSurname.viewErrorSymbolsSurname(viewModelValidations, binding, this)
-        errorPassword.errorPasswordHolder(viewModelValidations, binding, this)
+        fieldCheck.fieldCheck( viewModel, binding ,this)
+        errorSymbolsNameSurname.errorNameSurnameHolder(viewModel, binding, this)
+        errorPassword.errorPasswordHolder(viewModel, binding, this)
 
     }
 
     private fun setup() {
 
-
-
         with(binding) {
             editName.addTextChangedListener(
-                ValidationTextWatcher { viewModelValidations.validationName(it) }
+                ValidationTextWatcher { viewModel.validationName(it) }
             )
 
             editSurname.addTextChangedListener(
-                ValidationTextWatcher { viewModelValidations.validationSurname(it) }
+                ValidationTextWatcher { viewModel.validationSurname(it) }
             )
 
             editPhoneNumber.addTextChangedListener(
                 PhoneNumberTextWatcher(
-                    setFormatNumberPhone = { viewModelSetFormat.setFormatNumberPhone(it) },
+                    setFormatNumberPhone = { viewModel.setFormatNumberPhone(it) },
                     viewNumberPhone = editPhoneNumber,
                     editNumberPhone = editPhoneNumber
                 )
@@ -69,19 +64,16 @@ class RegistrationActivity : AppCompatActivity() {
 
             editPassword.addTextChangedListener(
                 ValidationTextWatcher {
-                    viewModelValidations.validationPasswordSecurity(it)
+                    viewModel.validationPasswordSecurity(it)
                 }
             )
             editPassword.addTextChangedListener(
                 ValidationTextWatcher {
-                    viewModelValidations.validationPasswordCharacter(it)
+                    viewModel.validationPasswordCharacter(it)
                 }
             )
         }
     }
-
-
-
 }
 
 

@@ -5,19 +5,19 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import com.example.core.R
 import com.example.registration.databinding.ActivityRegistrationBinding
-import com.example.registration.viewmodel.ViewModelValidations
+import com.example.registration.viewmodel.ViewModel
 import javax.inject.Inject
 
 
 class FieldCheck @Inject constructor(): FieldCheckContract {
 
     override fun fieldCheck(
-        viewModelValidations: ViewModelValidations,
+        viewModel: ViewModel,
         binding: ActivityRegistrationBinding,
         context: Context
     ){
         with(binding) {
-            viewModelValidations.listenerFieldCheck.observe(context as LifecycleOwner) { states ->
+            viewModel.listenerFieldCheck.observe(context as LifecycleOwner) { states ->
                 if (states) {
                     singUpButton.setBackgroundColor(ContextCompat.getColor(context, R.color.pink))
                     singUpButton.setOnClickListener {

@@ -14,14 +14,14 @@ class UpdateErrorLoginBuilder(
 
 ) {
     class Builder {
+
         private lateinit var editText: EditText
         private lateinit var errorTextView: TextView
         private lateinit var context: Context
+
         private var characterValid: Boolean? = null
         private var securityValid: Boolean? = null
-
-
-
+        
         fun editText(editText: EditText) = apply { this.editText = editText }
         fun errorTextView(errorTextView: TextView) = apply { this.errorTextView = errorTextView }
         fun context(context: Context) = apply { this.context = context }

@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.registration.contract.ContractFormatPhoneNumber
+import com.example.registration.contract.RegistrationContract
+import com.example.registration.usecase.RegistrationFactory
 import com.example.registration.validation.DataValidation
 import com.example.registration.validation.PasswordValidationContract
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,8 +17,18 @@ import javax.inject.Inject
 class ViewModel @Inject constructor(
     private val dataValidation: DataValidation,
     private val passwordValidation: PasswordValidationContract,
-    private val contractFormatPhoneNumber: ContractFormatPhoneNumber
+    private val contractFormatPhoneNumber: ContractFormatPhoneNumber,
+    private val registrationContract: RegistrationContract
 ) : ViewModel() {
+
+
+    private val _name: MutableLiveData<String> = MutableLiveData<String>()
+    private val _surname: MutableLiveData<String> = MutableLiveData<String>()
+    private val _password: MutableLiveData<String> = MutableLiveData<String>()
+    private val _numberPhone: MutableLiveData<String> = MutableLiveData<String>()
+
+    private val _resultRegistration: MutableLiveData<String> = MutableLiveData<String>()
+    val resultRegistration: MutableLiveData<String> = _resultRegistration
 
     // Check that all fields are entered correctly to open access to the registration button
     private val _lengthsNumberPhone: MutableLiveData<Int> = MutableLiveData<Int>()
@@ -45,6 +57,16 @@ class ViewModel @Inject constructor(
     val listenerPasswordSecurity: MutableLiveData<Boolean> = _listenerPasswordSecurity
 
 
+    fun createAccount() {
+        viewModelScope.launch {
+            _resultRegistration.value = registrationContract.registrationImpl(
+                name = _name.value!!,
+                surname = _surname.value!!,
+                password = _password.value!!,
+                numberPhone = _numberPhone.value!!
+            )
+        }
+    }
 
     private fun mediator() {
 
@@ -73,6 +95,7 @@ class ViewModel @Inject constructor(
 
     fun validationName(name: String) {
         viewModelScope.launch {
+            _name.value = name
             _listenerSymbolsName.value = dataValidation.validationNameSurname(name)
             lengthsName.value = dataValidation.validationLengths(name)
 
@@ -81,6 +104,7 @@ class ViewModel @Inject constructor(
 
     fun validationSurname(surname: String) {
         viewModelScope.launch {
+            _surname.value = surname
             _listenerSymbolsSurname.value = dataValidation.validationNameSurname(surname)
             lengthsSurname.value = dataValidation.validationLengths(surname)
         }
@@ -88,6 +112,7 @@ class ViewModel @Inject constructor(
 
     fun validationPasswordCharacter(password: String) {
         viewModelScope.launch {
+            _password.value = password
             _listenerPasswordCharacter.value =
                 passwordValidation.validationPasswordCharacter(password)
         }
@@ -101,6 +126,7 @@ class ViewModel @Inject constructor(
     }
 
     fun setFormatNumberPhone(number: String): CharSequence {
+        _numberPhone.value = number
         _lengthsNumberPhone.value = number.length
         return contractFormatPhoneNumber.formatPhoneNumber(number)
     }

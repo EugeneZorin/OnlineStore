@@ -39,6 +39,7 @@ object RegistrationModule{
     }
 
 
+
     @Provides
     fun provideSetFormatNumber(): ContractFormatPhoneNumber {
         return SetFormatPhoneNumberFactory.create()

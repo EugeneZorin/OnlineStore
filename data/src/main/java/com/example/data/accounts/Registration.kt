@@ -57,7 +57,6 @@ class Registration @Inject constructor() : RegistrationRepository {
                     continuation.resume(it.user?.uid.toString())
                 }
                 .addOnFailureListener {
-                    Log.d("asdasd", (it.message.toString()))
                     continuation.resume(it.message.toString())
                 }
         }

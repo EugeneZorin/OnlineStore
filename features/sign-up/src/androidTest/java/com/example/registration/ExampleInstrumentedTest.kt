@@ -2,6 +2,7 @@ package com.example.registration
 
 import androidx.test.runner.AndroidJUnit4
 import com.example.registration.usecase.validation.DataValidationImpl
+import com.example.registration.viewmodel.ViewModel
 import org.junit.runner.RunWith
 
 /**
@@ -12,7 +13,8 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
 
-    private val dataValidation = DataValidationImpl()
+
+
 
 
 }

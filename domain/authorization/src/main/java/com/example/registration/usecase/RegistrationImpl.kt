@@ -24,8 +24,12 @@ private class RegistrationImpl(
                 registrationResultNamesEntity.numberErrorCreateUser
             }
 
-            else -> {
+            registrationResultNamesEntity.numberCreateAccount -> {
                 registrationResultNamesEntity.numberCreateAccount
+            }
+
+            else -> {
+                registrationResultNamesEntity.errorCreateUser
             }
         }
     }

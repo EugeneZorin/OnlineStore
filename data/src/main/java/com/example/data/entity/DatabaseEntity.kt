@@ -11,7 +11,7 @@ data class DatabaseEntity(
     val imageDatabase: String = "imageDatabase",
 
     // Create an account
-    val errorCreateUser: String = "ERROR_CREATE_USER",
+    val errorCreateUser: String = "The email address is already in use by another account.",
     val createAccounts: String = "create_user_accounts",
     val setDataAccounts: String = "set_data_user",
 

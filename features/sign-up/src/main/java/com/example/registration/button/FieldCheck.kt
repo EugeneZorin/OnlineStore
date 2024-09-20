@@ -32,20 +32,21 @@ class FieldCheck @Inject constructor(): FieldCheckContract {
                     singUpButton.setOnClickListener {
                         viewModel.createAccount()
                         viewModel.resultRegistration.observe(contextObserver) { result ->
-                            Log.d("result!!", "${result}")
-                            if (result == registrationResultEntity.createAccount) {
-                                Log.d("TODU", "TODU")
-                            } else if (result == registrationResultEntity.errorCreateUser) {
-                                viewModel.listenerFieldCheck.value = false
-                                errorMessageNumberPhone.visibility = View.VISIBLE
-                                errorMessageNumberPhone.text = context.getString(R.string.error_number_phone)
-                            } else {
-                                errorMessageNumberPhone.visibility = View.INVISIBLE
+                            when (result) {
+                                registrationResultEntity.createAccount -> {
+                                    // TODO
+                                }
+                                registrationResultEntity.errorCreateUser -> {
+                                    viewModel.listenerFieldCheck.value = false
+                                    errorMessageNumberPhone.visibility = View.VISIBLE
+                                    errorMessageNumberPhone.text = context.getString(R.string.error_number_phone)
+                                }
                             }
                         }
                     }
                 } else {
                     singUpButton.setBackgroundColor(ContextCompat.getColor(context, R.color.pale_pink))
+                    errorMessageNumberPhone.visibility = View.INVISIBLE
                 }
             }
         }

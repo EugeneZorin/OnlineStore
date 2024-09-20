@@ -18,18 +18,14 @@ private class RegistrationImpl(
         password: String
     ): String {
         val result = registrationRepository.registration(name, surname, numberPhone, password)
-        println(result)
+
         return when (result) {
             registrationResultNamesEntity.errorCreateUser -> {
-                registrationResultNamesEntity.numberErrorCreateUser
-            }
-
-            registrationResultNamesEntity.numberCreateAccount -> {
-                registrationResultNamesEntity.numberCreateAccount
+                registrationResultNamesEntity.errorCreateUser
             }
 
             else -> {
-                registrationResultNamesEntity.errorCreateUser
+               registrationResultNamesEntity.createAccount
             }
         }
     }

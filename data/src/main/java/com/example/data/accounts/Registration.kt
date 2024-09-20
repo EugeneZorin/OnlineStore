@@ -37,11 +37,11 @@ class Registration @Inject constructor() : RegistrationRepository {
         )
 
         return try {
-            createUser(auth, email, hashedPassword)
             val currentUser = auth.currentUser
             currentUser?.let {
                 setUserData(database, it.uid, user)
             }
+            createUser(auth, email, hashedPassword)
         } catch (e: Exception) {
             Log.d(databaseEntity.errorCreateUser, "${e.message}")
             databaseEntity.errorCreateUser
